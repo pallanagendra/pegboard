@@ -1,0 +1,31 @@
+      <div class="workspace workspace--wide-input">
+        <form class="panel panel--inputs" data-form novalidate>
+          <div class="panel__head">
+            <label class="panel__title" for="wc-text">Your text</label>
+            <div class="actions">
+              <button type="button" class="button button--quiet button--small" data-copy-from="#wc-text" data-copy-label="Text copied">Copy</button>
+              <button type="button" class="button button--quiet button--small" data-clear>Clear</button>
+            </div>
+          </div>
+          <textarea class="textarea textarea--tall" id="wc-text" name="text" placeholder="Start typing, or paste text here." data-text></textarea>
+          <div class="stats" data-stats aria-live="polite"></div>
+        </form>
+
+        <div class="workspace__sticky">
+          <section class="panel" aria-labelledby="wc-lim-title">
+            <div class="panel__head">
+              <h2 class="panel__title" id="wc-lim-title">Limits</h2>
+              <span class="panel__hint">Typical limits; platforms change them now and then.</span>
+            </div>
+            <div class="limits" data-limits></div>
+          </section>
+          <section class="panel" aria-labelledby="wc-kw-title">
+            <div class="panel__head">
+              <h2 class="panel__title" id="wc-kw-title">Top words</h2>
+              <label class="check"><input type="checkbox" checked data-hide-common> <span>Hide common words</span></label>
+            </div>
+            <ul class="keywords" data-keywords></ul>
+            <p class="field__help" data-kw-empty>Words you use most will appear here.</p>
+          </section>
+        </div>
+      </div>

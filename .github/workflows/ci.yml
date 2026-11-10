@@ -1,0 +1,34 @@
+# Build and test. Runs on every pull request, and is reused by the deploy workflow
+# so nothing reaches an environment without passing these checks first.
+name: CI
+
+on:
+  pull_request:
+    branches: [develop, main]
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Build, check and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Build (production settings)
+        run: npm run build
+        env:
+          SITE_ENV: production
+
+      - name: Check pages and links
+        run: npm run check
+
+      - name: Unit tests
+        run: npm test

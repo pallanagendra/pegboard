@@ -1,0 +1,70 @@
+      <div class="workspace">
+        <form class="panel panel--inputs" data-form novalidate>
+          <div class="field">
+            <label for="bc-data">Value to encode</label>
+            <input class="input input--mono" id="bc-data" name="data" value="PEG-2026-0001" autocomplete="off" spellcheck="false" aria-describedby="bc-hint">
+            <span class="field__help" id="bc-hint" data-hint></span>
+          </div>
+
+          <div class="field">
+            <label for="bc-format">Format</label>
+            <select class="select" id="bc-format" name="format" data-format></select>
+            <span class="field__help"><button type="button" class="link-button" data-example>Use an example value</button></span>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="bc-width">Bar width</label>
+              <div class="range"><input id="bc-width" name="width" type="range" min="1" max="5" step="1" value="2"><output for="bc-width" data-suffix=" px"></output></div>
+            </div>
+            <div class="field">
+              <label for="bc-height">Height</label>
+              <div class="range"><input id="bc-height" name="height" type="range" min="20" max="240" step="5" value="100"><output for="bc-height" data-suffix=" px"></output></div>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="bc-margin">Quiet zone (margin)</label>
+              <div class="range"><input id="bc-margin" name="margin" type="range" min="0" max="40" step="2" value="12"><output for="bc-margin" data-suffix=" px"></output></div>
+            </div>
+            <div class="field">
+              <label for="bc-fontsize">Text size</label>
+              <div class="range"><input id="bc-fontsize" name="fontSize" type="range" min="10" max="36" step="1" value="18"><output for="bc-fontsize" data-suffix=" px"></output></div>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="bc-line-text">Bar color</label>
+              <div class="color-field"><input type="color" class="input input--color" value="#000000" aria-label="Bar color picker"><input type="text" class="input input--mono" id="bc-line-text" name="lineColor" value="#000000" maxlength="7"></div>
+            </div>
+            <div class="field">
+              <label for="bc-bg-text">Background</label>
+              <div class="color-field"><input type="color" class="input input--color" value="#ffffff" aria-label="Background color picker"><input type="text" class="input input--mono" id="bc-bg-text" name="background" value="#ffffff" maxlength="7"></div>
+            </div>
+          </div>
+
+          <div class="checks">
+            <label class="check"><input type="checkbox" name="displayValue" checked> <span>Show the value under the bars</span></label>
+            <label class="check"><input type="checkbox" name="transparent"> <span>Transparent background<small>Useful when placing the barcode on a colored label. Keep the label light.</small></span></label>
+          </div>
+        </form>
+
+        <section class="panel workspace__sticky" aria-labelledby="bc-out-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="bc-out-title">Preview</h2>
+            <span class="panel__hint" data-size></span>
+          </div>
+          <div class="stage" data-stage>
+            <svg data-svg role="img" aria-label="Barcode preview"></svg>
+          </div>
+          <div class="message message--error" data-error role="alert" hidden></div>
+          <div class="message message--note" data-note hidden></div>
+          <div class="actions">
+            <button type="button" class="button button--primary" data-download="svg">Download SVG</button>
+            <button type="button" class="button" data-download="png">Download PNG</button>
+            <button type="button" class="button button--quiet" data-copy-svg>Copy SVG code</button>
+          </div>
+        </section>
+      </div>

@@ -1,0 +1,94 @@
+      <div class="workspace">
+        <form class="panel panel--inputs" data-form novalidate>
+          <div class="field">
+            <label for="if-url">Page or video address</label>
+            <input class="input" id="if-url" name="url" type="url" inputmode="url" value="https://example.com" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="field">
+            <label for="if-title">Title</label>
+            <input class="input" id="if-title" name="title" value="Example page" autocomplete="off">
+            <span class="field__help">Read aloud by screen readers. Describe what's inside.</span>
+          </div>
+
+          <fieldset>
+            <legend>Size</legend>
+            <div class="segmented">
+              <input type="radio" name="sizeMode" id="if-resp" value="responsive" checked><label for="if-resp">Responsive</label>
+              <input type="radio" name="sizeMode" id="if-fixed" value="fixed"><label for="if-fixed">Fixed size</label>
+            </div>
+          </fieldset>
+
+          <div class="field-row" data-size="responsive">
+            <div class="field">
+              <label for="if-ratio">Shape</label>
+              <select class="select" id="if-ratio" name="ratio" data-ratios></select>
+            </div>
+            <div class="field">
+              <label for="if-max">Max width (px, optional)</label>
+              <input class="input" id="if-max" name="maxWidth" type="number" min="0" step="10" placeholder="No limit">
+            </div>
+          </div>
+
+          <div class="field-row" data-size="fixed" hidden>
+            <div class="field">
+              <label for="if-w">Width</label>
+              <input class="input" id="if-w" name="width" type="number" min="1" value="560">
+            </div>
+            <div class="field">
+              <label for="if-unit">Unit</label>
+              <select class="select" id="if-unit" name="widthUnit"><option value="px">pixels</option><option value="%">% of container</option></select>
+            </div>
+            <div class="field">
+              <label for="if-h">Height (px)</label>
+              <input class="input" id="if-h" name="height" type="number" min="1" value="315">
+            </div>
+          </div>
+
+          <div class="checks checks--cols">
+            <label class="check"><input type="checkbox" name="lazy" checked> <span>Load lazily<small>Waits until it's scrolled into view.</small></span></label>
+            <label class="check"><input type="checkbox" name="fullscreen" checked> <span>Allow fullscreen</span></label>
+            <label class="check"><input type="checkbox" name="border"> <span>Show a border</span></label>
+            <label class="check"><input type="checkbox" name="rounded"> <span>Rounded corners</span></label>
+          </div>
+
+          <fieldset>
+            <legend>Let the embedded page use</legend>
+            <div class="checks checks--cols" data-permissions></div>
+          </fieldset>
+
+          <div class="field">
+            <label for="if-ref">Referrer sent to the embedded page</label>
+            <select class="select" id="if-ref" name="referrer">
+              <option value="">Browser default</option>
+              <option value="strict-origin-when-cross-origin">Only your domain</option>
+              <option value="no-referrer">Nothing</option>
+            </select>
+          </div>
+
+          <fieldset>
+            <legend>Security</legend>
+            <label class="check"><input type="checkbox" name="useSandbox" data-sandbox-toggle> <span>Sandbox the embed<small>Blocks scripts, forms, pop-ups and cookies unless you allow them below.</small></span></label>
+            <div class="checks checks--cols" data-sandbox hidden></div>
+          </fieldset>
+        </form>
+
+        <div class="workspace__sticky">
+          <section class="panel" aria-labelledby="if-code-title">
+            <div class="panel__head">
+              <h2 class="panel__title" id="if-code-title">Embed code</h2>
+              <button type="button" class="button button--primary button--small" data-copy-from="#if-code" data-copy-label="Embed code copied">Copy code</button>
+            </div>
+            <pre class="code-out" id="if-code" data-code></pre>
+            <div class="message message--error" data-error role="alert" hidden></div>
+            <div class="message message--note" data-notes hidden></div>
+          </section>
+          <section class="panel" aria-labelledby="if-prev-title">
+            <div class="panel__head">
+              <h2 class="panel__title" id="if-prev-title">Live preview</h2>
+              <label class="check"><input type="checkbox" data-autopreview checked> <span>Update as I type</span></label>
+            </div>
+            <div class="preview-frame" data-preview></div>
+            <p class="field__help">Blank preview? That site doesn't allow being embedded.</p>
+          </section>
+        </div>
+      </div>

@@ -1,0 +1,130 @@
+      <div class="workspace">
+        <form class="panel panel--inputs" data-form novalidate>
+          <fieldset>
+            <legend>What should the code open?</legend>
+            <div class="segmented" data-type-picker>
+              <input type="radio" name="type" id="qr-t-url" value="url" checked><label for="qr-t-url">Link</label>
+              <input type="radio" name="type" id="qr-t-text" value="text"><label for="qr-t-text">Text</label>
+              <input type="radio" name="type" id="qr-t-wifi" value="wifi"><label for="qr-t-wifi">Wi-Fi</label>
+              <input type="radio" name="type" id="qr-t-email" value="email"><label for="qr-t-email">Email</label>
+              <input type="radio" name="type" id="qr-t-phone" value="phone"><label for="qr-t-phone">Phone</label>
+              <input type="radio" name="type" id="qr-t-sms" value="sms"><label for="qr-t-sms">SMS</label>
+              <input type="radio" name="type" id="qr-t-vcard" value="vcard"><label for="qr-t-vcard">Contact</label>
+            </div>
+          </fieldset>
+
+          <div class="field" data-type-fields="url">
+            <label for="qr-url">Web address</label>
+            <input class="input" id="qr-url" name="url" type="url" inputmode="url" value="https://example.com" autocomplete="off" spellcheck="false">
+            <span class="field__help">You can leave off https:// — it's added for you.</span>
+          </div>
+
+          <div class="field" data-type-fields="text" hidden>
+            <label for="qr-text">Text</label>
+            <textarea class="textarea" id="qr-text" name="text" rows="4">Hello! Scan me.</textarea>
+          </div>
+
+          <div class="field-row" data-type-fields="wifi" hidden>
+            <div class="field">
+              <label for="qr-ssid">Network name (SSID)</label>
+              <input class="input" id="qr-ssid" name="wifiSsid" autocomplete="off" spellcheck="false">
+            </div>
+            <div class="field">
+              <label for="qr-pass">Password</label>
+              <input class="input" id="qr-pass" name="wifiPassword" autocomplete="off" spellcheck="false">
+            </div>
+            <div class="field">
+              <label for="qr-sec">Security</label>
+              <select class="select" id="qr-sec" name="wifiSecurity">
+                <option value="WPA">WPA / WPA2 / WPA3</option>
+                <option value="WEP">WEP (old)</option>
+                <option value="nopass">No password</option>
+              </select>
+            </div>
+            <label class="check align-end"><input type="checkbox" name="wifiHidden"> <span>Hidden network</span></label>
+          </div>
+
+          <div class="field-row" data-type-fields="email" hidden>
+            <div class="field"><label for="qr-email">Send to</label><input class="input" id="qr-email" name="emailTo" type="email" autocomplete="off"></div>
+            <div class="field"><label for="qr-subj">Subject (optional)</label><input class="input" id="qr-subj" name="emailSubject"></div>
+            <div class="field span-all"><label for="qr-body">Message (optional)</label><textarea class="textarea" id="qr-body" name="emailBody" rows="3"></textarea></div>
+          </div>
+
+          <div class="field" data-type-fields="phone" hidden>
+            <label for="qr-phone">Phone number</label>
+            <input class="input" id="qr-phone" name="phone" type="tel" placeholder="+1 555 010 0199" autocomplete="off">
+            <span class="field__help">Include the country code so it works abroad.</span>
+          </div>
+
+          <div class="field-row" data-type-fields="sms" hidden>
+            <div class="field"><label for="qr-smsn">Phone number</label><input class="input" id="qr-smsn" name="smsNumber" type="tel" autocomplete="off"></div>
+            <div class="field span-all"><label for="qr-smsm">Message (optional)</label><textarea class="textarea" id="qr-smsm" name="smsMessage" rows="3"></textarea></div>
+          </div>
+
+          <div class="field-row" data-type-fields="vcard" hidden>
+            <div class="field"><label for="qr-vf">First name</label><input class="input" id="qr-vf" name="vcFirst" autocomplete="off"></div>
+            <div class="field"><label for="qr-vl">Last name</label><input class="input" id="qr-vl" name="vcLast" autocomplete="off"></div>
+            <div class="field"><label for="qr-vo">Company</label><input class="input" id="qr-vo" name="vcOrg" autocomplete="off"></div>
+            <div class="field"><label for="qr-vt">Job title</label><input class="input" id="qr-vt" name="vcTitle" autocomplete="off"></div>
+            <div class="field"><label for="qr-vp">Phone</label><input class="input" id="qr-vp" name="vcPhone" type="tel" autocomplete="off"></div>
+            <div class="field"><label for="qr-ve">Email</label><input class="input" id="qr-ve" name="vcEmail" type="email" autocomplete="off"></div>
+            <div class="field span-all"><label for="qr-vu">Website</label><input class="input" id="qr-vu" name="vcUrl" autocomplete="off"></div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="qr-ecc">Error correction</label>
+              <select class="select" id="qr-ecc" name="ecc">
+                <option value="L">Low (7%) — smallest</option>
+                <option value="M" selected>Medium (15%)</option>
+                <option value="Q">Quartile (25%)</option>
+                <option value="H">High (30%) — toughest</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="qr-style">Module style</label>
+              <select class="select" id="qr-style" name="style">
+                <option value="square" selected>Square</option>
+                <option value="dots">Dots</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="qr-size">Download size</label>
+              <div class="range"><input id="qr-size" name="size" type="range" min="128" max="2048" step="64" value="1024"><output for="qr-size" data-suffix=" px"></output></div>
+            </div>
+            <div class="field">
+              <label for="qr-margin">Quiet zone</label>
+              <div class="range"><input id="qr-margin" name="margin" type="range" min="0" max="8" step="1" value="4"><output for="qr-margin" data-suffix=" modules"></output></div>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="qr-fg">Foreground</label>
+              <div class="color-field"><input type="color" class="input input--color" value="#111111" aria-label="Foreground color picker"><input type="text" class="input input--mono" id="qr-fg" name="fg" value="#111111" maxlength="7"></div>
+            </div>
+            <div class="field">
+              <label for="qr-bg">Background</label>
+              <div class="color-field"><input type="color" class="input input--color" value="#ffffff" aria-label="Background color picker"><input type="text" class="input input--mono" id="qr-bg" name="bg" value="#ffffff" maxlength="7"></div>
+            </div>
+          </div>
+        </form>
+
+        <section class="panel workspace__sticky" aria-labelledby="qr-out-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="qr-out-title">Preview</h2>
+            <span class="panel__hint" data-info></span>
+          </div>
+          <div class="stage stage--qr" data-stage></div>
+          <div class="message message--error" data-error role="alert" hidden></div>
+          <div class="message message--note" data-warn hidden></div>
+          <div class="actions">
+            <button type="button" class="button button--primary" data-download="png">Download PNG</button>
+            <button type="button" class="button" data-download="svg">Download SVG</button>
+            <button type="button" class="button button--quiet" data-copy-payload>Copy encoded text</button>
+          </div>
+        </section>
+      </div>

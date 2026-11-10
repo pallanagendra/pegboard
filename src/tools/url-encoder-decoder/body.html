@@ -1,0 +1,47 @@
+      <form class="panel panel--inputs" data-form novalidate>
+        <div class="panel__head">
+          <div class="segmented" role="radiogroup" aria-label="Direction">
+            <input type="radio" name="mode" id="u-dec" value="decode" checked><label for="u-dec">Decode</label>
+            <input type="radio" name="mode" id="u-enc" value="encode"><label for="u-enc">Encode</label>
+          </div>
+          <button type="button" class="button button--quiet button--small" data-swap>Swap input and result</button>
+        </div>
+
+        <div class="workspace">
+          <div class="field">
+            <div class="field__head">
+              <label for="u-in" data-in-label>Encoded text or link</label>
+              <button type="button" class="button button--quiet button--small" data-clear>Clear</button>
+            </div>
+            <textarea class="textarea textarea--mono textarea--tall" id="u-in" name="input" spellcheck="false" autocomplete="off">https://example.com/search?q=caf%C3%A9%20au%20lait&amp;utm_source=newsletter&amp;utm_campaign=spring%2Bsale#top%20picks</textarea>
+          </div>
+          <div class="field">
+            <div class="field__head">
+              <label for="u-out" data-out-label>Decoded</label>
+              <button type="button" class="button button--primary button--small" data-copy-from="#u-out" data-copy-label="Result copied">Copy result</button>
+            </div>
+            <textarea class="textarea textarea--mono textarea--tall" id="u-out" readonly spellcheck="false"></textarea>
+          </div>
+        </div>
+
+        <div class="field-row" data-encode-opts hidden>
+          <div class="field">
+            <label for="u-variant">Encode for</label>
+            <select class="select" id="u-variant" name="variant" data-variants></select>
+            <span class="field__help" data-variant-help></span>
+          </div>
+        </div>
+        <div class="checks checks--cols" data-decode-opts>
+          <label class="check"><input type="checkbox" name="plusAsSpace" checked> <span>Treat + as a space<small>Right for query strings and form data.</small></span></label>
+          <label class="check"><input type="checkbox" name="repeat"> <span>Decode repeatedly<small>Unwraps double-encoded text like %2520.</small></span></label>
+        </div>
+        <div class="message message--note" data-status hidden></div>
+      </form>
+
+      <section class="panel" aria-labelledby="u-parts-title" data-parts-panel hidden>
+        <div class="panel__head">
+          <h2 class="panel__title" id="u-parts-title">URL breakdown</h2>
+          <span class="panel__hint" data-param-count></span>
+        </div>
+        <table class="kv" data-parts></table>
+      </section>

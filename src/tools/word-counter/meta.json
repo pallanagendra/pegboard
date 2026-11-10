@@ -1,0 +1,23 @@
+{
+  "name": "Word and character counter",
+  "title": "Word Counter and Character Counter: Live Count, Reading Time",
+  "h1": "Word and character counter",
+  "description": "Count words, characters, sentences and paragraphs as you type. See reading time, keyword density and limits for meta descriptions, X and LinkedIn.",
+  "summary": "Live counts, reading time, keyword density and social post limits.",
+  "category": "text",
+  "order": 5,
+  "keywords": ["word count", "word counter", "character count", "character counter", "letters", "sentences", "reading time", "keyword density", "meta description length", "tweet length", "sms"],
+  "related": ["url-encoder-decoder", "qr-code-generator"],
+  "howTo": [
+    "Type or paste your text. Counts update with every keystroke.",
+    "Check the <strong>limits</strong> list before posting — the bar turns red when you go over.",
+    "Use <strong>Top words</strong> to spot words you lean on too often, or to check keyword density for SEO.",
+    "Your text stays on this device. It's kept only while this tab is open, so a refresh won't lose your work."
+  ],
+  "faq": [
+    { "q": "How are words counted?", "a": "Using your browser's built-in language rules, so “don't” is one word, hyphenated words like “well-known” are counted the way most editors count them, and languages written without spaces (like Japanese or Chinese) are split sensibly." },
+    { "q": "Do emoji count as one character?", "a": "Yes. 👍🏽 or a flag counts as one character here, the way you see it. Some platforms count them as two; the byte count shows what a database or API will store." },
+    { "q": "How is reading time calculated?", "a": "At 238 words per minute, the average silent reading speed for adults in English. Speaking time uses 150 words per minute, a comfortable presentation pace." },
+    { "q": "Why does the SMS count say Unicode?", "a": "Texts that only use the basic GSM alphabet fit 160 characters per message. One emoji or a curly quote switches the whole message to Unicode, which fits only 70." }
+  ]
+}

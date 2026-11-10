@@ -1,0 +1,8 @@
+# Opens a pull request each month when a GitHub Action used by the pipeline has a new version.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    target-branch: develop

@@ -1,0 +1,24 @@
+{
+  "name": "QR code generator",
+  "title": "Free QR Code Generator: Links, Wi-Fi, Contacts, SMS",
+  "h1": "QR code generator",
+  "description": "Make QR codes for links, Wi-Fi, contact cards, email, phone and SMS. Choose colors and size, download SVG or PNG. Static codes that never expire.",
+  "summary": "Links, Wi-Fi logins, contact cards and more. Static codes that never expire.",
+  "category": "generators",
+  "order": 20,
+  "keywords": ["qr", "qr code", "qrcode", "wifi", "wi-fi", "vcard", "contact", "link", "menu", "sms", "email", "scan"],
+  "vendor": ["qrcode-generator-2.0.4.js"],
+  "related": ["barcode-generator", "url-encoder-decoder"],
+  "howTo": [
+    "Choose what the code should open: a link, plain text, a Wi-Fi network, an email, a phone call, a text message or a contact card.",
+    "Fill in the details. The code redraws as you type.",
+    "Raise <strong>error correction</strong> if the code will be printed small, outdoors, or might get scuffed.",
+    "Download SVG for print or PNG for screens, then scan it with your phone to test before you share it."
+  ],
+  "faq": [
+    { "q": "Do these QR codes expire?", "a": "No. The content is stored inside the code itself, not on a server, so it works for as long as the printed code exists. The flip side: you can't change where it points after printing." },
+    { "q": "Why won't my colored QR code scan?", "a": "Scanners need strong contrast with dark modules on a light background. Inverted (light on dark) or low-contrast color pairs fail on many phones. The tool warns you when the colors are risky." },
+    { "q": "What does error correction do?", "a": "It adds redundancy so the code still scans when part of it is damaged or covered. Low (L) gives the smallest code; High (H) survives about 30% damage but has more, smaller modules." },
+    { "q": "How small can I print it?", "a": "A good rule is at least 2 cm (about 0.8 in) wide for a short link, and bigger for long content or when people scan from a distance — roughly one-tenth of the scanning distance." }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Barcode generator",
+  "title": "Free Barcode Generator: Code 128, EAN-13, UPC-A, Code 39",
+  "h1": "Barcode generator",
+  "description": "Make Code 128, EAN-13, UPC-A, Code 39 and ITF-14 barcodes in your browser. Set size and color, then download SVG or PNG. Free, no sign-up.",
+  "summary": "Code 128, EAN-13, UPC-A, Code 39 and more, ready to download as SVG or PNG.",
+  "category": "generators",
+  "order": 10,
+  "keywords": ["barcode", "bar code", "code128", "code 128", "ean", "ean-13", "ean13", "upc", "upc-a", "code39", "itf-14", "sku", "label", "product", "inventory"],
+  "vendor": ["jsbarcode-3.12.3.min.js"],
+  "related": ["qr-code-generator", "word-counter"],
+  "howTo": [
+    "Type the value you want to encode, like a SKU or product number.",
+    "Pick a format. Use <strong>Code 128</strong> for anything internal; use <strong>EAN-13</strong> or <strong>UPC-A</strong> only for registered retail product numbers.",
+    "Adjust bar width, height and colors. The preview updates as you type.",
+    "Download <strong>SVG</strong> for print (it stays sharp at any size) or <strong>PNG</strong> for documents and websites."
+  ],
+  "faq": [
+    { "q": "Which barcode format should I use?", "a": "For shipping labels, inventory and anything that stays inside your business, Code 128: it holds letters, numbers and symbols and is compact. For products sold in shops you need an EAN-13 (most of the world) or UPC-A (US and Canada) number issued by GS1." },
+    { "q": "Why does EAN-13 say my number is invalid?", "a": "The last digit of an EAN-13 is a check digit calculated from the first twelve. Enter just the first 12 digits and the check digit is added for you, or fix the 13th digit." },
+    { "q": "Will the barcode scan when printed?", "a": "Yes, if you keep dark bars on a light background, leave the quiet zone (margin) on both sides, and don't shrink it too far. Download SVG for print so the bars stay crisp." },
+    { "q": "Is my data sent anywhere?", "a": "No. The barcode is drawn by your browser; nothing is uploaded." }
+  ]
+}

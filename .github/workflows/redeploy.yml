@@ -1,0 +1,31 @@
+# Manual deploy: Actions tab → "Redeploy" → Run workflow.
+# Pick the branch or tag to deploy (use an older tag to roll back) and the target environment.
+name: Redeploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Where to deploy
+        type: choice
+        options: [dev, staging, production]
+        default: staging
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: redeploy-${{ inputs.environment }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    uses: ./.github/workflows/ci.yml
+
+  deploy:
+    needs: test
+    uses: ./.github/workflows/deploy-env.yml
+    with:
+      environment: ${{ inputs.environment }}
+    secrets: inherit

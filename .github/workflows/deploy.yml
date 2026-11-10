@@ -1,0 +1,53 @@
+# The pipeline.
+#
+#   feature branch ──PR──▶ develop ──push──▶ [test] ──▶ dev
+#                                │
+#                                └──PR──▶ main ──push──▶ [test] ──▶ staging ──(approval)──▶ production
+#
+# Production waits for a reviewer to click "Approve and deploy" when the "production"
+# GitHub Environment has Required reviewers turned on (see docs/SETUP-GUIDE.md, step 6).
+name: Deploy
+
+on:
+  push:
+    branches: [develop, main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+
+# Never run two deploys of the same branch at once; let a running deploy finish.
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  test:
+    uses: ./.github/workflows/ci.yml
+
+  dev:
+    if: github.ref_name == 'develop'
+    needs: test
+    uses: ./.github/workflows/deploy-env.yml
+    with:
+      environment: dev
+    secrets: inherit
+
+  staging:
+    if: github.ref_name == 'main'
+    needs: test
+    uses: ./.github/workflows/deploy-env.yml
+    with:
+      environment: staging
+    secrets: inherit
+
+  production:
+    if: github.ref_name == 'main'
+    needs: staging
+    uses: ./.github/workflows/deploy-env.yml
+    with:
+      environment: production
+    secrets: inherit

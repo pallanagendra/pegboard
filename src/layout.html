@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{pageTitle}}</title>
+  <meta name="description" content="{{description}}">
+  {{robotsMeta}}
+  {{canonicalTag}}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{siteName}}">
+  <meta property="og:title" content="{{pageTitle}}">
+  <meta property="og:description" content="{{description}}">
+  {{ogUrl}}
+  <meta name="theme-color" content="#E7EBEE" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161B20" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="{{root}}assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="{{root}}assets/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{{asset:css/site.css}}">
+  <script src="{{asset:js/theme-init.js}}"></script>
+  {{jsonLd}}
+</head>
+<body class="{{bodyClass}}">
+  <a class="skip-link" href="#main">Skip to content</a>
+  {{envBanner}}
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="brand" href="{{home}}" aria-label="{{siteName}} home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="1" y="1" width="30" height="30" rx="7" class="brand__board"/>
+          <circle cx="9" cy="9" r="2.2" class="brand__hole"/><circle cx="23" cy="9" r="2.2" class="brand__hole"/>
+          <circle cx="9" cy="23" r="2.2" class="brand__hole"/>
+          <path d="M23 13v5.5a3.5 3.5 0 0 1-7 0" class="brand__hook"/>
+        </svg>
+        <span class="brand__name">{{siteName}}</span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="{{home}}#tools" class="site-nav__link">All tools</a>
+        <a href="{{aboutHref}}" class="site-nav__link">About</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="theme-toggle__icon theme-toggle__icon--sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="theme-toggle__icon theme-toggle__icon--moon"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+{{content}}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="site-footer__grid">
+        <div class="site-footer__about">
+          <p class="site-footer__brand">{{siteName}}</p>
+          <p>{{tagline}} Everything runs in your browser — your text, links and codes never leave your device.</p>
+        </div>
+{{footerToolLists}}
+      </div>
+      <div class="site-footer__meta">
+        <span>© {{year}} {{owner}}</span>
+        <a href="{{aboutHref}}">About and privacy</a>
+        <span title="Built {{buildTime}} from commit {{buildSha}}">Version {{version}}, build {{buildShaShort}}</span>
+      </div>
+    </div>
+  </footer>
+  <div class="toast" role="status" aria-live="polite" data-toast hidden></div>
+  <script type="module" src="{{asset:js/site.js}}"></script>
+{{scripts}}
+</body>
+</html>

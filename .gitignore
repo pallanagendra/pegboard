@@ -1,0 +1,17 @@
+# build output (the pipeline builds fresh every time)
+dist/
+.wrangler/
+node_modules/
+
+# local secrets — never commit these
+.env
+.env.*
+.dev.vars*
+
+# OS / editor clutter
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.log

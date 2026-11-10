@@ -1,0 +1,23 @@
+{
+  "name": "iFrame embed code generator",
+  "title": "iFrame Generator: Responsive Embed Code for Any Page or Video",
+  "h1": "iFrame embed code generator",
+  "description": "Generate clean, responsive iframe embed code. Converts YouTube, Vimeo, Loom and Spotify links, sets permissions and sandbox, and previews it live.",
+  "summary": "Responsive embed code for pages and videos, with a live preview.",
+  "category": "web",
+  "order": 30,
+  "keywords": ["iframe", "embed", "embed code", "html", "youtube", "vimeo", "responsive", "aspect ratio", "sandbox", "widget", "website"],
+  "related": ["url-encoder-decoder", "qr-code-generator"],
+  "howTo": [
+    "Paste the address of the page or video. YouTube, Vimeo, Loom and Spotify links are converted to their embed address automatically.",
+    "Give it a short <strong>title</strong> — screen readers announce it, so describe what's inside (for example, “Product demo video”).",
+    "Choose <strong>Responsive</strong> to fill the width of your page at a fixed shape, or <strong>Fixed size</strong> for exact pixels.",
+    "Copy the code and paste it into your page's HTML, or into the “custom HTML” block of your site builder."
+  ],
+  "faq": [
+    { "q": "Why is the preview blank?", "a": "Many sites (most banks, social networks and search engines) send a header that forbids being shown inside another page. The browser obeys it and shows nothing. If the site offers an official “Embed” option, use the address it gives you." },
+    { "q": "How do I make an iframe responsive?", "a": "Give it <code>width:100%</code> and an <code>aspect-ratio</code>, with <code>height:auto</code>. That's what the Responsive option writes, and it works in every current browser without wrapper divs." },
+    { "q": "What does sandbox do?", "a": "It locks the embedded page down: no scripts, forms, pop-ups or cookies unless you allow each one. Use it for content you don't fully trust." },
+    { "q": "Should I use loading=\"lazy\"?", "a": "Yes for anything below the first screen. The frame only loads when someone scrolls near it, which makes your page faster." }
+  ]
+}

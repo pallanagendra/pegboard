@@ -1,0 +1,62 @@
+# Reusable job: build for one environment, deploy it to Cloudflare, then smoke-test the live URL.
+# Called by deploy.yml and redeploy.yml — you don't run this one directly.
+name: Deploy to an environment
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: dev, staging or production
+        type: string
+        required: true
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  deploy:
+    name: Deploy to ${{ inputs.environment }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Links this job to the GitHub Environment of the same name:
+    # its secrets, variables and protection rules (like "required reviewers" on production).
+    environment:
+      name: ${{ inputs.environment }}
+      url: ${{ steps.deploy.outputs.deployment-url || vars.SITE_URL }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Build for ${{ inputs.environment }}
+        run: npm run build
+        env:
+          SITE_ENV: ${{ inputs.environment }}
+          SITE_URL: ${{ vars.SITE_URL }}
+
+      - name: Check build
+        run: npm run check
+
+      - name: Deploy to Cloudflare
+        id: deploy
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy --env ${{ inputs.environment }}
+
+      - name: Smoke test the live site
+        run: node scripts/smoke.mjs "${{ vars.SITE_URL || steps.deploy.outputs.deployment-url }}"
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### ${{ inputs.environment }}"
+            echo ""
+            echo "- Commit: \`${GITHUB_SHA::7}\`"
+            echo "- URL: ${{ vars.SITE_URL || steps.deploy.outputs.deployment-url || 'not available' }}"
+          } >> "$GITHUB_STEP_SUMMARY"

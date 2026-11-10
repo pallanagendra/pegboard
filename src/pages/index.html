@@ -1,0 +1,45 @@
+    <section class="hero">
+      <div class="wrap hero__inner">
+        <h1 class="hero__title">Small tools that do one job well.</h1>
+        <p class="hero__lede">Make a barcode, a QR code or an embed snippet, clean up a URL, count your words. Free, no sign-up, and nothing you type is uploaded — every tool runs on your device.</p>
+        <form class="finder" role="search" data-finder>
+          <label class="finder__label" for="tool-search">Find a tool</label>
+          <div class="finder__field">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="finder__icon"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+            <input id="tool-search" type="search" placeholder="Try “qr”, “embed” or “count”" autocomplete="off" spellcheck="false" data-search-input>
+            <kbd class="finder__kbd" aria-hidden="true">/</kbd>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="board" id="tools" aria-labelledby="tools-heading">
+      <div class="wrap">
+        <div class="board__bar">
+          <h2 id="tools-heading" class="board__title">All tools <span class="board__count" data-count>{{toolCount}}</span></h2>
+          <div class="chips" role="group" aria-label="Filter by category">{{categoryFilters}}</div>
+        </div>
+        <ul class="tag-grid" data-tool-grid>
+{{toolGrid}}
+        </ul>
+        <div class="empty" data-empty hidden>
+          <p class="empty__title">No tool matches that yet.</p>
+          <p>Check the spelling, or <button type="button" class="link-button" data-clear-search>show all tools</button>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap principles" aria-label="How these tools work">
+      <div class="principles__item">
+        <h2>Private by design</h2>
+        <p>Your text, links and codes are processed in your browser. There is no server receiving them and no account to create.</p>
+      </div>
+      <div class="principles__item">
+        <h2>Ready to paste or print</h2>
+        <p>Every result has a copy button or a download in SVG and PNG, sized for screens and print.</p>
+      </div>
+      <div class="principles__item">
+        <h2>Works offline once loaded</h2>
+        <p>No trackers, no third-party scripts. Pages are small and load fast on any connection.</p>
+      </div>
+    </section>

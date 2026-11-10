@@ -1,0 +1,23 @@
+{
+  "name": "URL encoder and decoder",
+  "title": "URL Decoder and Encoder: Decode %20 and Query Strings Online",
+  "h1": "URL encoder and decoder",
+  "description": "Decode percent-encoded URLs and query strings, or encode text for links and APIs. Breaks a URL into parts, handles + as space and double encoding.",
+  "summary": "Decode %20-style links, encode text for URLs, and see every query parameter.",
+  "category": "web",
+  "order": 40,
+  "keywords": ["url", "decode", "decoder", "encode", "encoder", "percent", "%20", "query string", "uri", "urlencode", "urldecode", "utm", "parameters"],
+  "related": ["iframe-generator", "word-counter"],
+  "howTo": [
+    "Paste a link or text into the box on the left.",
+    "Choose <strong>Decode</strong> to turn <code>%20</code>, <code>%3A</code> and friends back into readable text, or <strong>Encode</strong> to make text safe to put in a URL.",
+    "When the input is a full link, the breakdown lists its host, path and every query parameter, already decoded — handy for checking UTM tags.",
+    "Use <strong>Swap</strong> to feed the result back in, for example to check that encoding round-trips."
+  ],
+  "faq": [
+    { "q": "What is URL encoding?", "a": "URLs can only contain a limited set of characters. Everything else — spaces, accents, emoji, and characters with special meaning like & and ? — is written as a % followed by the character's bytes in hexadecimal. A space becomes %20, for example." },
+    { "q": "Should a + be a space?", "a": "In query strings and form data, yes: + means a space. In a path, + is a literal plus sign. Untick “Treat + as a space” when decoding paths." },
+    { "q": "Which encoding should I use?", "a": "For a single value going into a query string or path segment, use “Query value or path segment”. Use “Whole URL” only to clean up a complete address that has spaces or accents in it — it leaves : / ? & = alone." },
+    { "q": "What is double encoding?", "a": "When already-encoded text gets encoded again, %20 becomes %2520. Tick “Decode repeatedly” and the tool keeps decoding until nothing changes, and tells you how many layers it removed." }
+  ]
+}

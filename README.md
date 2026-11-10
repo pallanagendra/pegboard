@@ -40,8 +40,8 @@ src/assets/              css, shared js, fonts, vendored libraries
 scripts/build.mjs        builds dist/ for an environment (SITE_ENV=dev|staging|production)
 scripts/check.mjs        fails the build on missing titles, broken links, oversized pages
 scripts/smoke.mjs        after deploy: checks every live page serves this exact commit
+scripts/pages-project.mjs  creates the Cloudflare Pages project on the first deploy
 tests/                   node --test unit tests
-wrangler.jsonc           Cloudflare: one Worker per environment, static assets only
 .github/workflows/       CI, deploy pipeline, manual redeploy/rollback
 ```
 
@@ -56,6 +56,8 @@ What changes per environment:
 
 ## The pipeline
 
+Hosting is one Cloudflare Pages project, `pegboard`. Dev and staging are its preview branches (`dev.pegboard.pages.dev`, `staging.pegboard.pages.dev`); production is its `main` branch (`pegboard.pages.dev`, plus your custom subdomain via a CNAME record at your DNS provider).
+
 ```
 feature/* ──PR──▶ develop ──▶ CI ──▶ dev
                      └──PR──▶ main ──▶ CI ──▶ staging ──approve──▶ production
@@ -63,7 +65,7 @@ feature/* ──PR──▶ develop ──▶ CI ──▶ dev
 
 - `ci.yml` — build, page/link checks and unit tests on every pull request
 - `deploy.yml` — on push to `develop` or `main`, runs CI then deploys; production waits for approval
-- `deploy-env.yml` — reusable: build for one environment, `wrangler deploy --env <env>`, smoke test
+- `deploy-env.yml` — reusable: build for one environment, `wrangler pages deploy` to Cloudflare Pages, smoke test
 - `redeploy.yml` — manual deploy of any branch or tag to any environment (also how you roll back)
 
 ## Security headers

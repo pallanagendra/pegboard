@@ -4,22 +4,26 @@ This takes about an hour the first time. At the end you'll have:
 
 - the code on **GitHub**, with `develop` and `main` branches protected by checks
 - a **pipeline** (GitHub Actions) that tests every change and deploys it to **dev → staging → production**
-- the site **hosted on Cloudflare** (free plan), with a separate address for each environment
+- the site **hosted on Cloudflare Pages** (free plan), with a separate address for each environment
+- production on **your own subdomain**, such as `tools.yourdomain.com`, while your existing website and email stay on Hostinger, untouched
 
 ```
- your laptop                GitHub                                   Cloudflare
- ───────────   push    ┌──────────────┐  tests pass   ┌──────────────────────────────────────┐
- feature/xyz  ───────▶ │ PR → develop │ ────────────▶ │ dev        pegboard-dev.…workers.dev  │
-                       └──────────────┘               │                                      │
-                       ┌──────────────┐  tests pass   │ staging    pegboard-staging.…workers.dev│
-                       │ PR → main    │ ────────────▶ │     │  you click “Approve”             │
-                       └──────────────┘               │     ▼                                 │
-                                                      │ production pegboard.…workers.dev       │
-                                                      │            (later: your own domain)    │
-                                                      └──────────────────────────────────────┘
+ your laptop               GitHub                         Cloudflare Pages (project "pegboard")
+ ───────────  push   ┌──────────────┐  tests pass
+ feature/xyz ──────▶ │ PR → develop │ ────────────▶  dev         https://dev.pegboard.pages.dev
+                     └──────────────┘
+                     ┌──────────────┐  tests pass
+                     │ PR → main    │ ────────────▶  staging     https://staging.pegboard.pages.dev
+                     └──────────────┘                   │
+                                                        │  you click "Approve"
+                                                        ▼
+                                                     production  https://pegboard.pages.dev
+                                                                 https://tools.yourdomain.com
+                                                                   ▲
+                                                                   one CNAME record in Hostinger's DNS (step 7)
 ```
 
-> **Why Cloudflare?** Free, fast worldwide, unlimited requests for static files, HTTPS included, and each environment is a separate deployment you can open side by side. Cloudflare recommends **Workers with static assets** for new sites (Pages still works, but new features land on Workers), so that's what this project uses. Alternatives are listed at the end.
+> **Why Cloudflare Pages?** It's free, fast worldwide, has unlimited requests for static files and includes HTTPS. Each environment gets its own address you can open side by side. And it accepts a subdomain whose DNS stays at Hostinger, so connecting your domain is one DNS record — nothing about your current website or email changes.
 
 ---
 
@@ -64,15 +68,17 @@ gh auth login                      # pick GitHub.com → HTTPS → log in with a
 git init
 git add .
 git commit -m "Initial site: 5 tools, pipeline, docs"
+git branch -M main
 gh repo create pegboard --public --source=. --push
 ```
 
-**Or in the browser:** github.com → **+** → **New repository** → name `pegboard`, **Public**, *don't* add a README or .gitignore → **Create**. Then:
+**Or in the browser:** github.com → **+** → **New repository** → name `pegboard`, **Public**, leave README, .gitignore and license off → **Create**. Then:
 
 ```bash
 git init
 git add .
 git commit -m "Initial site: 5 tools, pipeline, docs"
+git branch -M main
 git remote add origin https://github.com/YOUR-USERNAME/pegboard.git
 git push -u origin main
 ```
@@ -86,23 +92,25 @@ git push -u origin develop
 
 On GitHub: **Settings → General → Default branch** → switch to `develop`. New pull requests then target `develop` by default.
 
-> The first push to `main` and `develop` will start the **Deploy** workflow and it will fail at the Cloudflare step. That's expected — it doesn't have the keys yet. You'll re-run it in step 5.
+> The first pushes start the **Deploy** workflow, and it fails at the Cloudflare step. That's expected — it doesn't have the keys yet. You'll re-run it in step 5.
 
 ---
 
 ## 2. Set up Cloudflare
 
-1. Create a free account at [dash.cloudflare.com/sign-up](https://dash.cloudflare.com/sign-up) and verify your email.
-2. Open **Workers & Pages** in the left menu once. The first time, Cloudflare asks you to choose your **workers.dev subdomain** (for example `yourname.workers.dev`). Pick something short — it becomes part of your dev and staging addresses. Deploys fail until this is set.
-3. **Copy your Account ID.** It's on the Workers & Pages overview page (right-hand side) and in the account menu. You can also run `npx wrangler login` then `npx wrangler whoami` locally.
-4. **Create an API token** for GitHub to deploy with:
-   - Go to **Manage account → Account API tokens** (or **My Profile → API Tokens**) → **Create Token**.
-   - Choose the **Edit Cloudflare Workers** template.
-   - **Account resources:** *Include → your account* (only this one).
-   - **Zone resources:** *All zones from an account → your account* (needed later for a custom domain).
+1. Create a free account at [dash.cloudflare.com/sign-up](https://dash.cloudflare.com/sign-up) and verify your email. You don't need to add your domain to Cloudflare.
+2. **Copy your Account ID.** Open **Workers & Pages** in the left menu; the Account ID is in the right-hand column (or use the account menu → *Copy account ID*). It's a 32-character code.
+3. **Create an API token** for GitHub to deploy with:
+   - Go to **My Profile → API Tokens** (or **Manage account → Account API tokens**) → **Create Token**.
+   - Under **Custom token**, click **Get started**.
+   - **Token name:** `GitHub deploy – pegboard`
+   - **Permissions:** `Account` · `Cloudflare Pages` · `Edit` — this is the only permission it needs.
+   - **Account resources:** `Include` · *your account*.
    - **Continue to summary → Create Token.** Copy the token now — Cloudflare shows it only once.
 
-Treat this token like a password: it can deploy anything to your account. If it ever leaks, delete it in the same screen and make a new one.
+Treat this token like a password. It can only manage Pages projects in your account, but if it ever leaks, delete it in the same screen and make a new one.
+
+You don't need to create the Pages project yourself: the pipeline creates a project called `pegboard` on its first deploy.
 
 ---
 
@@ -112,16 +120,16 @@ In your repo on GitHub: **Settings → Secrets and variables → Actions → New
 
 | Name | Value |
 |---|---|
-| `CLOUDFLARE_API_TOKEN` | the token from step 2.4 |
-| `CLOUDFLARE_ACCOUNT_ID` | the Account ID from step 2.3 |
+| `CLOUDFLARE_API_TOKEN` | the token from step 2.3 |
+| `CLOUDFLARE_ACCOUNT_ID` | the Account ID from step 2.2 |
 
 Secrets are encrypted, hidden in logs, and never visible again after saving — even to you.
 
 ---
 
-## 4. Create the three environments
+## 4. Set up the three environments
 
-**Settings → Environments → New environment**, three times:
+**Settings → Environments.** You may already see `dev` and `staging`: GitHub creates environments automatically the first time a workflow uses them. Open each one (or click **New environment**) and set:
 
 | Environment | Deployment branches and tags | Protection |
 |---|---|---|
@@ -129,32 +137,36 @@ Secrets are encrypted, hidden in logs, and never visible again after saving — 
 | `staging` | Selected branches → `main` | none |
 | `production` | Selected branches → `main` | **Required reviewers** → add yourself. Leave *Prevent self-review* unticked if you work alone. |
 
-The branch rule means only `develop` can ever deploy to dev, and only `main` can deploy to staging and production — even if someone edits a workflow.
+**Set up `production` before anything runs on `main` again.** If GitHub creates it automatically, it has no approval rule, and production would deploy without waiting for you.
 
-**Optional: `SITE_URL` variable.** In each environment you can add a *variable* (not a secret) named `SITE_URL`, such as `https://pegboard-staging.yourname.workers.dev`. The build uses it for canonical links and the sitemap, and the smoke test checks that exact address. If you leave it out, the pipeline uses the address Cloudflare reports after deploying. For production, set it only once your custom domain works (step 7).
+The branch rule means only `develop` can deploy to dev, and only `main` can deploy to staging and production — even if someone edits a workflow.
+
+Don't add any variables yet. You'll add `SITE_URL` to production in step 7, once your own domain works.
 
 ---
 
 ## 5. First deploy
 
-Re-run the failed workflow: **Actions → Deploy → the failed run → Re-run all jobs**. Or push any small change.
+Re-run the failed workflow: **Actions → Deploy → the failed run → Re-run failed jobs**. Or push any small change.
 
 What happens on `develop`:
 
 1. **test** — builds the site with production settings, checks every page and link, runs the unit tests.
-2. **dev** — builds for dev, deploys with `wrangler deploy --env dev`, then the **smoke test** opens every page on the live address and confirms it's serving *this exact commit* (it compares `build-info.json`).
+2. **dev** — builds for dev, creates the Pages project `pegboard` if it doesn't exist yet, uploads the site, then the **smoke test** opens every page on the live address and confirms it's serving *this exact commit*.
 
-What happens on `main`: **test → staging → production**. Production pauses with *“Waiting for review”*. Open the run, click **Review deployments → production → Approve and deploy**.
+Open the finished run: its **summary** shows the address. That's also where you'll see if Cloudflare gave your project a slightly different name — `pages.dev` addresses are shared by everyone, so if `pegboard` was taken you might get something like `pegboard-4kx.pages.dev`. Use whatever the summary shows in place of `pegboard.pages.dev` below.
+
+What happens on `main`: **test → staging → production**. Production pauses with *"Waiting for review"*. Open the run, click **Review deployments → production → Approve and deploy**.
 
 Your addresses:
 
 | Environment | Address | Search engines |
 |---|---|---|
-| dev | `https://pegboard-dev.<subdomain>.workers.dev` | blocked (noindex + robots.txt) |
-| staging | `https://pegboard-staging.<subdomain>.workers.dev` | blocked |
-| production | `https://pegboard.<subdomain>.workers.dev` | allowed, with sitemap |
+| dev | `https://dev.pegboard.pages.dev` | blocked (noindex + robots.txt) |
+| staging | `https://staging.pegboard.pages.dev` | blocked |
+| production | `https://pegboard.pages.dev`, then `https://tools.yourdomain.com` | allowed |
 
-Dev and staging show a striped banner at the top so nobody mistakes them for the real site.
+Dev and staging show a striped banner at the top so nobody mistakes them for the real site. Every deployment also keeps its own permanent address (like `https://3f9a1c2e.pegboard.pages.dev`), listed in the run summary and in Cloudflare — handy for comparing two versions.
 
 ---
 
@@ -173,17 +185,20 @@ Now nothing reaches `develop` or `main` without passing the checks.
 
 ---
 
-## 7. Your own domain (when you're ready)
+## 7. Put production on your Hostinger domain
 
-1. Buy a domain through **Cloudflare Registrar** (sold at cost), or add a domain you already own to Cloudflare (**Add a domain**) and switch its nameservers at your current registrar to the two Cloudflare gives you.
-2. In `wrangler.jsonc`, uncomment the `routes` line under `production` and set your domain:
-   ```jsonc
-   "routes": [{ "pattern": "tools.yourdomain.com", "custom_domain": true }]
-   ```
-   You can do the same for staging (`staging.yourdomain.com`).
-3. In `site.config.mjs`, set `urls.production` to `https://tools.yourdomain.com`.
-4. Merge to `main` and approve. Cloudflare creates the DNS record and HTTPS certificate automatically.
-5. Then set the `SITE_URL` variable on the `production` environment to the same address, and submit `https://tools.yourdomain.com/sitemap.xml` in [Google Search Console](https://search.google.com/search-console).
+Your domain and current website stay with Hostinger. You add one DNS record that sends a subdomain — `tools` in these examples — to Cloudflare. Do the steps in this order: if the DNS record exists before Cloudflare expects it, the domain shows a connection error (522) until Cloudflare catches up.
+
+1. **Tell Cloudflare about the subdomain.** Cloudflare dashboard → **Workers & Pages** → `pegboard` → **Custom domains** → **Set up a custom domain** → enter `tools.yourdomain.com` → **Continue**. Because your DNS is at Hostinger, Cloudflare shows a CNAME record for you to add. Keep that page open.
+2. **Add the record in Hostinger.** hPanel → **Domains** → your domain → **DNS / Nameservers** (the DNS Zone Editor).
+   - If a record named `tools` already exists, delete it first.
+   - Add a new record: **Type** `CNAME`, **Name** `tools`, **Target** `pegboard.pages.dev` (exactly what Cloudflare showed), **TTL** leave the default. Save.
+3. **Wait for it to go live.** Back in Cloudflare, the custom domain shows **Verifying**, then **Active**. That usually takes minutes, sometimes a few hours, at most 24. Cloudflare issues the HTTPS certificate automatically.
+4. **Tell the pipeline the public address.** GitHub → **Settings → Environments → production → Environment variables → Add variable**: name `SITE_URL`, value `https://tools.yourdomain.com`.
+5. **Redeploy production** so links and the sitemap use your domain: **Actions → Redeploy → Run workflow** → branch `main` → environment `production` → approve. From now on the smoke test checks your domain too.
+6. **Tell Google.** Add `https://tools.yourdomain.com` in [Google Search Console](https://search.google.com/search-console) and submit `https://tools.yourdomain.com/sitemap.xml`. A link to the tools from your main website's menu helps people (and search engines) find them.
+
+`pegboard.pages.dev` keeps working; every page tells search engines that your domain is the real address, so you won't get duplicate listings. Dev and staging stay on their `pages.dev` addresses.
 
 ---
 
@@ -219,12 +234,15 @@ gh pr create --base develop --fill         # or open the PR on github.com
 
 | Problem | Fix |
 |---|---|
-| **Roll back production now** | Cloudflare dashboard → Workers & Pages → `pegboard` → **Deployments** → pick the previous one → **Rollback**. Or locally: `npx wrangler rollback --env production`. |
+| **Roll back production now** | Cloudflare dashboard → **Workers & Pages** → `pegboard` → **Deployments** → find an earlier *Production* deployment → **⋯** → **Rollback to this deployment**. Takes effect in seconds. |
 | Roll back via the pipeline | **Actions → Redeploy → Run workflow** → in *Use workflow from* pick an older **tag** (e.g. `v0.1.0`) → environment `production`. |
-| Deploy fails with an authentication error | Check both secrets exist and are spelled exactly right; make sure the token uses the *Edit Cloudflare Workers* template and includes your account. |
-| Deploy fails mentioning a workers.dev subdomain | Open Workers & Pages in the dashboard once and choose your subdomain (step 2.2). |
-| Smoke test says the live build doesn't match | Usually the edge caching an old copy for a few seconds — re-run the job. If it persists, check `SITE_URL` points at this environment. |
-| “Waiting for review” and nothing happens | You're a required reviewer — open the run and click **Review deployments**. |
+| "Cloudflare rejected the API token" | The token is incomplete or lacks permission. Make a new one with `Account · Cloudflare Pages · Edit` (step 2.3) and paste it into the `CLOUDFLARE_API_TOKEN` secret again. |
+| "Cloudflare doesn't recognise the account" | `CLOUDFLARE_ACCOUNT_ID` is wrong — copy the 32-character Account ID again (step 2.2). |
+| Warning about the production branch | The Pages project's production branch must be `main`. Cloudflare → `pegboard` → **Settings** → **Branch control**. |
+| Custom domain stuck on *Verifying* | Check the Hostinger record: type CNAME, name `tools`, target exactly as Cloudflare showed, and no other record named `tools`. If it's still pending after 24 hours, look for **CAA** records in Hostinger's DNS (most domains have none); they can stop the certificate being issued. |
+| Custom domain shows error 522 | The CNAME was added before step 7.1. Make sure the domain is listed under the project's **Custom domains**, then wait a few minutes. |
+| Smoke test says the live build doesn't match | Usually an old copy cached for a few seconds — re-run the job. If it persists, check `SITE_URL` points at this environment. |
+| "Waiting for review" and nothing happens | You're a required reviewer — open the run and click **Review deployments**. |
 | `npm run check` fails in CI | Run `npm run verify` locally — it prints the exact page and broken link. |
 
 ---
@@ -241,9 +259,9 @@ On the free GitHub plan, private repositories can't use deployment environments,
 
 | Host | Good for | Trade-off |
 |---|---|---|
+| **Hostinger** (your current host) | everything with one company | deploys by FTP; no separate dev/staging addresses, one-click rollback or header control out of the box |
+| **Cloudflare Workers** | Cloudflare's newer platform | to use your own domain, its DNS has to move to Cloudflare |
 | **GitHub Pages** | simplest possible: one site, no extra account | one environment per repo, so no dev/staging; fewer header controls |
 | **Netlify** | automatic preview site for every pull request | free plan has monthly usage limits |
-| **Vercel** | same as Netlify, very polished | free plan is for non-commercial use |
-| **Cloudflare Pages** | still supported and simple | Cloudflare now puts new features into Workers |
 
 The site is plain HTML, CSS and JavaScript in `dist/`, so moving to any of these later only means swapping the deploy step.

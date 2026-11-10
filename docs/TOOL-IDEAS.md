@@ -33,7 +33,7 @@ These take more work but bring repeat visitors.
 | **Hash generator** (SHA-1/256/512 for text and files) | Web & dev | S | `crypto.subtle.digest`, no library needed. |
 | **JWT decoder** | Web & dev | S | Developers don't want to paste tokens into random sites; "decoded locally" is the pitch. |
 | **Favicon generator** (from an image, text or emoji → PNG sizes + manifest) | Generators | M | Reuses the PNG export from the barcode and QR tools. |
-| **Link preview checker** (title, meta description, Open Graph image as it appears on social and search) | Web & dev | M | Builds on the word counter's limit bars. Needs a fetch proxy because of CORS — a good first use of a Worker script. |
+| **Link preview checker** (title, meta description, Open Graph image as it appears on social and search) | Web & dev | M | Builds on the word counter's limit bars. Needs a fetch proxy because of CORS — a good first use of a Cloudflare Pages Function. |
 
 ## Wave 3 — upgrades to the tools you have
 

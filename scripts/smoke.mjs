@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // After a deploy: fetch the live site and make sure every page answers 200 with the right build.
-// Usage: node scripts/smoke.mjs https://pegboard-staging.example.workers.dev
+// Usage: node scripts/smoke.mjs https://staging.pegboard.pages.dev
 import { readFile } from 'node:fs/promises';
 
 const base = (process.argv[2] || '').replace(/\/+$/, '');

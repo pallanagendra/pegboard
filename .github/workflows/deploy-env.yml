@@ -1,5 +1,10 @@
-# Reusable job: build for one environment, deploy it to Cloudflare, then smoke-test the live URL.
+# Reusable job: build for one environment, deploy it to Cloudflare Pages, then smoke-test the live address.
 # Called by deploy.yml and redeploy.yml — you don't run this one directly.
+#
+# How environments map onto one Cloudflare Pages project:
+#   dev         → preview branch "dev"      → https://dev.<project>.pages.dev
+#   staging     → preview branch "staging"  → https://staging.<project>.pages.dev
+#   production  → production branch "main" → https://<project>.pages.dev and your custom domain
 name: Deploy to an environment
 
 on:
@@ -14,6 +19,10 @@ permissions:
   contents: read
   deployments: write
 
+env:
+  # The Cloudflare Pages project. The pipeline creates it on the first deploy if it doesn't exist.
+  PAGES_PROJECT: pegboard
+
 jobs:
   deploy:
     name: Deploy to ${{ inputs.environment }}
@@ -23,7 +32,7 @@ jobs:
     # its secrets, variables and protection rules (like "required reviewers" on production).
     environment:
       name: ${{ inputs.environment }}
-      url: ${{ steps.deploy.outputs.deployment-url || vars.SITE_URL }}
+      url: ${{ steps.address.outputs.url }}
     steps:
       - uses: actions/checkout@v6
 
@@ -40,23 +49,53 @@ jobs:
       - name: Check build
         run: npm run check
 
-      - name: Deploy to Cloudflare
+      - name: Make sure the Pages project exists
+        id: project
+        run: node scripts/pages-project.mjs
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Deploy to Cloudflare Pages
         id: deploy
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --env ${{ inputs.environment }}
+          command: pages deploy dist --project-name=${{ env.PAGES_PROJECT }} --branch=${{ inputs.environment == 'production' && 'main' || inputs.environment }}
+
+      - name: Work out the public address
+        id: address
+        env:
+          TARGET: ${{ inputs.environment }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          PRODUCTION_URL: ${{ steps.project.outputs.production-url }}
+          ALIAS_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: |
+          if [ -n "$SITE_URL" ]; then url="$SITE_URL"
+          elif [ "$TARGET" = "production" ] && [ -n "$PRODUCTION_URL" ]; then url="$PRODUCTION_URL"
+          elif [ -n "$ALIAS_URL" ]; then url="$ALIAS_URL"
+          else url="$DEPLOYMENT_URL"
+          fi
+          echo "url=${url%/}" >> "$GITHUB_OUTPUT"
 
       - name: Smoke test the live site
-        run: node scripts/smoke.mjs "${{ vars.SITE_URL || steps.deploy.outputs.deployment-url }}"
+        run: node scripts/smoke.mjs "$URL"
+        env:
+          URL: ${{ steps.address.outputs.url }}
 
       - name: Summary
         if: always()
+        env:
+          TARGET: ${{ inputs.environment }}
+          URL: ${{ steps.address.outputs.url }}
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
         run: |
           {
-            echo "### ${{ inputs.environment }}"
+            echo "### ${TARGET}"
             echo ""
+            echo "- Address: ${URL:-not available}"
+            echo "- This exact deployment: ${DEPLOYMENT_URL:-not available}"
             echo "- Commit: \`${GITHUB_SHA::7}\`"
-            echo "- URL: ${{ vars.SITE_URL || steps.deploy.outputs.deployment-url || 'not available' }}"
           } >> "$GITHUB_STEP_SUMMARY"

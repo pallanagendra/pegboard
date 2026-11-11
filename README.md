@@ -2,6 +2,8 @@
 
 Small web tools that do one job well. Every tool runs in the browser — nothing typed into the site is uploaded.
 
+Live site: https://pegboard-bhk.pages.dev
+
 | Tool | Path |
 |---|---|
 | Word and character counter | `/tools/word-counter/` |

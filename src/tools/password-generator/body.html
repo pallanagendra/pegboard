@@ -1,0 +1,64 @@
+      <div class="workspace">
+        <form class="panel panel--inputs" data-form novalidate>
+          <div class="segmented segmented--big" role="group" aria-label="Kind of password">
+            <input type="radio" name="mode" id="pw-mode-chars" value="chars" checked><label for="pw-mode-chars">Password</label>
+            <input type="radio" name="mode" id="pw-mode-words" value="words"><label for="pw-mode-words">Passphrase</label>
+          </div>
+
+          <div class="stack" data-mode="chars">
+            <div class="field">
+              <label for="pw-length">Length</label>
+              <div class="range"><input id="pw-length" name="length" type="range" min="8" max="64" step="1" value="16"><output for="pw-length" data-suffix=" characters"></output></div>
+            </div>
+            <fieldset>
+              <legend>Use</legend>
+              <div class="checks checks--cols">
+                <label class="check"><input type="checkbox" name="upper" checked> <span>Capital letters <small>A–Z</small></span></label>
+                <label class="check"><input type="checkbox" name="lower" checked> <span>Small letters <small>a–z</small></span></label>
+                <label class="check"><input type="checkbox" name="digits" checked> <span>Numbers <small>0–9</small></span></label>
+                <label class="check"><input type="checkbox" name="symbols" checked> <span>Symbols <small>! @ # $ % and more</small></span></label>
+              </div>
+            </fieldset>
+            <label class="check"><input type="checkbox" name="avoidLookAlike"> <span>Avoid look-alike characters<small>Leaves out I, l, 1, O, 0 and o, for passwords you have to read out or type by hand.</small></span></label>
+          </div>
+
+          <div class="stack" data-mode="words" hidden>
+            <div class="field">
+              <label for="pw-words">Words</label>
+              <div class="range"><input id="pw-words" name="words" type="range" min="3" max="10" step="1" value="5"><output for="pw-words" data-suffix=" words"></output></div>
+            </div>
+            <div class="field">
+              <label for="pw-sep">Between words</label>
+              <select class="select" id="pw-sep" name="separator">
+                <option value="-">Hyphen (correct-horse-battery)</option>
+                <option value=" ">Space (correct horse battery)</option>
+                <option value=".">Period (correct.horse.battery)</option>
+                <option value="_">Underscore (correct_horse_battery)</option>
+                <option value="">Nothing (correcthorsebattery)</option>
+              </select>
+            </div>
+            <div class="checks">
+              <label class="check"><input type="checkbox" name="capitalize" checked> <span>Capitalize each word</span></label>
+              <label class="check"><input type="checkbox" name="addNumber" checked> <span>Add a number<small>Many sites insist on one.</small></span></label>
+            </div>
+            <p class="field__help mt-0">Words come from the <a href="https://www.eff.org/dice" rel="noopener">EFF’s long word list</a> (CC BY 3.0): 7,776 common, easy-to-spell words.</p>
+          </div>
+        </form>
+
+        <section class="panel workspace__sticky" aria-labelledby="pw-out-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="pw-out-title">Your password</h2>
+          </div>
+          <output class="secret" id="pw-out" data-out aria-live="polite"></output>
+          <div class="actions">
+            <button type="button" class="button button--primary" data-copy-from="#pw-out" data-copy-label="Password copied">Copy</button>
+            <button type="button" class="button" data-again>New password</button>
+          </div>
+          <div class="meter" data-meter>
+            <div class="meter__bar" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+            <p class="meter__label" data-strength></p>
+          </div>
+          <p class="field__help mt-0" data-crack></p>
+          <p class="message message--note mt-0">Made in your browser with its secure random generator. Nothing is sent or stored, so copy it before you leave the page.</p>
+        </section>
+      </div>

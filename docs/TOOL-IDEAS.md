@@ -4,6 +4,21 @@ Every tool here runs entirely in the browser. That keeps hosting free and keeps 
 
 Effort: **S** = an evening, **M** = a weekend.
 
+## Build status (November 2026)
+
+Built and tested as **drafts**: they show on dev and staging with a Draft badge and stay off the live site until `"status": "draft"` is removed.
+
+| Group | Tools | Update file |
+|---|---|---|
+| Images and files | Image resizer, image compressor, image converter | `pegboard-image-tools.zip` |
+| Calculators | Percentage, loan, age, time, days between dates | `pegboard-calculators.zip` |
+| Everyday | Flip a coin, random number generator, dice roller, stopwatch and timer, spin the wheel, typing speed test | `pegboard-everyday.zip` |
+| Text and developer | Password generator, case converter, JSON formatter, Base64 encoder and decoder, color picker with contrast checker | `pegboard-text-dev.zip` |
+
+Still to build: HEIC to JPG, Merge PDF, margin calculator, salary to hourly, meta description checker.
+
+Before going live: update the home page lede and the site description in `site.config.mjs`, which still list only the first five tools.
+
 ## Search demand (researched November 2026)
 
 Monthly searches in the **US** from Google Ads data (via seodata.dev, mid-2026), unless marked *Ahrefs*. Worldwide demand is several times higher.

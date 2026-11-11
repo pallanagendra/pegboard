@@ -1,0 +1,69 @@
+      <form class="stack" data-form novalidate>
+        <div class="workspace">
+          <section class="panel" aria-labelledby="cp-title">
+            <h2 class="panel__title" id="cp-title">Color</h2>
+            <div class="swatch-hero" data-hero>
+              <span class="swatch-hero__hex" data-hero-hex></span>
+              <span class="swatch-hero__note" data-hero-note></span>
+            </div>
+            <div class="field">
+              <label for="cp-value">Any CSS color</label>
+              <div class="color-field">
+                <input type="color" class="input input--color" value="#ffc83d" aria-label="Color picker" data-native>
+                <input type="text" class="input input--mono" id="cp-value" name="color" value="#ffc83d" autocomplete="off" spellcheck="false" placeholder="#ffc83d, rgb(255 200 61), hsl(43 100% 62%) or a name">
+              </div>
+              <p class="field__help mt-0" data-parse-note>Hex, RGB, HSL or a color name such as <code>teal</code>.</p>
+            </div>
+            <div class="actions">
+              <button type="button" class="button button--small" data-eyedropper hidden>Pick from screen</button>
+              <label class="button button--small file-button">Pick from an image<input type="file" accept="image/*" data-image></label>
+            </div>
+            <div class="image-picker" data-image-wrap hidden>
+              <canvas class="image-picker__canvas" data-canvas aria-label="Your image: click or tap a spot to pick its color"></canvas>
+              <p class="field__help mt-0">Click or tap anywhere on the image to pick that color. The image stays on your device.</p>
+            </div>
+          </section>
+
+          <section class="panel" aria-labelledby="cp-formats-title">
+            <h2 class="panel__title" id="cp-formats-title">Formats</h2>
+            <dl class="formats" data-formats></dl>
+            <h3 class="panel__title">Tints and shades</h3>
+            <div class="shades" data-shades></div>
+            <p class="field__help mt-0">Click a swatch to use it.</p>
+          </section>
+        </div>
+
+        <section class="panel" aria-labelledby="cp-contrast-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="cp-contrast-title">Contrast checker</h2>
+            <span class="panel__hint">WCAG 2.2</span>
+          </div>
+          <div class="contrast">
+            <div class="contrast__inputs">
+              <div class="field">
+                <label for="cp-fg">Text</label>
+                <div class="color-field"><input type="color" class="input input--color" value="#17212b" aria-label="Text color picker"><input type="text" class="input input--mono" id="cp-fg" name="fg" value="#17212b" maxlength="7" autocomplete="off" spellcheck="false"></div>
+              </div>
+              <div class="field">
+                <label for="cp-bg">Background</label>
+                <div class="color-field"><input type="color" class="input input--color" value="#ffc83d" aria-label="Background color picker"><input type="text" class="input input--mono" id="cp-bg" name="bg" value="#ffc83d" maxlength="7" autocomplete="off" spellcheck="false"></div>
+              </div>
+              <div class="actions">
+                <button type="button" class="button button--quiet button--small" data-swap>Swap</button>
+                <button type="button" class="button button--quiet button--small" data-use="fg">Use picked color as text</button>
+                <button type="button" class="button button--quiet button--small" data-use="bg">Use picked color as background</button>
+              </div>
+            </div>
+            <div class="contrast__preview" data-preview>
+              <p class="contrast__large">Large text, 24 px</p>
+              <p class="contrast__normal">Normal text at 16 px. The quick brown fox jumps over the lazy dog.</p>
+              <span class="contrast__ui">Button</span>
+            </div>
+            <div class="contrast__result">
+              <p class="contrast__ratio"><output data-ratio></output><span>contrast ratio</span></p>
+              <ul class="checks-list" data-levels></ul>
+              <p class="field__help mt-0" data-suggest></p>
+            </div>
+          </div>
+        </section>
+      </form>

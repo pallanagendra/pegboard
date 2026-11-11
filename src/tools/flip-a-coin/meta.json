@@ -1,0 +1,23 @@
+{
+  "name": "Flip a coin",
+  "title": "Flip a Coin Online: Heads or Tails, Fair and Random",
+  "h1": "Flip a coin",
+  "description": "Flip a fair virtual coin for heads or tails. Flip once, 10 or 100 times and keep a tally of heads, tails and streaks. Random, private and free.",
+  "summary": "Heads or tails, with a running tally and the current streak.",
+  "category": "everyday",
+  "status": "draft",
+  "order": 70,
+  "keywords": ["flip a coin", "coin flip", "coin toss", "toss a coin", "heads or tails", "flip coin", "virtual coin", "random", "decide", "50/50", "coin flipper"],
+  "related": ["dice-roller", "random-number-generator", "spin-the-wheel"],
+  "howTo": [
+    "Press <strong>Flip the coin</strong>. The coin spins and lands on heads or tails.",
+    "Need lots of results? <strong>Flip 10 times</strong> or <strong>Flip 100 times</strong> adds them straight to the tally.",
+    "The tally counts heads and tails, shows the share of each and tracks the current and longest streak. It stays while this tab is open; <strong>Reset</strong> clears it."
+  ],
+  "faq": [
+    { "q": "Is the coin flip really 50/50?", "a": "Yes. Each flip uses your browser’s cryptographic random number generator, the same kind used for passwords and encryption, and both sides have exactly the same chance. Past flips never change the next one." },
+    { "q": "What are the chances of five heads in a row?", "a": "1 in 32, or about 3%. Each extra flip halves the chance: 10 heads in a row is 1 in 1,024. Over many flips, streaks like these turn up more often than most people expect." },
+    { "q": "Why isn’t my tally exactly 50% heads?", "a": "Short runs wander. With 10 flips, 6 or 7 heads is common. The share gets closer to 50% the more you flip, so try 100 at a time and watch it settle." },
+    { "q": "Is anything sent to a server?", "a": "No. The coin, the flips and the tally all stay in this browser tab." }
+  ]
+}

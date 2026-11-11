@@ -1,0 +1,72 @@
+      <form class="calc-grid" data-form novalidate>
+        <section class="panel" aria-labelledby="pc-t1">
+          <h2 class="panel__title" id="pc-t1">Percent of a number</h2>
+          <p class="sentence">What is
+            <input class="input input--inline" id="pc-p1" name="p1" inputmode="decimal" autocomplete="off" value="15" aria-label="Percentage">
+            % of
+            <input class="input input--inline" id="pc-x1" name="x1" inputmode="decimal" autocomplete="off" value="200" aria-label="Number">?</p>
+          <div class="answer" data-answer="1">
+            <output class="answer__value" id="pc-r1" for="pc-p1 pc-x1"></output>
+            <button type="button" class="button button--quiet button--small" data-copy-from="#pc-r1" data-copy-label="Answer copied">Copy</button>
+            <p class="answer__formula"></p>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="pc-t2">
+          <h2 class="panel__title" id="pc-t2">What percent one number is of another</h2>
+          <p class="sentence">
+            <input class="input input--inline" id="pc-a2" name="a2" inputmode="decimal" autocomplete="off" value="25" aria-label="First number">
+            is what percent of
+            <input class="input input--inline" id="pc-b2" name="b2" inputmode="decimal" autocomplete="off" value="200" aria-label="Second number">?</p>
+          <div class="answer" data-answer="2">
+            <output class="answer__value" id="pc-r2" for="pc-a2 pc-b2"></output>
+            <button type="button" class="button button--quiet button--small" data-copy-from="#pc-r2" data-copy-label="Answer copied">Copy</button>
+            <p class="answer__formula"></p>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="pc-t3">
+          <h2 class="panel__title" id="pc-t3">Percentage change</h2>
+          <p class="sentence">From
+            <input class="input input--inline" id="pc-a3" name="a3" inputmode="decimal" autocomplete="off" value="80" aria-label="Old value">
+            to
+            <input class="input input--inline" id="pc-b3" name="b3" inputmode="decimal" autocomplete="off" value="100" aria-label="New value">
+            is a change of</p>
+          <div class="answer" data-answer="3">
+            <output class="answer__value" id="pc-r3" for="pc-a3 pc-b3"></output>
+            <button type="button" class="button button--quiet button--small" data-copy-from="#pc-r3" data-copy-label="Answer copied">Copy</button>
+            <p class="answer__formula"></p>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="pc-t4">
+          <h2 class="panel__title" id="pc-t4">Increase or decrease by a percentage</h2>
+          <p class="sentence">
+            <input class="input input--inline" id="pc-x4" name="x4" inputmode="decimal" autocomplete="off" value="80" aria-label="Starting value">
+            <select class="select select--inline" id="pc-d4" name="d4" aria-label="Increase or decrease">
+              <option value="increase">increased by</option>
+              <option value="decrease">decreased by</option>
+            </select>
+            <input class="input input--inline" id="pc-p4" name="p4" inputmode="decimal" autocomplete="off" value="25" aria-label="Percentage">
+            % is</p>
+          <div class="answer" data-answer="4">
+            <output class="answer__value" id="pc-r4" for="pc-x4 pc-p4"></output>
+            <button type="button" class="button button--quiet button--small" data-copy-from="#pc-r4" data-copy-label="Answer copied">Copy</button>
+            <p class="answer__formula"></p>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="pc-t5">
+          <h2 class="panel__title" id="pc-t5">Find the original number</h2>
+          <p class="sentence">
+            <input class="input input--inline" id="pc-x5" name="x5" inputmode="decimal" autocomplete="off" value="30" aria-label="Part">
+            is
+            <input class="input input--inline" id="pc-p5" name="p5" inputmode="decimal" autocomplete="off" value="15" aria-label="Percentage">
+            % of what number?</p>
+          <div class="answer" data-answer="5">
+            <output class="answer__value" id="pc-r5" for="pc-x5 pc-p5"></output>
+            <button type="button" class="button button--quiet button--small" data-copy-from="#pc-r5" data-copy-label="Answer copied">Copy</button>
+            <p class="answer__formula"></p>
+          </div>
+        </section>
+      </form>

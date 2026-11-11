@@ -1,0 +1,24 @@
+{
+  "name": "Stopwatch and timer",
+  "title": "Online Stopwatch with Laps and Countdown Timer",
+  "h1": "Stopwatch and timer",
+  "description": "A free online stopwatch with lap times and a countdown timer with an alarm. Keyboard shortcuts, full-screen digits, and it keeps running if you refresh.",
+  "summary": "A stopwatch with laps and a countdown timer with an alarm.",
+  "category": "everyday",
+  "status": "draft",
+  "order": 73,
+  "keywords": ["stopwatch", "online stopwatch", "timer", "countdown timer", "online timer", "lap timer", "stop watch", "5 minute timer", "10 minute timer", "pomodoro", "kitchen timer", "alarm", "countdown", "clock"],
+  "related": ["time-calculator", "typing-test", "flip-a-coin"],
+  "howTo": [
+    "<strong>Stopwatch:</strong> press <strong>Start</strong>, then <strong>Lap</strong> to record splits. Stop and resume as often as you like; <strong>Reset</strong> clears it.",
+    "<strong>Timer:</strong> switch to Timer, type hours, minutes and seconds or tap a quick time like 5 or 25 minutes, and press <strong>Start</strong>.",
+    "When the timer ends it beeps, and the tab title says “Time’s up”. Use <strong>+1 min</strong> to add time, even after it has finished.",
+    "Keyboard: <kbd>Space</kbd> starts and stops, <kbd>L</kbd> records a lap and <kbd>R</kbd> resets."
+  ],
+  "faq": [
+    { "q": "Does it keep running if I switch tabs or refresh?", "a": "Yes. Both work from the clock time they started at, not from a counter in the page, so switching tabs, locking your phone or refreshing doesn’t lose time. The countdown also shows in the tab title." },
+    { "q": "Why didn’t the timer make a sound?", "a": "Browsers only allow sound after you’ve clicked something on the page, so start the timer with a click or tap. Check that <strong>Play a sound</strong> is ticked and your device isn’t muted. If the timer finished while the page was closed, it shows “Time’s up” without a sound." },
+    { "q": "How accurate is the stopwatch?", "a": "It shows hundredths of a second and is accurate to a few milliseconds, which is far finer than the time it takes to press a button." },
+    { "q": "Can I copy my lap times?", "a": "Yes. <strong>Copy laps</strong> copies every lap as a table that pastes straight into Excel or Google Sheets." }
+  ]
+}

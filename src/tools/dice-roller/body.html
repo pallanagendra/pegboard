@@ -1,0 +1,50 @@
+      <form class="dice-layout" data-form novalidate>
+        <section class="panel" aria-labelledby="dr-title">
+          <h2 class="visually-hidden" id="dr-title">Dice</h2>
+          <div class="dice-tray" data-tray aria-hidden="true"></div>
+          <div class="dice-total">
+            <div>
+              <p class="dice-total__label">Total</p>
+              <output class="dice-total__value" id="dr-total" data-total>—</output>
+            </div>
+            <p class="dice-total__breakdown" data-breakdown></p>
+          </div>
+          <p class="visually-hidden" aria-live="polite" data-announce></p>
+          <div class="actions">
+            <button type="submit" class="button button--primary button--big button--wide" data-roll>Roll</button>
+          </div>
+        </section>
+
+        <section class="panel panel--inputs" aria-labelledby="dr-set">
+          <h2 class="panel__title" id="dr-set">Dice</h2>
+          <div class="field">
+            <label for="dr-count">Number of dice</label>
+            <div class="stepper">
+              <button type="button" class="button button--quiet stepper__btn" data-step="-1" aria-label="One die fewer">−</button>
+              <input class="input stepper__input" id="dr-count" name="count" type="number" min="1" max="50" step="1" value="2" inputmode="numeric">
+              <button type="button" class="button button--quiet stepper__btn" data-step="1" aria-label="One die more">+</button>
+            </div>
+          </div>
+          <fieldset>
+            <legend>Type of die</legend>
+            <div class="segmented segmented--fill">
+              <input type="radio" name="sides" id="dr-d4" value="4"><label for="dr-d4">d4</label>
+              <input type="radio" name="sides" id="dr-d6" value="6" checked><label for="dr-d6">d6</label>
+              <input type="radio" name="sides" id="dr-d8" value="8"><label for="dr-d8">d8</label>
+              <input type="radio" name="sides" id="dr-d10" value="10"><label for="dr-d10">d10</label>
+              <input type="radio" name="sides" id="dr-d12" value="12"><label for="dr-d12">d12</label>
+              <input type="radio" name="sides" id="dr-d20" value="20"><label for="dr-d20">d20</label>
+              <input type="radio" name="sides" id="dr-d100" value="100"><label for="dr-d100">d100</label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="dr-mod">Add to the total <small class="panel__hint">optional, e.g. +5 or −2</small></label>
+            <input class="input" id="dr-mod" name="modifier" type="number" step="1" value="0" inputmode="numeric">
+          </div>
+          <p class="field__help mt-0" data-range></p>
+          <div class="field" data-history-wrap hidden>
+            <span class="field__label">Earlier rolls</span>
+            <ol class="history" data-history></ol>
+          </div>
+        </section>
+      </form>

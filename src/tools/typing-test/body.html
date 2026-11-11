@@ -1,0 +1,45 @@
+      <div class="typing">
+        <form class="typing__bar" data-form novalidate>
+          <div class="segmented" role="group" aria-label="Test length">
+            <input type="radio" name="duration" id="tt-15" value="15"><label for="tt-15">15 s</label>
+            <input type="radio" name="duration" id="tt-30" value="30"><label for="tt-30">30 s</label>
+            <input type="radio" name="duration" id="tt-60" value="60" checked><label for="tt-60">1 min</label>
+            <input type="radio" name="duration" id="tt-120" value="120"><label for="tt-120">2 min</label>
+          </div>
+          <label class="check"><input type="checkbox" name="punctuation"> <span>Punctuation and capitals</span></label>
+        </form>
+
+        <section class="panel typing__panel" aria-labelledby="tt-title">
+          <h2 class="visually-hidden" id="tt-title">Typing test</h2>
+          <div class="typing-live" aria-hidden="true">
+            <div class="typing-live__item typing-live__item--time"><span class="typing-live__value" data-time>60</span><span class="typing-live__label">seconds left</span></div>
+            <div class="typing-live__item"><span class="typing-live__value" data-live-wpm>0</span><span class="typing-live__label">WPM</span></div>
+            <div class="typing-live__item"><span class="typing-live__value" data-live-acc>—</span><span class="typing-live__label">accuracy</span></div>
+          </div>
+          <div class="typing-words" data-words-box>
+            <div class="typing-words__inner" data-words></div>
+          </div>
+          <div class="typing-entry">
+            <label class="visually-hidden" for="tt-input">Type the words shown above</label>
+            <input class="input typing-input" id="tt-input" data-input type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next" placeholder="Start typing to begin">
+            <button type="button" class="button button--quiet" data-restart>Restart</button>
+          </div>
+          <p class="kbd-hint">The clock starts with your first letter. Press <kbd>Space</kbd> after each word and <kbd>Esc</kbd> to start over.</p>
+        </section>
+
+        <section class="panel typing-results" data-results aria-labelledby="tt-results-title" tabindex="-1" hidden>
+          <h2 class="panel__title" id="tt-results-title">Your result</h2>
+          <div class="answer answer--hero">
+            <output class="answer__value" data-wpm></output>
+            <p class="answer__formula" data-best></p>
+          </div>
+          <div class="stats stats--wide" data-stats></div>
+          <div class="field" data-mistakes-wrap hidden>
+            <span class="field__label">Words to practise</span>
+            <ul class="mistakes" data-mistakes></ul>
+          </div>
+          <div class="actions">
+            <button type="button" class="button button--primary" data-again>Try again</button>
+          </div>
+        </section>
+      </div>

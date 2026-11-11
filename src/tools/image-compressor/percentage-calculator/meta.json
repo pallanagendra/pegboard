@@ -1,0 +1,24 @@
+{
+  "name": "Percentage calculator",
+  "title": "Percentage Calculator: Percent of, Percent Change, Increase",
+  "h1": "Percentage calculator",
+  "description": "Work out X% of a number, what percent one number is of another, percentage increase or decrease, and the original before a change. Shows the formula.",
+  "summary": "Percent of a number, percent change, increases, discounts and the original value.",
+  "category": "calculators",
+  "status": "draft",
+  "order": 60,
+  "keywords": ["percent", "percentage", "percentage calculator", "percent of", "percent change", "percentage increase", "percentage decrease", "discount", "markup", "tip", "what percent", "math"],
+  "related": ["loan-calculator", "time-calculator", "word-counter"],
+  "howTo": [
+    "Find the question that matches yours. Each box answers a different everyday percentage question.",
+    "Type your numbers into the sentence. Answers update as you type, and you can use commas, like 1,250.",
+    "Check the formula under each answer to see how it was worked out.",
+    "Click <strong>Copy</strong> to copy an answer."
+  ],
+  "faq": [
+    { "q": "How do I calculate a percentage of a number?", "a": "Divide the percentage by 100 and multiply by the number. For example, 15% of 200 is 15 ÷ 100 × 200 = 30." },
+    { "q": "How do I calculate percentage change?", "a": "Subtract the old value from the new one, divide by the old value, then multiply by 100. Going from 80 to 100 is (100 − 80) ÷ 80 × 100 = a 25% increase." },
+    { "q": "Is a change from 10% to 12% a 2% increase?", "a": "It's an increase of 2 <em>percentage points</em>, but a 20% increase in relative terms, because 2 is 20% of 10. News reports often mix these up." },
+    { "q": "How do I find the price before a discount?", "a": "Divide the sale price by what's left after the discount. Something that costs 80 after 20% off cost 80 ÷ 0.8 = 100. Use the last box: 80 is 80% of what number?" }
+  ]
+}

@@ -1,0 +1,96 @@
+      <div class="workspace">
+        <form class="panel panel--inputs" data-form novalidate>
+          <label class="dropzone" data-dropzone>
+            <input type="file" class="visually-hidden" accept="image/*,.heic,.heif,.avif,.svg" multiple data-file-input>
+            <svg class="dropzone__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+            <span class="dropzone__title">Choose images or drop them here</span>
+            <span class="dropzone__hint">JPG, PNG, WebP, GIF, AVIF or SVG, up to 50 at once. You can also paste a picture with Ctrl+V.</span>
+          </label>
+
+          <fieldset>
+            <legend>Resize by</legend>
+            <div class="segmented">
+              <input type="radio" name="by" id="rs-by-size" value="size" checked><label for="rs-by-size">Size in pixels</label>
+              <input type="radio" name="by" id="rs-by-pct" value="percent"><label for="rs-by-pct">Percentage</label>
+            </div>
+          </fieldset>
+
+          <div class="stack" data-by="size">
+            <div class="field">
+              <label for="rs-preset">Common sizes</label>
+              <select class="select" id="rs-preset" name="preset" data-presets></select>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="rs-w">Width (px)</label>
+                <input class="input" id="rs-w" name="width" type="number" min="1" max="16384" inputmode="numeric" value="1600" placeholder="Auto">
+              </div>
+              <div class="field">
+                <label for="rs-h">Height (px)</label>
+                <input class="input" id="rs-h" name="height" type="number" min="1" max="16384" inputmode="numeric" placeholder="Auto">
+              </div>
+            </div>
+            <p class="field__help mt-0">Leave one empty to keep the proportions.</p>
+            <div class="field">
+              <label for="rs-fit">If the shape is different</label>
+              <select class="select" id="rs-fit" name="fit">
+                <option value="fit">Keep proportions (fit inside)</option>
+                <option value="cover">Crop to fill the exact size</option>
+                <option value="contain">Add borders to fill the exact size</option>
+                <option value="stretch">Stretch to the exact size</option>
+              </select>
+            </div>
+            <label class="check"><input type="checkbox" name="noEnlarge" checked> <span>Don’t enlarge smaller images<small>Enlarging a photo makes it look soft.</small></span></label>
+          </div>
+
+          <div class="field" data-by="percent" hidden>
+            <label for="rs-pct">Scale</label>
+            <div class="range"><input id="rs-pct" name="percent" type="range" min="5" max="200" step="5" value="50"><output for="rs-pct" data-suffix="%"></output></div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="rs-format">Save as</label>
+              <select class="select" id="rs-format" name="format" data-formats>
+                <option value="same">Same as original</option>
+                <option value="image/jpeg">JPG</option>
+                <option value="image/png">PNG</option>
+                <option value="image/webp">WebP</option>
+              </select>
+            </div>
+            <div class="field" data-quality>
+              <label for="rs-q">Quality</label>
+              <div class="range"><input id="rs-q" name="quality" type="range" min="40" max="100" step="1" value="90"><output for="rs-q" data-suffix="%"></output></div>
+            </div>
+          </div>
+
+          <div class="field" data-background>
+            <label for="rs-bg">Border and background color</label>
+            <div class="color-field"><input type="color" class="input input--color" value="#ffffff" aria-label="Border color picker"><input type="text" class="input input--mono" id="rs-bg" name="background" value="#ffffff" maxlength="7"></div>
+            <span class="field__help">Fills the borders, and any transparent areas when saving as JPG.</span>
+          </div>
+        </form>
+
+        <section class="panel workspace__sticky" aria-labelledby="rs-out-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="rs-out-title">Resized images</h2>
+            <button type="button" class="button button--quiet button--small" data-clear hidden>Clear all</button>
+          </div>
+          <div class="files-empty" data-empty>
+            <p>Your resized images appear here. They’re processed on this device and never uploaded.</p>
+            <button type="button" class="button button--small" data-sample>Try a sample photo</button>
+          </div>
+          <div class="batch-bar" data-bar hidden>
+            <p class="batch-bar__summary" data-summary aria-live="polite"></p>
+            <button type="button" class="button button--primary" data-download-all disabled>Download</button>
+          </div>
+          <div class="image-preview" data-preview hidden>
+            <div class="stage stage--image"><img data-preview-img alt=""></div>
+            <div class="image-preview__bar">
+              <p class="image-preview__caption" data-preview-caption></p>
+              <button type="button" class="button button--quiet button--small" data-compare aria-pressed="false">Hold to see original</button>
+            </div>
+          </div>
+          <ul class="files" data-files hidden></ul>
+        </section>
+      </div>

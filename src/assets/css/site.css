@@ -469,3 +469,61 @@ legend { padding: 0; font-weight: 650; font-size: 0.95rem; margin-bottom: 6px; }
 .align-end { align-self: end; padding-bottom: 12px; }
 .stage--qr > svg { width: min(100%, 340px); height: auto; }
 .field__head { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 36px; }
+
+/* ---------- image tools ---------- */
+.stack { display: grid; gap: 18px; }
+
+.dropzone {
+  display: grid; justify-items: center; gap: 6px; text-align: center; cursor: pointer;
+  padding: 28px 18px; border: 2px dashed var(--line); border-radius: var(--radius-m); background: var(--panel-2);
+  transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+.dropzone:hover { border-color: var(--ink-3); background: var(--panel); }
+.dropzone.is-over { border-color: var(--ink); background: var(--panel); box-shadow: 0 0 0 4px var(--tag); }
+.dropzone:focus-within { outline: 3px solid var(--focus); outline-offset: 2px; }
+.dropzone__icon { width: 34px; height: 34px; fill: none; stroke: var(--ink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 2px; }
+.dropzone__title { font-weight: 750; font-stretch: 108%; font-size: 1.05rem; }
+.dropzone__hint { font-size: var(--step--1); color: var(--ink-3); max-width: 46ch; }
+
+.files-empty { display: grid; justify-items: start; gap: 12px; padding: 18px; border: 1px dashed var(--line); border-radius: var(--radius-s); color: var(--ink-2); }
+
+.batch-bar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px;
+  padding: 10px 12px 10px 14px; background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--radius-s);
+}
+.batch-bar__summary { font-weight: 650; font-variant-numeric: tabular-nums; min-width: 0; }
+
+.image-preview { display: grid; gap: 10px; }
+.stage.stage--image { min-height: 200px; padding: 12px; }
+.stage.stage--image > img { max-height: 320px; width: auto; max-width: 100%; object-fit: contain; image-rendering: auto; }
+.image-preview__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
+.image-preview__caption { font-size: var(--step--1); color: var(--ink-2); font-variant-numeric: tabular-nums; min-width: 0; overflow-wrap: anywhere; }
+[data-compare][aria-pressed='true'] { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+
+.files { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-height: 420px; overflow-y: auto; }
+.file { display: flex; align-items: center; gap: 6px; padding: 6px; border: 1px solid var(--line); border-radius: var(--radius-s); background: var(--panel); }
+.file.is-selected { border-color: var(--line-strong); background: var(--panel-2); }
+.file__select {
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; padding: 2px; border: 0; border-radius: 4px;
+  background: none; color: inherit; font: inherit; text-align: left; cursor: pointer;
+}
+.file__thumb { flex: none; width: 52px; height: 52px; border-radius: 4px; object-fit: cover; background: var(--panel-2); border: 1px solid var(--line); }
+.file__text { display: grid; gap: 1px; min-width: 0; }
+.file__name { font-weight: 650; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file__meta { font-size: var(--step--1); color: var(--ink-2); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.file__note { font-size: var(--step--1); color: var(--ink-3); }
+.file__note--good { color: var(--ok); font-weight: 650; }
+.file__note--error { color: var(--err); }
+.file__actions { flex: none; display: flex; align-items: center; gap: 2px; }
+.icon-button {
+  display: inline-grid; place-items: center; width: 36px; height: 36px; border: 0; border-radius: var(--radius-s);
+  background: transparent; color: var(--ink-2); cursor: pointer;
+}
+.icon-button:hover { background: var(--panel-2); color: var(--ink); }
+.icon-button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+@media (max-width: 520px) {
+  .file { flex-wrap: wrap; }
+  .file__select { flex-basis: 100%; }
+  .file__thumb { width: 44px; height: 44px; }
+  .file__actions { margin-left: auto; }
+}

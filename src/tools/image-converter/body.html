@@ -1,0 +1,54 @@
+      <div class="workspace">
+        <form class="panel panel--inputs" data-form novalidate>
+          <label class="dropzone" data-dropzone>
+            <input type="file" class="visually-hidden" accept="image/*,.heic,.heif,.avif,.svg" multiple data-file-input>
+            <svg class="dropzone__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+            <span class="dropzone__title">Choose images or drop them here</span>
+            <span class="dropzone__hint">PNG, JPG, WebP, GIF, AVIF, BMP or SVG, up to 50 at once. You can also paste a picture with Ctrl+V.</span>
+          </label>
+
+          <fieldset>
+            <legend>Convert to</legend>
+            <div class="segmented" data-targets>
+              <input type="radio" name="to" id="cv-jpg" value="image/jpeg" checked><label for="cv-jpg">JPG</label>
+              <input type="radio" name="to" id="cv-png" value="image/png"><label for="cv-png">PNG</label>
+              <input type="radio" name="to" id="cv-webp" value="image/webp"><label for="cv-webp">WebP</label>
+            </div>
+            <p class="field__help" data-target-help></p>
+          </fieldset>
+
+          <div class="field" data-quality>
+            <label for="cv-q">Quality</label>
+            <div class="range"><input id="cv-q" name="quality" type="range" min="40" max="100" step="1" value="92"><output for="cv-q" data-suffix="%"></output></div>
+          </div>
+
+          <div class="field" data-background>
+            <label for="cv-bg">Color for transparent areas</label>
+            <div class="color-field"><input type="color" class="input input--color" value="#ffffff" aria-label="Background color picker"><input type="text" class="input input--mono" id="cv-bg" name="background" value="#ffffff" maxlength="7"></div>
+            <span class="field__help">JPG can’t store transparency, so see-through parts get this color.</span>
+          </div>
+        </form>
+
+        <section class="panel workspace__sticky" aria-labelledby="cv-out-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="cv-out-title">Converted images</h2>
+            <button type="button" class="button button--quiet button--small" data-clear hidden>Clear all</button>
+          </div>
+          <div class="files-empty" data-empty>
+            <p>Your converted images appear here. They’re processed on this device and never uploaded.</p>
+            <button type="button" class="button button--small" data-sample>Try a sample PNG</button>
+          </div>
+          <div class="batch-bar" data-bar hidden>
+            <p class="batch-bar__summary" data-summary aria-live="polite"></p>
+            <button type="button" class="button button--primary" data-download-all disabled>Download</button>
+          </div>
+          <div class="image-preview" data-preview hidden>
+            <div class="stage stage--image"><img data-preview-img alt=""></div>
+            <div class="image-preview__bar">
+              <p class="image-preview__caption" data-preview-caption></p>
+              <button type="button" class="button button--quiet button--small" data-compare aria-pressed="false">Hold to see original</button>
+            </div>
+          </div>
+          <ul class="files" data-files hidden></ul>
+        </section>
+      </div>

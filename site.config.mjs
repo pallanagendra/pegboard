@@ -23,6 +23,7 @@ export default {
     generators: 'Generators',
     files: 'Images and files',
     calculators: 'Calculators',
+    everyday: 'Everyday',
     text: 'Text',
     web: 'Web & developer',
   },

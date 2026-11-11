@@ -1,0 +1,78 @@
+      <div class="clock">
+        <div class="clock__modes">
+          <div class="segmented segmented--big" role="group" aria-label="Mode">
+            <input type="radio" name="mode" id="sw-mode-stopwatch" value="stopwatch" checked><label for="sw-mode-stopwatch">Stopwatch</label>
+            <input type="radio" name="mode" id="sw-mode-timer" value="timer"><label for="sw-mode-timer">Timer</label>
+          </div>
+          <button type="button" class="button button--quiet button--small" data-fullscreen>Full screen</button>
+        </div>
+
+        <section class="panel clock__panel" data-panel="stopwatch" aria-labelledby="sw-title">
+          <h2 class="visually-hidden" id="sw-title">Stopwatch</h2>
+          <div class="clock-face" role="timer" aria-live="off">
+            <span class="clock-digits" data-sw-main>00:00</span><span class="clock-digits clock-digits--small" data-sw-fraction>.00</span>
+          </div>
+          <p class="clock-sub" data-sw-sub>Ready</p>
+          <div class="actions actions--center">
+            <button type="button" class="button button--primary button--big clock__main-btn" data-sw-toggle>Start</button>
+            <button type="button" class="button button--big" data-sw-lap disabled>Lap</button>
+            <button type="button" class="button button--quiet button--big" data-sw-reset disabled>Reset</button>
+          </div>
+          <p class="kbd-hint">Keyboard: <kbd>Space</kbd> start or stop, <kbd>L</kbd> lap, <kbd>R</kbd> reset.</p>
+          <div class="laps" data-laps-wrap hidden>
+            <div class="panel__head">
+              <h3 class="panel__title">Laps</h3>
+              <button type="button" class="button button--quiet button--small" data-copy-laps>Copy laps</button>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th scope="col">Lap</th><th scope="col">Lap time</th><th scope="col">Total</th></tr></thead>
+                <tbody data-laps></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel clock__panel" data-panel="timer" aria-labelledby="tm-title" hidden>
+          <h2 class="visually-hidden" id="tm-title">Countdown timer</h2>
+          <fieldset class="timer-setup" data-timer-setup>
+            <legend class="visually-hidden">Timer length</legend>
+            <div class="timer-inputs">
+              <div class="field"><label for="tm-h">Hours</label><input class="input" id="tm-h" type="number" min="0" max="99" step="1" inputmode="numeric" placeholder="0" data-part="h"></div>
+              <div class="field"><label for="tm-m">Minutes</label><input class="input" id="tm-m" type="number" min="0" max="59" step="1" inputmode="numeric" placeholder="0" data-part="m"></div>
+              <div class="field"><label for="tm-s">Seconds</label><input class="input" id="tm-s" type="number" min="0" max="59" step="1" inputmode="numeric" placeholder="0" data-part="s"></div>
+            </div>
+            <div class="chips" role="group" aria-label="Quick timers">
+              <button type="button" class="chip" data-preset="60">1 min</button>
+              <button type="button" class="chip" data-preset="180">3 min</button>
+              <button type="button" class="chip" data-preset="300">5 min</button>
+              <button type="button" class="chip" data-preset="600">10 min</button>
+              <button type="button" class="chip" data-preset="900">15 min</button>
+              <button type="button" class="chip" data-preset="1500">25 min</button>
+              <button type="button" class="chip" data-preset="1800">30 min</button>
+              <button type="button" class="chip" data-preset="3600">1 hour</button>
+            </div>
+          </fieldset>
+
+          <div class="timer-ring" data-timer-ring>
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="timer-ring__track" cx="60" cy="60" r="54"/>
+              <circle class="timer-ring__bar" cx="60" cy="60" r="54" pathLength="1000" data-timer-bar/>
+            </svg>
+            <div class="timer-ring__center">
+              <span class="clock-digits" role="timer" data-timer-display>05:00</span>
+              <p class="clock-sub" data-timer-sub>5 minutes</p>
+            </div>
+          </div>
+          <p class="visually-hidden" aria-live="assertive" data-timer-announce></p>
+          <div class="actions actions--center">
+            <button type="button" class="button button--primary button--big clock__main-btn" data-tm-toggle>Start</button>
+            <button type="button" class="button button--big" data-tm-add>+1 min</button>
+            <button type="button" class="button button--quiet button--big" data-tm-reset>Reset</button>
+          </div>
+          <div class="actions actions--center">
+            <label class="check"><input type="checkbox" data-tm-sound checked> <span>Play a sound when time is up</span></label>
+          </div>
+          <p class="kbd-hint">Keyboard: <kbd>Space</kbd> start or pause, <kbd>R</kbd> reset. The timer keeps going in the background and if you refresh the page.</p>
+        </section>
+      </div>

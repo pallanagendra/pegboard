@@ -1,0 +1,23 @@
+{
+  "name": "Dice roller",
+  "title": "Roll a Dice Online: Virtual Dice Roller, d4 to d100",
+  "h1": "Dice roller",
+  "description": "Roll one or many virtual dice: six-sided, or d4, d8, d10, d12, d20 and d100 for tabletop games. Add a modifier and see the total. Fair and free.",
+  "summary": "Roll up to 50 dice, from d4 to d100, with a modifier and the total.",
+  "category": "everyday",
+  "status": "draft",
+  "order": 72,
+  "keywords": ["roll a dice", "dice roller", "roll dice", "virtual dice", "dice", "die", "d20", "d6", "2d6", "d4", "d8", "d10", "d12", "d100", "dnd dice", "rpg dice", "board game"],
+  "related": ["random-number-generator", "flip-a-coin", "spin-the-wheel"],
+  "howTo": [
+    "Choose how many dice to roll and the type of die: d6 is the usual six-sided die, and d4 to d100 cover tabletop role-playing games.",
+    "Optionally <strong>add to the total</strong>, for example +5 for a bonus or −2 for a penalty.",
+    "Press <strong>Roll</strong> or Enter. You’ll see every die, the total and how it adds up; earlier rolls are listed below."
+  ],
+  "faq": [
+    { "q": "Are the dice fair?", "a": "Yes. Every roll uses your browser’s cryptographic random number generator, and each face has exactly the same chance, which is more than most real dice can promise." },
+    { "q": "What does 2d6 or 1d20+5 mean?", "a": "The first number is how many dice, the number after the d is how many sides each has, and anything after a plus or minus is added to the total. 2d6 is two six-sided dice; 1d20+5 is one twenty-sided die plus 5." },
+    { "q": "What’s the most likely total with two dice?", "a": "7. Six of the 36 possible combinations add up to 7, while 2 and 12 can only be rolled one way each." },
+    { "q": "Is a d100 the same as two d10s?", "a": "It gives the same result: a whole number from 1 to 100, each equally likely. Here it’s rolled as one die." }
+  ]
+}

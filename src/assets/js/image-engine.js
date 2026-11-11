@@ -2,10 +2,12 @@
 // Re-encoding through a canvas also drops metadata such as camera details and GPS location.
 
 import { OUTPUT_TYPES } from './image-core.js';
+import { looksLikeHeic, sniffHeic, decodeHeic } from './heic.js';
 
 /**
  * Open an image file. Returns { source, width, height, close() } where `source` can be drawn on a canvas.
- * Photos are turned upright using their EXIF orientation.
+ * Photos are turned upright using their EXIF orientation. HEIC photos fall back to a bundled decoder
+ * in browsers that can't open them (everything except Safari), so every image tool accepts iPhone photos.
  */
 export async function decode(file) {
   if (typeof createImageBitmap === 'function' && !/svg/.test(file.type)) {
@@ -32,7 +34,8 @@ export async function decode(file) {
     return { source: img, width, height, close: () => URL.revokeObjectURL(url) };
   } catch {
     URL.revokeObjectURL(url);
-    throw new Error(/hei[cf]/i.test(file.type + file.name) ? 'This browser can’t open HEIC photos. Try Safari, or export the photo as JPG first.' : 'This file couldn’t be opened as an image.');
+    if (looksLikeHeic(file) || (await sniffHeic(file))) return decodeHeic(file);
+    throw new Error('This file couldn’t be opened as an image.');
   }
 }
 

@@ -5,7 +5,7 @@
   "description": "Pick a color and get HEX, RGB, HSL, CMYK and OKLCH values, tints and shades, and a WCAG contrast check. Pick from your screen or an image.",
   "summary": "HEX, RGB, HSL and OKLCH values, shades, and a WCAG contrast check.",
   "category": "web",
-  "order": 47,
+  "order": 150,
   "keywords": ["color picker", "colour picker", "hex color", "rgb to hex", "hex to rgb", "hsl", "oklch", "cmyk", "color converter", "contrast checker", "wcag", "accessibility", "color code", "eyedropper", "tints and shades", "palette"],
   "related": ["image-converter", "qr-code-generator", "base64-encoder-decoder"],
   "howTo": [

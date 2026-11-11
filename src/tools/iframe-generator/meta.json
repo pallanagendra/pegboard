@@ -5,7 +5,7 @@
   "description": "Generate clean, responsive iframe embed code. Converts YouTube, Vimeo, Loom and Spotify links, sets permissions and sandbox, and previews it live.",
   "summary": "Responsive embed code for pages and videos, with a live preview.",
   "category": "web",
-  "order": 30,
+  "order": 260,
   "keywords": ["iframe", "embed", "embed code", "html", "youtube", "vimeo", "responsive", "aspect ratio", "sandbox", "widget", "website"],
   "related": ["url-encoder-decoder", "qr-code-generator"],
   "howTo": [

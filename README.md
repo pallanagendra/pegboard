@@ -1,33 +1,35 @@
 # Pegboard
 
-Small web tools that do one job well: 24 of them, live at https://tools.nexwavesolutions.net. Every tool runs in the browser — nothing typed or opened on the site is uploaded.
+Small web tools that do one job well: 26 of them, live at https://tools.nexwavesolutions.net. Every tool runs in the browser — nothing typed or opened on the site is uploaded.
 
-| Tool | Category | Path |
+| Tool (most searched first) | Category | Path |
 |---|---|---|
-| Barcode generator | Generators | `/tools/barcode-generator/` |
+| Flip a coin | Everyday | `/tools/flip-a-coin/` |
+| Random number generator | Everyday | `/tools/random-number-generator/` |
+| Word and character counter | Text | `/tools/word-counter/` |
+| Stopwatch and timer | Everyday | `/tools/stopwatch/` |
+| Spin the wheel | Everyday | `/tools/spin-the-wheel/` |
 | QR code generator | Generators | `/tools/qr-code-generator/` |
-| Password generator | Generators | `/tools/password-generator/` |
-| Image resizer | Images and files | `/tools/image-resizer/` |
-| Image compressor | Images and files | `/tools/image-compressor/` |
-| Image converter | Images and files | `/tools/image-converter/` |
 | Percentage calculator | Calculators | `/tools/percentage-calculator/` |
 | Loan calculator | Calculators | `/tools/loan-calculator/` |
 | Age calculator | Calculators | `/tools/age-calculator/` |
-| Time calculator | Calculators | `/tools/time-calculator/` |
-| Days between dates | Calculators | `/tools/days-between-dates/` |
-| Flip a coin | Everyday | `/tools/flip-a-coin/` |
-| Random number generator | Everyday | `/tools/random-number-generator/` |
-| Dice roller | Everyday | `/tools/dice-roller/` |
-| Stopwatch and timer | Everyday | `/tools/stopwatch/` |
-| Spin the wheel | Everyday | `/tools/spin-the-wheel/` |
 | Typing speed test | Everyday | `/tools/typing-test/` |
-| Word and character counter | Text | `/tools/word-counter/` |
-| Case converter | Text | `/tools/case-converter/` |
-| iFrame embed code generator | Web & developer | `/tools/iframe-generator/` |
-| URL encoder and decoder | Web & developer | `/tools/url-encoder-decoder/` |
-| JSON formatter | Web & developer | `/tools/json-formatter/` |
-| Base64 encoder and decoder | Web & developer | `/tools/base64-encoder-decoder/` |
+| Dice roller | Everyday | `/tools/dice-roller/` |
+| Time calculator | Calculators | `/tools/time-calculator/` |
+| Barcode generator | Generators | `/tools/barcode-generator/` |
+| Password generator | Generators | `/tools/password-generator/` |
 | Color picker | Web & developer | `/tools/color-picker/` |
+| HEIC to JPG | Images and PDF | `/tools/heic-to-jpg/` |
+| JSON formatter | Web & developer | `/tools/json-formatter/` |
+| Merge PDF | Images and PDF | `/tools/merge-pdf/` |
+| Image resizer | Images and PDF | `/tools/image-resizer/` |
+| Days between dates | Calculators | `/tools/days-between-dates/` |
+| Image compressor | Images and PDF | `/tools/image-compressor/` |
+| Base64 encoder and decoder | Web & developer | `/tools/base64-encoder-decoder/` |
+| Image converter | Images and PDF | `/tools/image-converter/` |
+| Case converter | Text | `/tools/case-converter/` |
+| URL encoder and decoder | Web & developer | `/tools/url-encoder-decoder/` |
+| iFrame embed code generator | Web & developer | `/tools/iframe-generator/` |
 
 **New here?** Follow [docs/SETUP-GUIDE.md](docs/SETUP-GUIDE.md) to put this on GitHub, connect the pipeline and go live. Ideas for what to build next are in [docs/TOOL-IDEAS.md](docs/TOOL-IDEAS.md).
 

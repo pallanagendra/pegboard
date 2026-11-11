@@ -5,7 +5,7 @@
   "description": "Estimate your monthly loan payment, total interest and payoff date. See the full amortization schedule and how extra payments cut the interest.",
   "summary": "Monthly payment, total interest, payoff date and the full schedule.",
   "category": "calculators",
-  "order": 61,
+  "order": 80,
   "keywords": ["loan", "loan calculator", "monthly payment", "interest", "amortization", "amortization schedule", "mortgage", "car loan", "auto loan", "personal loan", "student loan", "extra payment", "payoff"],
   "related": ["percentage-calculator", "days-between-dates", "age-calculator"],
   "howTo": [

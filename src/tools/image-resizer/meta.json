@@ -5,9 +5,9 @@
   "description": "Resize JPG, PNG and WebP images to exact pixels, a percentage or social media sizes. Batch resize in your browser; photos are never uploaded.",
   "summary": "Exact pixels, percentages or social media sizes, for one photo or fifty.",
   "category": "files",
-  "order": 50,
+  "order": 190,
   "keywords": ["resize", "resizer", "resize image", "image size", "photo", "picture", "pixels", "scale", "crop", "dimensions", "instagram", "batch", "jpg", "png", "webp"],
-  "related": ["image-compressor", "image-converter", "qr-code-generator"],
+  "related": ["image-compressor", "heic-to-jpg", "image-converter"],
   "howTo": [
     "Choose your images, drop them on the page, or paste one with Ctrl+V. You can add up to 50 at once.",
     "Pick a common size such as an Instagram post or a YouTube thumbnail, or type the width and height you need. Leave one empty to keep the proportions.",

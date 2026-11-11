@@ -5,7 +5,7 @@
   "description": "Encode text to Base64 or decode it back, with full Unicode support and URL-safe Base64. Turn files into data URLs. Works in your browser.",
   "summary": "Encode and decode Base64 text, and turn files into data URLs.",
   "category": "web",
-  "order": 46,
+  "order": 220,
   "keywords": ["base64", "base64 encode", "base64 decode", "base64 decoder", "base64 encoder", "base64 to text", "text to base64", "data url", "data uri", "image to base64", "url-safe base64", "atob", "btoa"],
   "related": ["url-encoder-decoder", "json-formatter", "image-converter"],
   "howTo": [

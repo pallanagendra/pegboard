@@ -840,3 +840,28 @@ legend { padding: 0; font-weight: 650; font-size: 0.95rem; margin-bottom: 6px; }
 .checks-list .is-fail .checks-list__mark { color: var(--err); }
 .checks-list__need { font-size: var(--step--1); color: var(--ink-3); white-space: nowrap; }
 @media (max-width: 520px) { .formats__row { grid-template-columns: minmax(0, 1fr); gap: 2px; } .formats code { font-size: 0.86rem; } }
+
+/* ---------- merge PDF ---------- */
+.pdf-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.pdf-list:empty { display: none; }
+.pdf-row { display: grid; grid-template-columns: 1.6em 44px minmax(0, 1fr) auto auto; align-items: center; gap: 4px 10px; padding: 8px; border: 1px solid var(--line); border-radius: var(--radius-s); background: var(--panel); }
+.pdf-row.is-broken { border-color: var(--err); }
+.pdf-row__num { text-align: center; font-weight: 750; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.pdf-row__icon { width: 44px; height: 52px; display: grid; place-items: center; border-radius: 4px; background: var(--panel-2); border: 1px solid var(--line); overflow: hidden; }
+.pdf-row__icon img { width: 100%; height: 100%; object-fit: cover; }
+.pdf-row__icon svg { width: 24px; height: 24px; fill: none; stroke: var(--ink-2); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.pdf-row__text { display: grid; gap: 1px; min-width: 0; }
+.pdf-row__name { font-weight: 650; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pdf-row__meta { font-size: var(--step--1); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.pdf-row__error { font-size: var(--step--1); color: var(--err); }
+.pdf-row__pages .input { width: 9.5em; }
+.pdf-row__actions { display: flex; gap: 2px; }
+.pdf-row__actions .icon-button[disabled] { opacity: 0.35; cursor: default; }
+.input.input--small { min-height: 36px; padding: 6px 10px; font-size: 0.92rem; }
+@media (max-width: 560px) {
+  .pdf-row { grid-template-columns: 1.4em 40px minmax(0, 1fr) auto; }
+  .pdf-row__pages { grid-column: 3 / -1; grid-row: 2; }
+  .pdf-row__pages .input { width: 100%; }
+  .pdf-row__actions { grid-column: 4; grid-row: 1; flex-direction: column; }
+}
+.merge-total { margin: 0; font-weight: 650; }

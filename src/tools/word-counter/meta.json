@@ -5,7 +5,7 @@
   "description": "Count words, characters, sentences and paragraphs as you type. See reading time, keyword density and limits for meta descriptions, X and LinkedIn.",
   "summary": "Live counts, reading time, keyword density and social post limits.",
   "category": "text",
-  "order": 5,
+  "order": 30,
   "keywords": ["word count", "word counter", "character count", "character counter", "letters", "sentences", "reading time", "keyword density", "meta description length", "tweet length", "sms"],
   "related": ["url-encoder-decoder", "qr-code-generator"],
   "howTo": [

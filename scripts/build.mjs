@@ -387,7 +387,9 @@ ${toolBody}
 
   const csp = [
     "default-src 'self'",
-    "script-src 'self'",
+    // 'wasm-unsafe-eval' lets the HEIC decoder run its WebAssembly; it does not allow eval() of JavaScript
+    "script-src 'self' 'wasm-unsafe-eval'",
+    "worker-src 'self'",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob:",
     "font-src 'self'",

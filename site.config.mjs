@@ -3,7 +3,7 @@ export default {
   name: 'Pegboard',
   tagline: 'Small web tools that do one job well.',
   description:
-    'Free browser tools: QR codes, barcodes, image resizer, percentage and loan calculators, password generator, JSON formatter and more. Nothing is uploaded.',
+    'Free browser tools: QR codes, barcodes, HEIC to JPG, merge PDF, percentage and loan calculators, password generator and more. Nothing is uploaded.',
 
   // Public URL per environment, used for canonical links and the sitemap.
   // Leave these empty: set the SITE_URL variable on each GitHub Environment instead
@@ -18,13 +18,13 @@ export default {
   // Shown in the footer.
   owner: 'Pegboard',
 
-  // Tool categories, in display order. Each tool's meta.json picks one of these keys.
+  // Tool categories, in display order (most searched first). Each tool's meta.json picks one of these keys.
   categories: {
-    generators: 'Generators',
-    files: 'Images and files',
-    calculators: 'Calculators',
     everyday: 'Everyday',
+    calculators: 'Calculators',
+    generators: 'Generators',
     text: 'Text',
+    files: 'Images and PDF',
     web: 'Web & developer',
   },
 };

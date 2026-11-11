@@ -1,0 +1,59 @@
+      <div class="workspace">
+        <form class="panel panel--inputs" data-form novalidate>
+          <label class="dropzone" data-dropzone>
+            <input type="file" class="visually-hidden" accept=".heic,.heif,.hif,image/heic,image/heif,image/*" multiple data-file-input>
+            <svg class="dropzone__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+            <span class="dropzone__title">Choose HEIC photos or drop them here</span>
+            <span class="dropzone__hint">iPhone and iPad photos (.heic or .heif), up to 50 at once. Other images work too.</span>
+          </label>
+
+          <fieldset>
+            <legend>Convert to</legend>
+            <div class="segmented" data-targets>
+              <input type="radio" name="to" id="hc-jpg" value="image/jpeg" checked><label for="hc-jpg">JPG</label>
+              <input type="radio" name="to" id="hc-png" value="image/png"><label for="hc-png">PNG</label>
+              <input type="radio" name="to" id="hc-webp" value="image/webp"><label for="hc-webp">WebP</label>
+            </div>
+            <p class="field__help" data-target-help></p>
+          </fieldset>
+
+          <div class="field" data-quality>
+            <label for="hc-q">Quality</label>
+            <div class="range"><input id="hc-q" name="quality" type="range" min="50" max="100" step="1" value="90"><output for="hc-q" data-suffix="%"></output></div>
+          </div>
+
+          <div class="field">
+            <label for="hc-size">Size</label>
+            <select class="select" id="hc-size" name="size">
+              <option value="0">Original size</option>
+              <option value="3000">Large, up to 3000 px</option>
+              <option value="2048">Medium, up to 2048 px (good for email)</option>
+              <option value="1280">Small, up to 1280 px (good for the web)</option>
+            </select>
+          </div>
+
+          <p class="field__help mt-0">Converting removes the photo’s hidden details, including GPS location and camera settings, so the JPG is safe to share.</p>
+        </form>
+
+        <section class="panel workspace__sticky" aria-labelledby="hc-out-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="hc-out-title">Converted photos</h2>
+            <button type="button" class="button button--quiet button--small" data-clear hidden>Clear all</button>
+          </div>
+          <div class="files-empty" data-empty>
+            <p>Your JPGs appear here. Photos are converted on this device and never uploaded. The first HEIC photo downloads a 1.5 MB decoder, once.</p>
+            <button type="button" class="button button--small" data-sample>Try a sample HEIC photo</button>
+          </div>
+          <div class="batch-bar" data-bar hidden>
+            <p class="batch-bar__summary" data-summary aria-live="polite"></p>
+            <button type="button" class="button button--primary" data-download-all disabled>Download</button>
+          </div>
+          <div class="image-preview" data-preview hidden>
+            <div class="stage stage--image"><img data-preview-img alt=""></div>
+            <div class="image-preview__bar">
+              <p class="image-preview__caption" data-preview-caption></p>
+            </div>
+          </div>
+          <ul class="files" data-files hidden></ul>
+        </section>
+      </div>

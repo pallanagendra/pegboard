@@ -6,16 +6,15 @@ Effort: **S** = an evening, **M** = a weekend.
 
 ## Build status (November 2026)
 
-Release 0.2.0 takes the site from 5 to 24 tools on tools.nexwavesolutions.net:
+26 tools on tools.nexwavesolutions.net. Since release 0.3.0 the home page lists them by US monthly searches (most searched first), and the categories are ordered by their combined demand: Everyday, Calculators, Generators, Text, Images and PDF, Web & developer. To place a new tool, set `order` in its `meta.json` between its neighbours by demand (the numbers go up in tens).
 
-| Group | Tools |
+| Release | Tools |
 |---|---|
-| Images and files | Image resizer, image compressor, image converter |
-| Calculators | Percentage, loan, age, time, days between dates |
-| Everyday | Flip a coin, random number generator, dice roller, stopwatch and timer, spin the wheel, typing speed test |
-| Text and developer | Password generator, case converter, JSON formatter, Base64 encoder and decoder, color picker with contrast checker |
+| 0.1.0 | Word counter, QR code generator, barcode generator, iFrame embed code generator, URL encoder and decoder |
+| 0.2.0 | Image resizer, compressor and converter; percentage, loan, age and time calculators, days between dates; flip a coin, random numbers, dice, stopwatch and timer, spin the wheel, typing test; password generator, case converter, JSON formatter, Base64, color picker |
+| 0.3.0 | HEIC to JPG (and HEIC support in every image tool), Merge PDF (photos become pages too) |
 
-Still to build: HEIC to JPG, Merge PDF, margin calculator, salary to hourly, meta description checker.
+Still to build: margin calculator, salary to hourly, meta description checker. Natural next steps from 0.3.0: JPG to PDF and split PDF as their own pages, reusing the Merge PDF code.
 
 ## Search demand (researched November 2026)
 
@@ -29,8 +28,11 @@ Monthly searches in the **US** from Google Ads data (via seodata.dev, mid-2026),
 |---|---|
 | word counter | 1,220,000 |
 | qr code generator | 776,000 *(Ahrefs, KD 90)* |
+| barcode generator | 301,000 |
+| url decoder | 27,100 |
+| iframe generator | 1,600 |
 
-### Files: images and PDF *(new category)*
+### Images and PDF
 
 The strongest fit for Pegboard: high demand, and "your files never leave your device" sets it apart.
 

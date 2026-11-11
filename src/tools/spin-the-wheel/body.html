@@ -1,0 +1,53 @@
+      <form class="workspace workspace--wheel" data-form novalidate>
+        <section class="panel wheel-panel" aria-labelledby="wh-title">
+          <h2 class="visually-hidden" id="wh-title">Wheel</h2>
+          <div class="wheel" data-wheel>
+            <svg class="wheel__disc" viewBox="-104 -104 208 208" data-disc aria-hidden="true"></svg>
+            <svg class="wheel__pointer" viewBox="0 0 40 44" aria-hidden="true"><path d="M4 4h32L20 40Z"/></svg>
+            <button type="button" class="wheel__hub" data-spin-hub>Spin</button>
+          </div>
+          <div class="answer answer--hero wheel-winner" data-winner hidden>
+            <div class="wheel-winner__text">
+              <span class="wheel-winner__label">Winner</span>
+              <output class="answer__value" id="wh-winner" data-winner-name></output>
+            </div>
+            <div class="actions">
+              <button type="button" class="button button--quiet button--small" data-copy-from="#wh-winner" data-copy-label="Winner copied">Copy</button>
+              <button type="button" class="button button--quiet button--small" data-remove-winner>Remove from wheel</button>
+            </div>
+          </div>
+          <p class="visually-hidden" aria-live="polite" data-announce></p>
+          <div class="actions">
+            <button type="submit" class="button button--primary button--big button--wide" data-spin>Spin the wheel</button>
+          </div>
+        </section>
+
+        <section class="panel panel--inputs" aria-labelledby="wh-entries-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="wh-entries-title">Entries</h2>
+            <span class="panel__hint" data-count></span>
+          </div>
+          <div class="field">
+            <label for="wh-entries" class="visually-hidden">Entries, one per line</label>
+            <textarea class="textarea textarea--tall" id="wh-entries" name="entries" spellcheck="false" autocomplete="off">Ava
+Ben
+Chloe
+Daniel
+Ella
+Finn
+Grace
+Henry</textarea>
+            <p class="field__help">One per line, up to 200. Add a name twice to give it two slices and double its chance.</p>
+          </div>
+          <div class="actions">
+            <button type="button" class="button button--quiet button--small" data-shuffle>Shuffle</button>
+            <button type="button" class="button button--quiet button--small" data-sort>Sort A–Z</button>
+            <button type="button" class="button button--quiet button--small" data-clear>Clear</button>
+          </div>
+          <label class="check"><input type="checkbox" name="autoRemove"> <span>Remove the winner after each spin<small>For draws where nobody can win twice, like picking teams or a running order.</small></span></label>
+          <div class="field" data-history-wrap hidden>
+            <span class="field__label">Winners so far</span>
+            <ol class="history history--numbered" data-history></ol>
+          </div>
+        </section>
+      </form>

@@ -1,0 +1,22 @@
+{
+  "name": "Random number generator",
+  "title": "Random Number Generator: Pick Numbers in Any Range",
+  "h1": "Random number generator",
+  "description": "Pick a random number between any two numbers, or draw several at once with no repeats, sorted or with decimals. Fair, instant and private.",
+  "summary": "Random numbers in any range, one or many, with or without repeats.",
+  "category": "everyday",
+  "order": 71,
+  "keywords": ["random number generator", "random number", "number generator", "rng", "pick a number", "random number between", "1 to 10", "1 to 100", "lottery numbers", "raffle", "random draw", "no repeats", "number picker"],
+  "related": ["dice-roller", "flip-a-coin", "spin-the-wheel"],
+  "howTo": [
+    "Enter the <strong>lowest</strong> and <strong>highest</strong> number. Both are included, so 1 to 10 can give 1 or 10.",
+    "Set <strong>how many</strong> numbers to draw. Tick <strong>No repeats</strong> for a raffle or a lottery-style draw, and <strong>Sort</strong> to list them in order.",
+    "Press <strong>Generate</strong> or Enter. Copy the result, or press again for a new draw; earlier draws stay listed below."
+  ],
+  "faq": [
+    { "q": "Are the numbers really random?", "a": "They come from your browser’s cryptographic random number generator, and the tool avoids the rounding shortcut that makes some numbers slightly more likely than others. Every number in the range has exactly the same chance." },
+    { "q": "Is the highest number included?", "a": "Yes. Both ends count, so a draw from 1 to 6 works exactly like a die." },
+    { "q": "Can I use it for a raffle or a giveaway?", "a": "Yes. Number your entries, set the range to match and tick <strong>No repeats</strong>, then draw as many winners as you need. For a list of names, the spin the wheel tool does this directly." },
+    { "q": "Can it pick decimals or negative numbers?", "a": "Yes. Choose up to four decimal places, and use negative numbers for either end of the range." }
+  ]
+}

@@ -1,0 +1,61 @@
+      <div class="workspace">
+        <form class="panel panel--inputs" data-form novalidate>
+          <div class="field">
+            <span class="field__label" id="rn-presets-label">Quick picks</span>
+            <div class="chips" role="group" aria-labelledby="rn-presets-label">
+              <button type="button" class="chip" data-preset="1,10,1">1 to 10</button>
+              <button type="button" class="chip" data-preset="1,100,1">1 to 100</button>
+              <button type="button" class="chip" data-preset="1,1000,1">1 to 1,000</button>
+              <button type="button" class="chip" data-preset="1,49,6,unique,sort">6 from 49</button>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="rn-min">Lowest</label>
+              <input class="input" id="rn-min" name="min" type="number" step="any" value="1" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="rn-max">Highest</label>
+              <input class="input" id="rn-max" name="max" type="number" step="any" value="100" autocomplete="off">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="rn-count">How many</label>
+              <input class="input" id="rn-count" name="count" type="number" min="1" max="10000" step="1" value="1" inputmode="numeric">
+            </div>
+            <div class="field">
+              <label for="rn-decimals">Decimal places</label>
+              <select class="select" id="rn-decimals" name="decimals">
+                <option value="0">None (whole numbers)</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+          </div>
+          <div class="checks">
+            <label class="check"><input type="checkbox" name="unique"> <span>No repeats<small>Every number is different, like drawing raffle tickets from a hat.</small></span></label>
+            <label class="check"><input type="checkbox" name="sort"> <span>Sort smallest first</span></label>
+          </div>
+          <div class="actions">
+            <button type="submit" class="button button--primary button--big button--wide" data-generate>Generate</button>
+          </div>
+        </form>
+
+        <section class="panel workspace__sticky" aria-labelledby="rn-out-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="rn-out-title">Result</h2>
+            <button type="button" class="button button--quiet button--small" data-copy hidden>Copy</button>
+          </div>
+          <div class="draw" data-draw aria-live="polite">
+            <p class="draw__empty">Press <strong>Generate</strong> to draw.</p>
+          </div>
+          <p class="answer__formula mt-0" data-describe hidden></p>
+          <div class="field" data-history-wrap hidden>
+            <span class="field__label">Earlier draws</span>
+            <ol class="history" data-history></ol>
+          </div>
+        </section>
+      </div>

@@ -5,7 +5,6 @@
   "description": "Work out X% of a number, what percent one number is of another, percentage increase or decrease, and the original before a change. Shows the formula.",
   "summary": "Percent of a number, percent change, increases, discounts and the original value.",
   "category": "calculators",
-  "status": "draft",
   "order": 60,
   "keywords": ["percent", "percentage", "percentage calculator", "percent of", "percent change", "percentage increase", "percentage decrease", "discount", "markup", "tip", "what percent", "math"],
   "related": ["loan-calculator", "time-calculator", "word-counter"],

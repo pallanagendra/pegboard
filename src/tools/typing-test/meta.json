@@ -1,0 +1,22 @@
+{
+  "name": "Typing speed test",
+  "title": "Typing Speed Test: Check Your WPM and Accuracy",
+  "h1": "Typing speed test",
+  "description": "Test your typing speed in words per minute with common English words. Choose 15 seconds to 2 minutes, see your accuracy and beat your best.",
+  "summary": "Words per minute and accuracy in 15 seconds to 2 minutes.",
+  "category": "everyday",
+  "order": 75,
+  "keywords": ["typing test", "typing speed test", "wpm test", "words per minute", "typing speed", "test my typing", "1 minute typing test", "typing practice", "keyboard", "accuracy", "typing"],
+  "related": ["word-counter", "stopwatch", "random-number-generator"],
+  "howTo": [
+    "Pick a length, from 15 seconds to 2 minutes. Tick <strong>Punctuation and capitals</strong> for a harder test.",
+    "Click the box and start typing the words shown. The clock starts with your first letter. Press <kbd>Space</kbd> after each word; a word turns red if it doesn’t match.",
+    "When time runs out you get your words per minute, accuracy and the words you missed. Your best score for each length stays in this browser."
+  ],
+  "faq": [
+    { "q": "How is WPM worked out?", "a": "By the usual standard: every 5 correctly typed characters, spaces included, count as one word. Wrong words don’t count, so the score rewards accuracy as well as speed. Raw WPM includes everything you typed." },
+    { "q": "What’s a good typing speed?", "a": "Around 40 WPM is typical for adults who type every day. 60 or more is fast, and professional typists often reach 80 to 100." },
+    { "q": "What does accuracy measure?", "a": "The share of keys you pressed that were right at the time. Fixing a typo with Backspace helps the word but still counts the wrong key." },
+    { "q": "Why can’t I paste text?", "a": "Pasting would make the score meaningless, so it’s turned off in the typing box." }
+  ]
+}

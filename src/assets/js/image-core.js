@@ -80,7 +80,7 @@ const positive = (v) => (Number.isFinite(Number(v)) && Number(v) > 0 ? Number(v)
  *
  * opts.mode:
  *   "fit"      keep proportions, no larger than width × height (either may be empty)
- *   "cover"    exactly width × height, cropping the overflow from the centre
+ *   "cover"    exactly width × height, cropping the overflow from the center
  *   "contain"  exactly width × height, adding borders
  *   "stretch"  exactly width × height, ignoring proportions
  *   "percent"  scale by opts.percent

@@ -4,6 +4,19 @@ Every tool here runs entirely in the browser. That keeps hosting free and keeps 
 
 Effort: **S** = an evening, **M** = a weekend.
 
+## Build status (November 2026)
+
+Release 0.2.0 takes the site from 5 to 24 tools on tools.nexwavesolutions.net:
+
+| Group | Tools |
+|---|---|
+| Images and files | Image resizer, image compressor, image converter |
+| Calculators | Percentage, loan, age, time, days between dates |
+| Everyday | Flip a coin, random number generator, dice roller, stopwatch and timer, spin the wheel, typing speed test |
+| Text and developer | Password generator, case converter, JSON formatter, Base64 encoder and decoder, color picker with contrast checker |
+
+Still to build: HEIC to JPG, Merge PDF, margin calculator, salary to hourly, meta description checker.
+
 ## Search demand (researched November 2026)
 
 Monthly searches in the **US** from Google Ads data (via seodata.dev, mid-2026), unless marked *Ahrefs*. Worldwide demand is several times higher.

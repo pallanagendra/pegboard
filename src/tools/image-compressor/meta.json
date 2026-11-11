@@ -5,7 +5,6 @@
   "description": "Make images smaller without uploading them. Compress JPG, PNG and WebP by quality or to a target size such as 100 KB, in batches. Free and private.",
   "summary": "Shrink JPG, PNG and WebP files, or hit a target size like 100 KB.",
   "category": "files",
-  "status": "draft",
   "order": 51,
   "keywords": ["compress", "compressor", "compress image", "image compression", "reduce size", "smaller", "kb", "100kb", "optimize", "jpeg", "jpg", "png", "webp", "photo"],
   "related": ["image-resizer", "image-converter", "word-counter"],

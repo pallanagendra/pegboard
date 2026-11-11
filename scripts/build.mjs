@@ -372,13 +372,16 @@ ${toolBody}
 
   // ---- robots.txt, sitemap.xml, _headers
   const today = buildTime.slice(0, 10);
+  if (isProd) {
+    // production is always open to search engines; the sitemap needs the public address
+    await writeOut('robots.txt', `User-agent: *\nAllow: /\n${siteUrl ? `\nSitemap: ${siteUrl}/sitemap.xml\n` : ''}`);
+  }
   if (isProd && siteUrl) {
     const urls = pages
       .map((p) => `  <url><loc>${esc(absoluteUrl(p.target))}</loc><lastmod>${today}</lastmod><priority>${p.priority}</priority></url>`)
       .join('\n');
     await writeOut('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
-    await writeOut('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`);
-  } else {
+  } else if (!isProd) {
     await writeOut('robots.txt', `# ${env} build: keep search engines out\nUser-agent: *\nDisallow: /\n`);
   }
 

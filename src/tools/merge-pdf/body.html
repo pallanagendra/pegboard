@@ -1,0 +1,43 @@
+      <div class="workspace workspace--wide-input">
+        <section class="panel" aria-labelledby="mp-files-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="mp-files-title">Files to merge</h2>
+            <div class="actions" data-list-actions hidden>
+              <button type="button" class="button button--quiet button--small" data-sort>Sort A–Z</button>
+              <button type="button" class="button button--quiet button--small" data-reverse>Reverse</button>
+              <button type="button" class="button button--quiet button--small" data-clear>Clear all</button>
+            </div>
+          </div>
+          <label class="dropzone" data-dropzone>
+            <input type="file" class="visually-hidden" accept="application/pdf,.pdf,image/*,.heic,.heif" multiple data-file-input>
+            <svg class="dropzone__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+            <span class="dropzone__title">Choose PDFs or drop them here</span>
+            <span class="dropzone__hint">Add as many as you need. Photos and scans (JPG, PNG, HEIC) become pages too.</span>
+          </label>
+          <ol class="pdf-list" data-list aria-label="Files in merge order"></ol>
+          <div class="files-empty" data-empty>
+            <p>Files are merged on this device and never uploaded, so contracts, statements and IDs stay private.</p>
+            <button type="button" class="button button--small" data-sample>Try two sample PDFs</button>
+          </div>
+        </section>
+
+        <form class="panel workspace__sticky" data-form novalidate aria-labelledby="mp-out-title">
+          <h2 class="panel__title" id="mp-out-title">Merged PDF</h2>
+          <p class="merge-total" data-total>Add files to begin.</p>
+          <div class="field">
+            <label for="mp-name">File name</label>
+            <input class="input" id="mp-name" name="filename" value="merged.pdf" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="field" data-image-size hidden>
+            <label for="mp-size">Page size for photos</label>
+            <select class="select" id="mp-size" name="imageSize">
+              <option value="letter">US Letter, with a margin</option>
+              <option value="a4">A4, with a margin</option>
+              <option value="image">Same as the photo</option>
+            </select>
+          </div>
+          <button type="submit" class="button button--primary button--big button--wide" data-merge disabled>Merge and download</button>
+          <p class="message mt-0" data-status hidden aria-live="polite"></p>
+          <button type="button" class="button button--small" data-again hidden>Download again</button>
+        </form>
+      </div>

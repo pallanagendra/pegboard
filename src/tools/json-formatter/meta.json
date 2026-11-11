@@ -5,7 +5,7 @@
   "description": "Format, minify and validate JSON in your browser. Errors are shown by line and column with a plain-English fix. Sort keys, copy or download.",
   "summary": "Beautify, minify and validate JSON, with errors shown by line and column.",
   "category": "web",
-  "order": 45,
+  "order": 170,
   "keywords": ["json formatter", "json validator", "json beautifier", "format json", "json viewer", "pretty print json", "minify json", "json lint", "validate json", "json parser", "json checker", "api"],
   "related": ["base64-encoder-decoder", "url-encoder-decoder", "case-converter"],
   "howTo": [

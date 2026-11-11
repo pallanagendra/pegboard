@@ -5,7 +5,7 @@
   "description": "Make QR codes for links, Wi-Fi, contact cards, email, phone and SMS. Choose colors and size, download SVG or PNG. Static codes that never expire.",
   "summary": "Links, Wi-Fi logins, contact cards and more. Static codes that never expire.",
   "category": "generators",
-  "order": 20,
+  "order": 60,
   "keywords": ["qr", "qr code", "qrcode", "wifi", "wi-fi", "vcard", "contact", "link", "menu", "sms", "email", "scan"],
   "vendor": ["qrcode-generator-2.0.4.js"],
   "related": ["barcode-generator", "url-encoder-decoder"],

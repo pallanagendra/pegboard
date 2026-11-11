@@ -5,7 +5,7 @@
   "description": "Make Code 128, EAN-13, UPC-A, Code 39 and ITF-14 barcodes in your browser. Set size and color, then download SVG or PNG. Free, no sign-up.",
   "summary": "Code 128, EAN-13, UPC-A, Code 39 and more, ready to download as SVG or PNG.",
   "category": "generators",
-  "order": 10,
+  "order": 130,
   "keywords": ["barcode", "bar code", "code128", "code 128", "ean", "ean-13", "ean13", "upc", "upc-a", "code39", "itf-14", "sku", "label", "product", "inventory"],
   "vendor": ["jsbarcode-3.12.3.min.js"],
   "related": ["qr-code-generator", "word-counter"],

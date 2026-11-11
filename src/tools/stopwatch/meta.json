@@ -5,7 +5,7 @@
   "description": "A free online stopwatch with lap times and a countdown timer with an alarm. Keyboard shortcuts, full-screen digits, and it keeps running if you refresh.",
   "summary": "A stopwatch with laps and a countdown timer with an alarm.",
   "category": "everyday",
-  "order": 73,
+  "order": 40,
   "keywords": ["stopwatch", "online stopwatch", "timer", "countdown timer", "online timer", "lap timer", "stop watch", "5 minute timer", "10 minute timer", "pomodoro", "kitchen timer", "alarm", "countdown", "clock"],
   "related": ["time-calculator", "typing-test", "flip-a-coin"],
   "howTo": [

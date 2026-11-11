@@ -5,7 +5,7 @@
   "description": "Type names or options, one per line, and spin the wheel to pick one at random. Remove winners as you go for teams, raffles and classroom picks.",
   "summary": "A random picker wheel for names, prizes and decisions.",
   "category": "everyday",
-  "order": 74,
+  "order": 50,
   "keywords": ["spin the wheel", "wheel spinner", "random name picker", "name wheel", "wheel of names", "decision wheel", "random picker", "prize wheel", "raffle", "giveaway", "classroom", "choose", "picker wheel"],
   "related": ["random-number-generator", "flip-a-coin", "dice-roller"],
   "howTo": [

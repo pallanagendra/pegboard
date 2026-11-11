@@ -5,7 +5,7 @@
   "description": "Change text to Title Case, Sentence case, UPPERCASE or lowercase, or to camelCase, snake_case and kebab-case for code. Instant, free and private.",
   "summary": "Title, sentence, upper and lower case, plus camelCase and snake_case.",
   "category": "text",
-  "order": 6,
+  "order": 240,
   "keywords": ["case converter", "title case", "sentence case", "uppercase", "lowercase", "capitalize", "change case", "camelcase", "snake case", "kebab case", "pascal case", "convert case", "caps lock"],
   "related": ["word-counter", "url-encoder-decoder", "json-formatter"],
   "howTo": [

@@ -5,7 +5,7 @@
   "description": "Roll one or many virtual dice: six-sided, or d4, d8, d10, d12, d20 and d100 for tabletop games. Add a modifier and see the total. Fair and free.",
   "summary": "Roll up to 50 dice, from d4 to d100, with a modifier and the total.",
   "category": "everyday",
-  "order": 72,
+  "order": 110,
   "keywords": ["roll a dice", "dice roller", "roll dice", "virtual dice", "dice", "die", "d20", "d6", "2d6", "d4", "d8", "d10", "d12", "d100", "dnd dice", "rpg dice", "board game"],
   "related": ["random-number-generator", "flip-a-coin", "spin-the-wheel"],
   "howTo": [

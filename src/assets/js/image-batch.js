@@ -16,10 +16,11 @@ const MAX_FILES = 50;
  *   process:     async (item, options) => ({ blob, width, height, name, note? })
  *   zipName:     file name for "Download all"
  *   sample:      options for the sample image ({ type, quality, transparent })
+ *   sampleFile:  async () => File, to use a real sample file instead (the HEIC page ships one)
  * }
  */
 export function createBatch(config) {
-  const { root, form, readOptions, process, zipName = 'images.zip', sample = {}, showChange = true, doneVerb = '' } = config;
+  const { root, form, readOptions, process, zipName = 'images.zip', sample = {}, sampleFile = null, showChange = true, doneVerb = '' } = config;
   const $ = (sel) => root.querySelector(sel);
   const dropzone = $('[data-dropzone]');
   const input = $('[data-file-input]');
@@ -111,7 +112,7 @@ export function createBatch(config) {
     btn.addEventListener('click', async () => {
       btn.disabled = true;
       try {
-        addFiles([await sampleImage(sample)]);
+        addFiles([sampleFile ? await sampleFile() : await sampleImage(sample)]);
       } finally {
         btn.disabled = false;
       }
@@ -135,6 +136,17 @@ export function createBatch(config) {
           item.decoded = await decode(item.file);
           item.width = item.decoded.width;
           item.height = item.decoded.height;
+          if (item.decoded.preview && !item.previewMade) {
+            // the browser can't show the original (HEIC), so thumbnails and "see original" use a small JPG of it
+            item.previewMade = true;
+            URL.revokeObjectURL(item.origUrl);
+            item.origUrl = URL.createObjectURL(item.decoded.preview);
+            const thumb = list.querySelector(`[data-id="${item.id}"] .file__thumb`);
+            if (thumb) {
+              thumb.classList.remove('file__thumb--none');
+              thumb.src = item.origUrl;
+            }
+          }
         } catch (err) {
           item.status = 'broken';
           item.error = err.message;
@@ -160,6 +172,11 @@ export function createBatch(config) {
         item.error = err.message || 'Something went wrong with this image.';
         updateRow(item);
         if (item.id === selected) showPreview();
+      }
+      if (item.decoded?.heavy) {
+        // full-size HEIC pixels take ~50 MB each; free them and decode again if the options change
+        item.decoded.close();
+        item.decoded = null;
       }
       refreshChrome();
     }

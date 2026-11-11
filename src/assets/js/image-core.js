@@ -10,7 +10,7 @@ export const OUTPUT_TYPES = {
 export const MAX_SIDE = 16384;
 export const MAX_PIXELS = 16384 * 16384 / 4; // ~67 megapixels
 
-const EXT_TYPES = { jpg: 'image/jpeg', jpeg: 'image/jpeg', jfif: 'image/jpeg', png: 'image/png', webp: 'image/webp', gif: 'image/gif', bmp: 'image/bmp', avif: 'image/avif', svg: 'image/svg+xml', heic: 'image/heic', heif: 'image/heif', tif: 'image/tiff', tiff: 'image/tiff', ico: 'image/x-icon' };
+const EXT_TYPES = { jpg: 'image/jpeg', jpeg: 'image/jpeg', jfif: 'image/jpeg', png: 'image/png', webp: 'image/webp', gif: 'image/gif', bmp: 'image/bmp', avif: 'image/avif', svg: 'image/svg+xml', heic: 'image/heic', heif: 'image/heif', hif: 'image/heif', tif: 'image/tiff', tiff: 'image/tiff', ico: 'image/x-icon' };
 
 /** The file's image type, falling back to its extension (some systems report an empty type). */
 export function detectType(name, type) {

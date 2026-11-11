@@ -1,0 +1,22 @@
+{
+  "name": "HEIC to JPG",
+  "title": "HEIC to JPG Converter: Free, Private, No Upload",
+  "h1": "HEIC to JPG converter",
+  "description": "Convert iPhone HEIC photos to JPG, PNG or WebP in your browser. Batch convert up to 50 at once. Photos are never uploaded, and GPS data is removed.",
+  "summary": "Turn iPhone HEIC photos into JPGs that open anywhere, without uploading them.",
+  "category": "files",
+  "order": 160,
+  "keywords": ["heic to jpg", "heic to jpeg", "heic converter", "convert heic", "heic to png", "heif to jpg", "iphone photo to jpg", "open heic", "heic file", "heic viewer", "heic to webp", "apple photos"],
+  "related": ["image-converter", "image-compressor", "image-resizer"],
+  "howTo": [
+    "Choose your HEIC photos or drop them on the page. On a phone, pick them from your photo library.",
+    "Choose JPG (the safest choice), PNG or WebP, the quality and, if you like, a smaller size for email or the web.",
+    "Download each photo, or all of them at once as a ZIP."
+  ],
+  "faq": [
+    { "q": "What is a HEIC file?", "a": "HEIC is the format iPhones and iPads use for photos since iOS 11. It keeps the same quality as JPG in about half the space, but Windows, Android, many websites and older apps can’t open it, so converting to JPG makes a photo usable everywhere." },
+    { "q": "Are my photos uploaded?", "a": "No. Conversion happens inside your browser, so photos never leave your device. In Safari the browser converts them itself; other browsers download a small decoder once, the first time you add a HEIC photo." },
+    { "q": "Is the location removed?", "a": "Yes. The JPG is made from the picture alone, so GPS location, camera model and other hidden details are left behind. That makes converted photos safer to post or send." },
+    { "q": "How do I stop my iPhone saving HEIC photos?", "a": "Open Settings, then Camera, then Formats, and choose <strong>Most Compatible</strong>. New photos are saved as JPG from then on; existing photos stay HEIC." }
+  ]
+}

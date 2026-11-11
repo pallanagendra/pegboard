@@ -1,0 +1,23 @@
+{
+  "name": "Case converter",
+  "title": "Case Converter: Title Case, UPPERCASE, camelCase and More",
+  "h1": "Case converter",
+  "description": "Change text to Title Case, Sentence case, UPPERCASE or lowercase, or to camelCase, snake_case and kebab-case for code. Instant, free and private.",
+  "summary": "Title, sentence, upper and lower case, plus camelCase and snake_case.",
+  "category": "text",
+  "status": "draft",
+  "order": 6,
+  "keywords": ["case converter", "title case", "sentence case", "uppercase", "lowercase", "capitalize", "change case", "camelcase", "snake case", "kebab case", "pascal case", "convert case", "caps lock"],
+  "related": ["word-counter", "url-encoder-decoder", "json-formatter"],
+  "howTo": [
+    "Type or paste your text. The result updates as you type.",
+    "Pick a case. <strong>Title Case</strong> and <strong>Sentence case</strong> are for headlines and writing; camelCase, snake_case and the rest are for code and file names, and convert each line separately.",
+    "<strong>Copy</strong> the result, or <strong>Use as input</strong> to convert it again."
+  ],
+  "faq": [
+    { "q": "Which words stay lower case in Title Case?", "a": "Short joining words such as a, an, the, and, but, or, of, in, on, to and for, unless they start the title, end it or follow a colon. Acronyms like NASA and names like iPhone are kept as you typed them." },
+    { "q": "I typed with Caps Lock on. Can I fix it?", "a": "Yes. Choose <strong>Sentence case</strong>: it lowers everything and capitalizes the start of each sentence and the word “I”. When most of the text is in capitals, it’s treated as shouting rather than as acronyms." },
+    { "q": "What is camelCase, snake_case and kebab-case?", "a": "Ways of writing several words without spaces, used in programming and file names: camelCase joins words with capitals (firstName), snake_case uses underscores (first_name) and kebab-case uses hyphens (first-name)." },
+    { "q": "Is my text uploaded?", "a": "No. The conversion happens in your browser and nothing is sent anywhere." }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Base64 encoder and decoder",
+  "title": "Base64 Encode and Decode: Text, Files and Data URLs",
+  "h1": "Base64 encoder and decoder",
+  "description": "Encode text to Base64 or decode it back, with full Unicode support and URL-safe Base64. Turn files into data URLs. Works in your browser.",
+  "summary": "Encode and decode Base64 text, and turn files into data URLs.",
+  "category": "web",
+  "status": "draft",
+  "order": 46,
+  "keywords": ["base64", "base64 encode", "base64 decode", "base64 decoder", "base64 encoder", "base64 to text", "text to base64", "data url", "data uri", "image to base64", "url-safe base64", "atob", "btoa"],
+  "related": ["url-encoder-decoder", "json-formatter", "image-converter"],
+  "howTo": [
+    "Choose <strong>Encode</strong> to turn text into Base64, or <strong>Decode</strong> to turn Base64 back into text. The result updates as you type.",
+    "Tick <strong>URL-safe</strong> for Base64 that goes in links or tokens. When decoding, URL-safe Base64, missing padding and line breaks are all handled for you.",
+    "To embed an image or font, use <strong>Encode a file</strong> and copy the data URL. If Base64 decodes to a file rather than text, you can preview or download it."
+  ],
+  "faq": [
+    { "q": "What is Base64 used for?", "a": "It turns any data into plain letters and numbers so it can travel through systems built for text: email attachments, data URLs in HTML and CSS, JSON APIs, and the middle part of login tokens (JWTs)." },
+    { "q": "Is Base64 encryption?", "a": "No. Anyone can decode it, as this page shows. It changes how data is written, not who can read it, so never use it to hide passwords or personal data." },
+    { "q": "Why does my decoded text look garbled?", "a": "The original was probably a file, such as an image or a PDF, rather than text. This tool spots that and offers the file to download instead of showing unreadable characters." },
+    { "q": "What’s the difference between Base64 and URL-safe Base64?", "a": "Standard Base64 uses + and /, which have special meanings in web addresses. URL-safe Base64 swaps them for - and _ and usually drops the = padding at the end." }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Password generator",
+  "title": "Strong Password Generator: Random Passwords and Passphrases",
+  "h1": "Password generator",
+  "description": "Make strong random passwords or easy-to-type passphrases. Choose the length and characters and see how strong it is. Made on your device, never sent.",
+  "summary": "Strong random passwords and memorable passphrases, made on your device.",
+  "category": "generators",
+  "status": "draft",
+  "order": 25,
+  "keywords": ["password generator", "strong password", "random password", "password", "passphrase", "secure password", "generate password", "password maker", "diceware", "memorable password", "password strength"],
+  "related": ["random-number-generator", "qr-code-generator", "base64-encoder-decoder"],
+  "howTo": [
+    "Choose <strong>Password</strong> for random characters or <strong>Passphrase</strong> for a few random words, which are easier to type and remember.",
+    "Set the length and the kinds of characters a site allows. A new password appears with every change; <strong>New password</strong> makes another.",
+    "Check the strength meter, then <strong>Copy</strong> it into your password manager or the site’s sign-up form."
+  ],
+  "faq": [
+    { "q": "Is it safe to make a password on a website?", "a": "Here, yes: the password is made inside your browser with its cryptographic random generator and never leaves your device. Nothing is sent, logged or saved, and the page works offline once it has loaded." },
+    { "q": "How long should a password be?", "a": "At least 12 characters for everyday accounts and 16 or more for email, banking and your password manager. Length matters more than symbols: every extra character multiplies the number of guesses needed." },
+    { "q": "Are passphrases as strong as passwords?", "a": "They can be. Each word from a 7,776-word list adds about 13 bits, so five words is about as strong as a 10-character random password and much easier to type. Use six or more for important accounts." },
+    { "q": "What does “bits of randomness” mean?", "a": "It measures how many guesses an attacker would need: every extra bit doubles them. 60 bits is a fair minimum for online accounts; 80 or more is very strong." }
+  ]
+}

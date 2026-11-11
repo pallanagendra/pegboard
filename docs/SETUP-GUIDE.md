@@ -237,7 +237,7 @@ gh pr create --base develop --fill         # or open the PR on github.com
 | **Roll back production now** | Cloudflare dashboard → **Workers & Pages** → `pegboard` → **Deployments** → find an earlier *Production* deployment → **⋯** → **Rollback to this deployment**. Takes effect in seconds. |
 | Roll back via the pipeline | **Actions → Redeploy → Run workflow** → in *Use workflow from* pick an older **tag** (e.g. `v0.1.0`) → environment `production`. |
 | "Cloudflare rejected the API token" | The token is incomplete or lacks permission. Make a new one with `Account · Cloudflare Pages · Edit` (step 2.3) and paste it into the `CLOUDFLARE_API_TOKEN` secret again. |
-| "Cloudflare doesn't recognise the account" | `CLOUDFLARE_ACCOUNT_ID` is wrong — copy the 32-character Account ID again (step 2.2). |
+| "Cloudflare doesn't recognize the account" | `CLOUDFLARE_ACCOUNT_ID` is wrong — copy the 32-character Account ID again (step 2.2). |
 | Warning about the production branch | The Pages project's production branch must be `main`. Cloudflare → `pegboard` → **Settings** → **Branch control**. |
 | Custom domain stuck on *Verifying* | Check the Hostinger record: type CNAME, name `tools`, target exactly as Cloudflare showed, and no other record named `tools`. If it's still pending after 24 hours, look for **CAA** records in Hostinger's DNS (most domains have none); they can stop the certificate being issued. |
 | Custom domain shows error 522 | The CNAME was added before step 7.1. Make sure the domain is listed under the project's **Custom domains**, then wait a few minutes. |

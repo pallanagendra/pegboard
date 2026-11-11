@@ -1,0 +1,44 @@
+      <form class="workspace workspace--even" data-form novalidate>
+        <section class="panel" aria-labelledby="js-in-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="js-in-title"><label for="js-in">JSON</label></h2>
+            <div class="actions">
+              <label class="button button--quiet button--small file-button">Open file<input type="file" accept=".json,application/json,text/plain" data-open></label>
+              <button type="button" class="button button--quiet button--small" data-example>Example</button>
+              <button type="button" class="button button--quiet button--small" data-clear>Clear</button>
+            </div>
+          </div>
+          <textarea class="textarea textarea--mono textarea--tall json-input" id="js-in" name="json" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder='Paste JSON here, for example {"name": "Pegboard", "tools": 22}'></textarea>
+          <div class="field-row">
+            <div class="field">
+              <span class="field__label" id="js-mode-label">Output</span>
+              <div class="segmented" role="group" aria-labelledby="js-mode-label">
+                <input type="radio" name="mode" id="js-format" value="format" checked><label for="js-format">Format</label>
+                <input type="radio" name="mode" id="js-minify" value="minify"><label for="js-minify">Minify</label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="js-indent">Indent</label>
+              <select class="select" id="js-indent" name="indent">
+                <option value="2">2 spaces</option>
+                <option value="4">4 spaces</option>
+                <option value="tab">Tabs</option>
+              </select>
+            </div>
+          </div>
+          <label class="check"><input type="checkbox" name="sortKeys"> <span>Sort keys A–Z<small>Handy for comparing two files.</small></span></label>
+        </section>
+
+        <section class="panel" aria-labelledby="js-out-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="js-out-title">Result</h2>
+            <div class="actions" data-out-actions hidden>
+              <button type="button" class="button button--primary button--small" data-copy>Copy</button>
+              <button type="button" class="button button--quiet button--small" data-download>Download</button>
+            </div>
+          </div>
+          <div data-status aria-live="polite"></div>
+          <pre class="code-view" data-out tabindex="0" hidden><code data-code></code></pre>
+          <p class="field__help mt-0" data-stats></p>
+        </section>
+      </form>

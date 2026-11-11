@@ -3,7 +3,7 @@ export default {
   name: 'Pegboard',
   tagline: 'Small web tools that do one job well.',
   description:
-    'Free, fast browser tools: barcode and QR code generators, iframe embed code, URL encoder/decoder, word counter. Nothing is uploaded — everything runs on your device.',
+    'Free browser tools: QR codes, barcodes, image resizer, percentage and loan calculators, password generator, JSON formatter and more. Nothing is uploaded.',
 
   // Public URL per environment, used for canonical links and the sitemap.
   // Leave these empty: set the SITE_URL variable on each GitHub Environment instead
@@ -23,6 +23,7 @@ export default {
     generators: 'Generators',
     files: 'Images and files',
     calculators: 'Calculators',
+    everyday: 'Everyday',
     text: 'Text',
     web: 'Web & developer',
   },

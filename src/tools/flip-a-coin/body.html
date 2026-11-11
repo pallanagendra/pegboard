@@ -1,0 +1,35 @@
+      <div class="workspace">
+        <section class="panel" aria-labelledby="cf-title">
+          <h2 class="visually-hidden" id="cf-title">The coin</h2>
+          <div class="coin-stage">
+            <div class="coin-lift">
+            <div class="coin" data-coin>
+              <div class="coin__face coin__face--heads" aria-hidden="true"><span class="coin__letter">H</span><span class="coin__word">Heads</span></div>
+              <div class="coin__face coin__face--tails" aria-hidden="true"><span class="coin__letter">T</span><span class="coin__word">Tails</span></div>
+            </div>
+            </div>
+            <div class="coin-shadow" aria-hidden="true"></div>
+          </div>
+          <p class="big-result" data-result aria-live="polite">Ready to flip</p>
+          <div class="actions actions--center">
+            <button type="button" class="button button--primary button--big" data-flip>Flip the coin</button>
+          </div>
+          <div class="actions actions--center">
+            <button type="button" class="button button--quiet button--small" data-flip-many="10">Flip 10 times</button>
+            <button type="button" class="button button--quiet button--small" data-flip-many="100">Flip 100 times</button>
+          </div>
+          <p class="message message--note" data-many-note hidden></p>
+        </section>
+
+        <section class="panel" aria-labelledby="cf-tally">
+          <div class="panel__head">
+            <h2 class="panel__title" id="cf-tally">Tally</h2>
+            <button type="button" class="button button--quiet button--small" data-reset>Reset</button>
+          </div>
+          <div class="stats stats--wide" data-stats></div>
+          <div class="field">
+            <span class="field__label">Last flips <small class="panel__hint">newest first</small></span>
+            <ol class="flip-log" data-log aria-label="Last flips, newest first"></ol>
+          </div>
+        </section>
+      </div>

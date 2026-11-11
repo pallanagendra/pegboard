@@ -5,7 +5,6 @@
   "description": "Count the days between two dates, with or without the end date, plus business days only. Add or subtract days, weeks or months to find a deadline.",
   "summary": "Count days and business days between dates, or add days to find a deadline.",
   "category": "calculators",
-  "status": "draft",
   "order": 64,
   "keywords": ["days between dates", "date calculator", "days until", "how many days", "count days", "business days", "working days", "weekdays", "add days to date", "deadline", "date difference", "countdown"],
   "related": ["age-calculator", "time-calculator", "loan-calculator"],

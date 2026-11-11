@@ -5,7 +5,6 @@
   "description": "Add or subtract hours, minutes and seconds, total timesheet hours in decimal, find the time between two clock times and add time to a clock time.",
   "summary": "Add up hours and minutes, timesheet totals in decimal, and time between two times.",
   "category": "calculators",
-  "status": "draft",
   "order": 63,
   "keywords": ["time", "time calculator", "hours", "minutes", "add time", "hours calculator", "timesheet", "work hours", "decimal hours", "time between", "time duration", "shift", "clock"],
   "related": ["days-between-dates", "age-calculator", "percentage-calculator"],

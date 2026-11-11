@@ -1,0 +1,22 @@
+{
+  "name": "Color picker",
+  "title": "Color Picker: HEX, RGB, HSL, OKLCH and Contrast Checker",
+  "h1": "Color picker and contrast checker",
+  "description": "Pick a color and get HEX, RGB, HSL, CMYK and OKLCH values, tints and shades, and a WCAG contrast check. Pick from your screen or an image.",
+  "summary": "HEX, RGB, HSL and OKLCH values, shades, and a WCAG contrast check.",
+  "category": "web",
+  "order": 47,
+  "keywords": ["color picker", "colour picker", "hex color", "rgb to hex", "hex to rgb", "hsl", "oklch", "cmyk", "color converter", "contrast checker", "wcag", "accessibility", "color code", "eyedropper", "tints and shades", "palette"],
+  "related": ["image-converter", "qr-code-generator", "base64-encoder-decoder"],
+  "howTo": [
+    "Choose a color with the picker, type any CSS color (hex, RGB, HSL or a name like teal), pick one from your screen, or open an image and click on it.",
+    "Copy the value in the format you need: HEX for most tools, RGB or HSL for CSS, CMYK as a starting point for print, OKLCH for modern CSS.",
+    "Use the <strong>Contrast checker</strong> to test text against a background. It shows whether the pair passes WCAG AA and AAA, and suggests the nearest color that does."
+  ],
+  "faq": [
+    { "q": "What contrast ratio do I need?", "a": "WCAG 2.2 level AA asks for 4.5:1 for normal text and 3:1 for large text (24 px, or 19 px bold) and for buttons, icons and input borders. Level AAA asks for 7:1 and 4.5:1." },
+    { "q": "How do I convert HEX to RGB?", "a": "Split the six hex digits into three pairs and turn each from base 16 into a number: #ffc83d is ff, c8, 3d, which is rgb(255, 200, 61). Type either form above and every other format appears." },
+    { "q": "What is OKLCH?", "a": "A newer way of writing colors, supported in modern CSS, where lightness matches how bright a color looks to people. It makes it easier to build palettes whose shades feel evenly spaced." },
+    { "q": "Is the CMYK value exact for printing?", "a": "No. It’s a straight mathematical conversion. Real print colors depend on the paper, ink and printer profile, so ask your printer for a proof of anything that has to match." }
+  ]
+}

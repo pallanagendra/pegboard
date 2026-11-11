@@ -5,7 +5,6 @@
   "description": "Convert PNG to JPG, JPG to PNG, WebP to JPG and SVG to PNG. Batch convert in your browser with quality control. Files never leave your device.",
   "summary": "PNG, JPG and WebP in any direction, plus SVG to PNG. Batch convert privately.",
   "category": "files",
-  "status": "draft",
   "order": 52,
   "keywords": ["convert", "converter", "png to jpg", "jpg to png", "jpeg to png", "webp to jpg", "webp to png", "png to webp", "jpg to webp", "svg to png", "gif to png", "avif to jpg", "format"],
   "related": ["image-compressor", "image-resizer", "qr-code-generator"],

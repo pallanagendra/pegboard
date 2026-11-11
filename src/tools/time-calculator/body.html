@@ -1,0 +1,49 @@
+      <form class="calc-grid" data-form novalidate>
+        <section class="panel" aria-labelledby="tc-t1">
+          <div class="panel__head">
+            <h2 class="panel__title" id="tc-t1">Add or subtract times</h2>
+            <button type="button" class="button button--quiet button--small" data-reset-rows>Reset</button>
+          </div>
+          <div class="duration-rows" data-rows>
+            <div class="duration-row duration-row--head" aria-hidden="true"><span></span><span>Hours</span><span>Minutes</span><span>Seconds</span><span></span></div>
+          </div>
+          <button type="button" class="button button--small" data-add-row>Add a row</button>
+          <input type="hidden" name="rows" data-rows-state>
+          <div class="answer answer--hero" data-answer="sum">
+            <output class="answer__value" id="tc-sum"></output>
+            <button type="button" class="button button--quiet button--small" data-copy-from="#tc-sum" data-copy-label="Total copied">Copy</button>
+            <p class="answer__formula"></p>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="tc-t2">
+          <h2 class="panel__title" id="tc-t2">Time between two times</h2>
+          <div class="inline-fields">
+            <div class="field"><label for="tc-start">Start</label><input class="input" id="tc-start" name="start" type="time" value="09:00"></div>
+            <div class="field"><label for="tc-end">End</label><input class="input" id="tc-end" name="end" type="time" value="17:30"></div>
+            <div class="field"><label for="tc-break">Break (minutes)</label><input class="input" id="tc-break" name="breakMin" type="number" min="0" inputmode="numeric" value="30"></div>
+          </div>
+          <div class="answer" data-answer="between">
+            <output class="answer__value" id="tc-between" for="tc-start tc-end tc-break"></output>
+            <button type="button" class="button button--quiet button--small" data-copy-from="#tc-between" data-copy-label="Copied">Copy</button>
+            <p class="answer__formula"></p>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="tc-t3">
+          <h2 class="panel__title" id="tc-t3">Add time to a clock time</h2>
+          <div class="inline-fields">
+            <div class="field"><label for="tc-clock">Time</label><input class="input" id="tc-clock" name="clock" type="time" value="15:45"></div>
+            <div class="field"><label for="tc-op">Add or subtract</label>
+              <select class="select" id="tc-op" name="op"><option value="+">Add</option><option value="-">Subtract</option></select>
+            </div>
+            <div class="field"><label for="tc-h">Hours</label><input class="input" id="tc-h" name="addH" inputmode="decimal" value="2"></div>
+            <div class="field"><label for="tc-m">Minutes</label><input class="input" id="tc-m" name="addM" inputmode="decimal" value="30"></div>
+          </div>
+          <div class="answer" data-answer="clock">
+            <output class="answer__value" id="tc-clockout" for="tc-clock tc-h tc-m"></output>
+            <button type="button" class="button button--quiet button--small" data-copy-from="#tc-clockout" data-copy-label="Copied">Copy</button>
+            <p class="answer__formula"></p>
+          </div>
+        </section>
+      </form>

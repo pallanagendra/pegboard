@@ -1,0 +1,76 @@
+      <div class="workspace">
+        <form class="panel panel--inputs" data-form novalidate>
+          <label class="dropzone" data-dropzone>
+            <input type="file" class="visually-hidden" accept="image/*,.heic,.heif,.avif,.svg" multiple data-file-input>
+            <svg class="dropzone__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+            <span class="dropzone__title">Choose images or drop them here</span>
+            <span class="dropzone__hint">JPG, PNG, WebP, GIF or AVIF, up to 50 at once. You can also paste a picture with Ctrl+V.</span>
+          </label>
+
+          <fieldset>
+            <legend>Compress by</legend>
+            <div class="segmented">
+              <input type="radio" name="method" id="cp-quality" value="quality" checked><label for="cp-quality">Quality</label>
+              <input type="radio" name="method" id="cp-target" value="target"><label for="cp-target">Target file size</label>
+            </div>
+          </fieldset>
+
+          <div class="field" data-method="quality">
+            <label for="cp-q">Quality</label>
+            <div class="range"><input id="cp-q" name="quality" type="range" min="10" max="95" step="1" value="75"><output for="cp-q" data-suffix="%"></output></div>
+            <span class="field__help">70–80% looks the same as the original for most photos.</span>
+          </div>
+
+          <div class="field" data-method="target" hidden>
+            <label for="cp-kb">Largest file size (KB)</label>
+            <input class="input" id="cp-kb" name="targetKB" type="number" min="5" step="5" inputmode="numeric" value="200">
+            <span class="field__help">The tool picks the highest quality that fits under this size.</span>
+          </div>
+
+          <div class="field">
+            <label for="cp-format">Save as</label>
+            <select class="select" id="cp-format" name="format" data-formats>
+              <option value="same">Same format as the original</option>
+              <option value="image/jpeg">JPG (photos, no transparency)</option>
+              <option value="image/webp">WebP (smallest, keeps transparency)</option>
+            </select>
+          </div>
+
+          <div class="stack">
+            <label class="check"><input type="checkbox" name="limit" data-limit> <span>Also shrink big images<small>Phone photos are often 4000 pixels wide or more. Fewer pixels save far more space.</small></span></label>
+            <div class="field" data-limit-size hidden>
+              <label for="cp-side">Longest side (px)</label>
+              <input class="input" id="cp-side" name="maxSide" type="number" min="100" max="16384" step="100" inputmode="numeric" value="2000">
+            </div>
+          </div>
+
+          <div class="field" data-background hidden>
+            <label for="cp-bg">Background for transparent areas</label>
+            <div class="color-field"><input type="color" class="input input--color" value="#ffffff" aria-label="Background color picker"><input type="text" class="input input--mono" id="cp-bg" name="background" value="#ffffff" maxlength="7"></div>
+            <span class="field__help">JPG can’t store transparency, so see-through parts get this color.</span>
+          </div>
+        </form>
+
+        <section class="panel workspace__sticky" aria-labelledby="cp-out-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="cp-out-title">Compressed images</h2>
+            <button type="button" class="button button--quiet button--small" data-clear hidden>Clear all</button>
+          </div>
+          <div class="files-empty" data-empty>
+            <p>Your compressed images appear here, with how much space each one saves. Nothing is uploaded.</p>
+            <button type="button" class="button button--small" data-sample>Try a sample photo</button>
+          </div>
+          <div class="batch-bar" data-bar hidden>
+            <p class="batch-bar__summary" data-summary aria-live="polite"></p>
+            <button type="button" class="button button--primary" data-download-all disabled>Download</button>
+          </div>
+          <div class="image-preview" data-preview hidden>
+            <div class="stage stage--image"><img data-preview-img alt=""></div>
+            <div class="image-preview__bar">
+              <p class="image-preview__caption" data-preview-caption></p>
+              <button type="button" class="button button--quiet button--small" data-compare aria-pressed="false">Hold to see original</button>
+            </div>
+          </div>
+          <ul class="files" data-files hidden></ul>
+        </section>
+      </div>

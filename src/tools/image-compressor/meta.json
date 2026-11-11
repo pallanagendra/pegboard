@@ -1,0 +1,24 @@
+{
+  "name": "Image compressor",
+  "title": "Image Compressor: Compress JPG, PNG and WebP, No Upload",
+  "h1": "Image compressor",
+  "description": "Make images smaller without uploading them. Compress JPG, PNG and WebP by quality or to a target size such as 100 KB, in batches. Free and private.",
+  "summary": "Shrink JPG, PNG and WebP files, or hit a target size like 100 KB.",
+  "category": "files",
+  "status": "draft",
+  "order": 51,
+  "keywords": ["compress", "compressor", "compress image", "image compression", "reduce size", "smaller", "kb", "100kb", "optimize", "jpeg", "jpg", "png", "webp", "photo"],
+  "related": ["image-resizer", "image-converter", "word-counter"],
+  "howTo": [
+    "Choose your images, drop them on the page, or paste one with Ctrl+V.",
+    "Set the <strong>quality</strong>, or switch to <strong>Target file size</strong> and type a limit such as 100 KB. The tool finds the best quality that fits.",
+    "For phone photos, turn on <strong>Also shrink big images</strong>. Fewer pixels make a far bigger difference than lower quality.",
+    "Hold <strong>Hold to see original</strong> on the preview to compare, then download one image or all of them as a ZIP."
+  ],
+  "faq": [
+    { "q": "How do I compress an image to 100 KB?", "a": "Choose <strong>Target file size</strong> and enter 100. If even the lowest quality is too big, turn on <strong>Also shrink big images</strong> and lower the longest side, for example to 1600 pixels." },
+    { "q": "Why is my PNG barely smaller?", "a": "PNG is lossless: it keeps every pixel exactly, so there's little to remove. Save it as WebP to keep transparency at a fraction of the size, or as JPG if it's a photo." },
+    { "q": "Which quality should I choose?", "a": "Around 70–80% is hard to tell apart from the original for most photos and often cuts the size by more than half. Below 50% you start to see blocky edges." },
+    { "q": "Are my images uploaded?", "a": "No. Compression happens in your browser on your own device. As a bonus, hidden details such as the camera model and GPS location aren't copied into the compressed file." }
+  ]
+}

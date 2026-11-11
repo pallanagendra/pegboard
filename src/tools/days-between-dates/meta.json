@@ -1,0 +1,23 @@
+{
+  "name": "Days between dates",
+  "title": "Days Between Dates Calculator: Count Days and Business Days",
+  "h1": "Days between dates",
+  "description": "Count the days between two dates, with or without the end date, plus business days only. Add or subtract days, weeks or months to find a deadline.",
+  "summary": "Count days and business days between dates, or add days to find a deadline.",
+  "category": "calculators",
+  "status": "draft",
+  "order": 64,
+  "keywords": ["days between dates", "date calculator", "days until", "how many days", "count days", "business days", "working days", "weekdays", "add days to date", "deadline", "date difference", "countdown"],
+  "related": ["age-calculator", "time-calculator", "loan-calculator"],
+  "howTo": [
+    "<strong>Count days:</strong> pick a start and an end date. Tick <strong>Include the end date</strong> if both days count, for example for a hotel booking or a leave request.",
+    "Read the total days, the same span in weeks and months, and how many of those are business days (Monday to Friday).",
+    "<strong>Find a date:</strong> add or subtract days, weeks, months, years or business days from any date, for example 30 days from an invoice date."
+  ],
+  "faq": [
+    { "q": "Does it count the start date and the end date?", "a": "By default it counts the days from the start date up to the end date, like the number of nights in a stay. Tick <strong>Include the end date</strong> to count both days, like the number of days on a holiday." },
+    { "q": "What counts as a business day?", "a": "Monday to Friday. Public holidays aren't removed, because they differ by country and region, so subtract any that fall in your range." },
+    { "q": "What happens when I add a month to 31 January?", "a": "You get the last day of February (28 February, or 29 in a leap year), because February has no 31st. Most banks and contracts handle month-end dates the same way." },
+    { "q": "Do time zones or daylight saving change the count?", "a": "No. The calculator works with calendar dates only, so a clock change never adds or removes a day." }
+  ]
+}

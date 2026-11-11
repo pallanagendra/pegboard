@@ -1,0 +1,82 @@
+      <div class="workspace">
+        <form class="panel panel--inputs" data-form novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="ln-amount">Loan amount</label>
+              <input class="input" id="ln-amount" name="amount" inputmode="decimal" autocomplete="off" value="20,000">
+            </div>
+            <div class="field">
+              <label for="ln-currency">Currency</label>
+              <select class="select" id="ln-currency" name="currency">
+                <option value="USD">US dollar ($)</option>
+                <option value="EUR">Euro (€)</option>
+                <option value="GBP">Pound sterling (£)</option>
+                <option value="INR">Indian rupee (₹)</option>
+                <option value="CAD">Canadian dollar</option>
+                <option value="AUD">Australian dollar</option>
+                <option value="">No symbol</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="ln-rate">Interest rate (% per year)</label>
+            <input class="input" id="ln-rate" name="rate" inputmode="decimal" autocomplete="off" value="7">
+          </div>
+          <fieldset>
+            <legend>Loan term</legend>
+            <div class="field-row">
+              <div class="field">
+                <label for="ln-years">Years</label>
+                <input class="input" id="ln-years" name="years" type="number" min="0" max="100" inputmode="numeric" value="5">
+              </div>
+              <div class="field">
+                <label for="ln-months">Months</label>
+                <input class="input" id="ln-months" name="months" type="number" min="0" max="11" inputmode="numeric" value="0">
+              </div>
+            </div>
+          </fieldset>
+          <div class="field-row">
+            <div class="field">
+              <label for="ln-start">First payment</label>
+              <input class="input" id="ln-start" name="start" type="month">
+            </div>
+            <div class="field">
+              <label for="ln-extra">Extra each month (optional)</label>
+              <input class="input" id="ln-extra" name="extra" inputmode="decimal" autocomplete="off" placeholder="0">
+            </div>
+          </div>
+          <p class="field__help mt-0">Estimates for a fixed-rate loan paid monthly. Lenders’ figures can differ slightly, and mortgage payments often add property tax and insurance.</p>
+        </form>
+
+        <section class="panel workspace__sticky" aria-labelledby="ln-out-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="ln-out-title">Your payments</h2>
+          </div>
+          <div class="answer answer--hero" data-hero>
+            <output class="answer__value" id="ln-payment" for="ln-amount ln-rate ln-years ln-months"></output>
+            <button type="button" class="button button--quiet button--small" data-copy-from="#ln-payment" data-copy-label="Payment copied">Copy</button>
+            <p class="answer__formula" data-hero-note></p>
+          </div>
+          <div class="stats stats--wide" data-stats></div>
+          <div class="message message--note" data-extra-note hidden></div>
+        </section>
+      </div>
+
+      <section class="panel schedule" aria-labelledby="ln-sched-title" data-schedule>
+        <div class="panel__head">
+          <h2 class="panel__title" id="ln-sched-title">Payment schedule</h2>
+          <div class="actions">
+            <div class="segmented" role="radiogroup" aria-label="Group the schedule">
+              <input type="radio" name="view" id="ln-by-year" value="year" checked><label for="ln-by-year">By year</label>
+              <input type="radio" name="view" id="ln-by-month" value="month"><label for="ln-by-month">By month</label>
+            </div>
+            <button type="button" class="button button--small" data-csv>Download CSV</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead data-head></thead>
+            <tbody data-rows></tbody>
+          </table>
+        </div>
+      </section>

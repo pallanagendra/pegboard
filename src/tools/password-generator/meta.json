@@ -5,7 +5,7 @@
   "description": "Make strong random passwords or easy-to-type passphrases. Choose the length and characters and see how strong it is. Made on your device, never sent.",
   "summary": "Strong random passwords and memorable passphrases, made on your device.",
   "category": "generators",
-  "order": 25,
+  "order": 140,
   "keywords": ["password generator", "strong password", "random password", "password", "passphrase", "secure password", "generate password", "password maker", "diceware", "memorable password", "password strength"],
   "related": ["random-number-generator", "qr-code-generator", "base64-encoder-decoder"],
   "howTo": [

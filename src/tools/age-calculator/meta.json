@@ -5,7 +5,7 @@
   "description": "Find an exact age in years, months and days, plus total weeks and days, the weekday of birth and how long until the next birthday. Works for any date.",
   "summary": "Exact age in years, months and days, and the countdown to the next birthday.",
   "category": "calculators",
-  "order": 62,
+  "order": 90,
   "keywords": ["age", "age calculator", "how old", "date of birth", "birthday", "birth date", "years old", "next birthday", "born on", "chronological age"],
   "related": ["days-between-dates", "time-calculator", "percentage-calculator"],
   "howTo": [

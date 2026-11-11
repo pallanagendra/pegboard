@@ -5,7 +5,7 @@
   "description": "Flip a fair virtual coin for heads or tails. Flip once, 10 or 100 times and keep a tally of heads, tails and streaks. Random, private and free.",
   "summary": "Heads or tails, with a running tally and the current streak.",
   "category": "everyday",
-  "order": 70,
+  "order": 10,
   "keywords": ["flip a coin", "coin flip", "coin toss", "toss a coin", "heads or tails", "flip coin", "virtual coin", "random", "decide", "50/50", "coin flipper"],
   "related": ["dice-roller", "random-number-generator", "spin-the-wheel"],
   "howTo": [

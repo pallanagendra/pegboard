@@ -5,7 +5,7 @@
   "description": "Test your typing speed in words per minute with common English words. Choose 15 seconds to 2 minutes, see your accuracy and beat your best.",
   "summary": "Words per minute and accuracy in 15 seconds to 2 minutes.",
   "category": "everyday",
-  "order": 75,
+  "order": 100,
   "keywords": ["typing test", "typing speed test", "wpm test", "words per minute", "typing speed", "test my typing", "1 minute typing test", "typing practice", "keyboard", "accuracy", "typing"],
   "related": ["word-counter", "stopwatch", "random-number-generator"],
   "howTo": [

@@ -1,0 +1,52 @@
+      <form class="stack" data-form novalidate>
+        <section class="panel" aria-labelledby="b64-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="b64-title">Text</h2>
+            <div class="segmented" role="group" aria-label="Direction">
+              <input type="radio" name="mode" id="b64-enc" value="encode" checked><label for="b64-enc">Encode</label>
+              <input type="radio" name="mode" id="b64-dec" value="decode"><label for="b64-dec">Decode</label>
+            </div>
+          </div>
+          <div class="workspace workspace--even">
+            <div class="field">
+              <label for="b64-in" data-in-label>Text to encode</label>
+              <textarea class="textarea textarea--mono" id="b64-in" name="text" rows="9" spellcheck="false" autocomplete="off" autocapitalize="off">Hello, Pegboard! Ünïcödé and emoji work too 👋</textarea>
+            </div>
+            <div class="field">
+              <label for="b64-out" data-out-label>Base64</label>
+              <textarea class="textarea textarea--mono" id="b64-out" rows="9" readonly data-out></textarea>
+              <div class="binary-result" data-binary hidden>
+                <p class="mt-0" data-binary-text></p>
+                <img class="binary-result__img" alt="" data-binary-img hidden>
+                <button type="button" class="button button--small" data-binary-download>Download file</button>
+              </div>
+              <p class="message message--error mt-0" data-error hidden></p>
+            </div>
+          </div>
+          <div class="checks checks--cols" data-encode-options>
+            <label class="check"><input type="checkbox" name="urlSafe"> <span>URL-safe<small>Uses - and _ instead of + and /, with no = padding. For links, file names and tokens.</small></span></label>
+            <label class="check"><input type="checkbox" name="wrap"> <span>Split into lines of 76<small>The line length email (MIME) uses.</small></span></label>
+          </div>
+          <div class="actions">
+            <button type="button" class="button button--primary" data-copy>Copy result</button>
+            <button type="button" class="button" data-swap>Swap: use the result as input</button>
+          </div>
+          <p class="field__help mt-0" data-sizes></p>
+        </section>
+
+        <section class="panel" aria-labelledby="b64-file-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="b64-file-title">Encode a file</h2>
+            <label class="button button--small file-button">Choose a file<input type="file" data-file></label>
+          </div>
+          <p class="field__help mt-0" data-file-info>Turn an image, font or any small file into Base64 or a data URL to embed in HTML, CSS or JSON. The file stays on your device.</p>
+          <div class="segmented" role="group" aria-label="File output">
+            <input type="radio" name="fileOut" id="b64-f-url" value="dataurl" checked><label for="b64-f-url">Data URL</label>
+            <input type="radio" name="fileOut" id="b64-f-raw" value="raw"><label for="b64-f-raw">Plain Base64</label>
+          </div>
+          <textarea class="textarea textarea--mono" rows="6" readonly aria-label="Encoded file" data-file-out placeholder="Choose a file to see it here"></textarea>
+          <div class="actions">
+            <button type="button" class="button button--primary" data-file-copy disabled>Copy</button>
+          </div>
+        </section>
+      </form>

@@ -1,0 +1,22 @@
+{
+  "name": "JSON formatter",
+  "title": "JSON Formatter and Validator: Beautify, Minify, Find Errors",
+  "h1": "JSON formatter and validator",
+  "description": "Format, minify and validate JSON in your browser. Errors are shown by line and column with a plain-English fix. Sort keys, copy or download.",
+  "summary": "Beautify, minify and validate JSON, with errors shown by line and column.",
+  "category": "web",
+  "order": 45,
+  "keywords": ["json formatter", "json validator", "json beautifier", "format json", "json viewer", "pretty print json", "minify json", "json lint", "validate json", "json parser", "json checker", "api"],
+  "related": ["base64-encoder-decoder", "url-encoder-decoder", "case-converter"],
+  "howTo": [
+    "Paste JSON, open a .json file or try the example. It’s checked as you type.",
+    "If something’s wrong, you’ll see the line and column, the text around it and what to change. <strong>Show in the box</strong> jumps straight to it.",
+    "Choose <strong>Format</strong> for readable, indented JSON or <strong>Minify</strong> for the smallest version, then copy or download the result."
+  ],
+  "faq": [
+    { "q": "Why is my JSON invalid?", "a": "The usual causes are a trailing comma after the last item, single quotes instead of double quotes, property names without quotes, comments, or a missing comma or bracket. Each of these gets its own message here, pointing at the exact spot." },
+    { "q": "Is my JSON uploaded anywhere?", "a": "No. It’s checked and formatted in your browser, so API responses, configuration files and anything with keys or personal data never leave your device." },
+    { "q": "Why did a long number change?", "a": "JavaScript, and so most JSON tools, can only store whole numbers exactly up to 9,007,199,254,740,991. Longer numbers, such as some database IDs, get rounded. You’ll see a warning when that happens; keep such IDs as strings." },
+    { "q": "How big a file can it handle?", "a": "Files of several megabytes format in well under a second. Very large files skip the colors so typing stays quick; the limit for opening a file is 25 MB." }
+  ]
+}

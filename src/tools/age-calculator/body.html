@@ -1,0 +1,26 @@
+      <div class="workspace">
+        <form class="panel panel--inputs" data-form novalidate>
+          <div class="field">
+            <label for="ag-birth">Date of birth</label>
+            <input class="input" id="ag-birth" name="birth" type="date" value="1990-06-15" max="9999-12-31">
+          </div>
+          <div class="field">
+            <label for="ag-on">Age on</label>
+            <div class="inline-fields">
+              <div class="field"><input class="input" id="ag-on" name="on" type="date" max="9999-12-31" aria-describedby="ag-on-help"></div>
+              <button type="button" class="button button--quiet" data-today>Today</button>
+            </div>
+            <span class="field__help" id="ag-on-help">Today, or any other date in the past or future.</span>
+          </div>
+        </form>
+
+        <section class="panel workspace__sticky" aria-labelledby="ag-out-title">
+          <h2 class="panel__title" id="ag-out-title">Age</h2>
+          <div class="answer answer--hero" data-hero>
+            <output class="answer__value" id="ag-age" for="ag-birth ag-on"></output>
+            <button type="button" class="button button--quiet button--small" data-copy-from="#ag-age" data-copy-label="Age copied">Copy</button>
+            <p class="answer__formula" data-hero-note></p>
+          </div>
+          <div class="stats stats--wide" data-stats></div>
+        </section>
+      </div>

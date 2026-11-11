@@ -1,0 +1,22 @@
+{
+  "name": "Age calculator",
+  "title": "Age Calculator: Exact Age in Years, Months and Days",
+  "h1": "Age calculator",
+  "description": "Find an exact age in years, months and days, plus total weeks and days, the weekday of birth and how long until the next birthday. Works for any date.",
+  "summary": "Exact age in years, months and days, and the countdown to the next birthday.",
+  "category": "calculators",
+  "order": 62,
+  "keywords": ["age", "age calculator", "how old", "date of birth", "birthday", "birth date", "years old", "next birthday", "born on", "chronological age"],
+  "related": ["days-between-dates", "time-calculator", "percentage-calculator"],
+  "howTo": [
+    "Enter the date of birth.",
+    "The age is worked out for today. Change <strong>Age on</strong> to find an age on any other date, past or future, such as a school start date or a deadline.",
+    "Read the exact age, the totals in months, weeks and days, and the countdown to the next birthday."
+  ],
+  "faq": [
+    { "q": "How is the exact age calculated?", "a": "By counting whole years from the date of birth, then whole months, then the days left over, just as you'd count on a calendar. Someone born on 15 June 1990 is 36 years, 4 months and 26 days old on 10 November 2026." },
+    { "q": "What if I was born on 29 February?", "a": "In years without a 29 February, this calculator counts your birthday as 28 February. Some countries' laws use 1 March instead for legal age, so check if it matters for an official form." },
+    { "q": "Can I work out an age on a past or future date?", "a": "Yes. Change <strong>Age on</strong> to any date. That's handy for school or sports cut-off dates, insurance or retirement planning." },
+    { "q": "Is my date of birth saved anywhere?", "a": "No. It's calculated in your browser and kept only while this tab is open, so a refresh doesn't clear it. Nothing is sent to a server." }
+  ]
+}

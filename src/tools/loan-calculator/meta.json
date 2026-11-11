@@ -1,0 +1,23 @@
+{
+  "name": "Loan calculator",
+  "title": "Loan Calculator: Monthly Payment, Interest and Schedule",
+  "h1": "Loan calculator",
+  "description": "Estimate your monthly loan payment, total interest and payoff date. See the full amortization schedule and how extra payments cut the interest.",
+  "summary": "Monthly payment, total interest, payoff date and the full schedule.",
+  "category": "calculators",
+  "order": 61,
+  "keywords": ["loan", "loan calculator", "monthly payment", "interest", "amortization", "amortization schedule", "mortgage", "car loan", "auto loan", "personal loan", "student loan", "extra payment", "payoff"],
+  "related": ["percentage-calculator", "days-between-dates", "age-calculator"],
+  "howTo": [
+    "Enter how much you're borrowing, the yearly interest rate and how long you have to pay it back.",
+    "Read your <strong>monthly payment</strong>, the total interest and when the loan is paid off.",
+    "Add an <strong>extra monthly payment</strong> to see how much interest and time it saves.",
+    "Switch the schedule between years and months, or download it as a CSV file for Excel or Google Sheets."
+  ],
+  "faq": [
+    { "q": "How is the monthly payment calculated?", "a": "With the standard formula for a fixed-rate loan: payment = P × r ÷ (1 − (1 + r)<sup>−n</sup>), where P is the amount borrowed, r is the yearly rate divided by 12, and n is the number of monthly payments." },
+    { "q": "What is an amortization schedule?", "a": "A month-by-month table of each payment, split into interest and principal, with the balance left after it. Early payments are mostly interest; later ones mostly pay down the loan." },
+    { "q": "How much do extra payments save?", "a": "Every extra amount goes straight to the principal, so less interest builds up afterwards. Try an extra 100 a month: on longer loans it often saves years of payments." },
+    { "q": "Why is my lender's payment different?", "a": "Lenders may add fees, round differently, or charge interest daily. Mortgage payments often also include property tax and insurance, which this calculator doesn't add. Treat these figures as estimates and check the loan documents." }
+  ]
+}

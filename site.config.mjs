@@ -3,12 +3,13 @@ export default {
   name: 'Pegboard',
   tagline: 'Small web tools that do one job well.',
   description:
-    'Free, fast browser tools: barcode and QR code generators, iframe embed code, URL encoder/decoder, word counter. Nothing is uploaded — everything runs on your device.',
+    'Free browser tools: QR codes, barcodes, image resizer, percentage and loan calculators, password generator, JSON formatter and more. Nothing is uploaded.',
 
-  // Public URL per environment. The pipeline can override these with the SITE_URL variable
-  // set on each GitHub Environment (Settings → Environments → <env> → Variables).
+  // Public URL per environment, used for canonical links and the sitemap.
+  // Leave these empty: set the SITE_URL variable on each GitHub Environment instead
+  // (Settings → Environments → <env> → Variables), so changing it needs no code change.
   urls: {
-    production: 'https://pegboard.example.com',
+    production: '',
     staging: '',
     dev: '',
     local: 'http://localhost:8080',
@@ -16,11 +17,13 @@ export default {
 
   // Shown in the footer.
   owner: 'Pegboard',
-  repo: 'https://github.com/YOUR-USERNAME/pegboard',
 
   // Tool categories, in display order. Each tool's meta.json picks one of these keys.
   categories: {
     generators: 'Generators',
+    files: 'Images and files',
+    calculators: 'Calculators',
+    everyday: 'Everyday',
     text: 'Text',
     web: 'Web & developer',
   },

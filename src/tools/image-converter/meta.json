@@ -1,0 +1,23 @@
+{
+  "name": "Image converter",
+  "title": "PNG to JPG Converter, plus JPG to PNG and WebP, No Upload",
+  "h1": "Image converter: PNG, JPG and WebP",
+  "description": "Convert PNG to JPG, JPG to PNG, WebP to JPG and SVG to PNG. Batch convert in your browser with quality control. Files never leave your device.",
+  "summary": "PNG, JPG and WebP in any direction, plus SVG to PNG. Batch convert privately.",
+  "category": "files",
+  "order": 52,
+  "keywords": ["convert", "converter", "png to jpg", "jpg to png", "jpeg to png", "webp to jpg", "webp to png", "png to webp", "jpg to webp", "svg to png", "gif to png", "avif to jpg", "format"],
+  "related": ["image-compressor", "image-resizer", "qr-code-generator"],
+  "howTo": [
+    "Choose your images, drop them on the page, or paste one with Ctrl+V.",
+    "Pick the format to convert to: <strong>JPG</strong> for photos, <strong>PNG</strong> for graphics and screenshots, or <strong>WebP</strong> for the smallest files on websites.",
+    "For JPG and WebP, set the quality. For JPG, choose the color that replaces transparent areas.",
+    "Download each image, or all of them at once as a ZIP."
+  ],
+  "faq": [
+    { "q": "Will converting PNG to JPG lose the transparency?", "a": "Yes. JPG can't store transparency, so see-through areas are filled with a color you choose (white by default). Convert to WebP instead if you need to keep transparency and a small file." },
+    { "q": "Which format should I use?", "a": "JPG for photos you'll email or print. PNG for logos, screenshots and anything with sharp text, since it keeps every pixel. WebP for websites: it's usually much smaller than both and every current browser shows it." },
+    { "q": "Can it convert HEIC photos from an iPhone?", "a": "Only in a browser that can open HEIC itself, which recent Safari versions usually can. In other browsers, change your iPhone camera to “Most Compatible” to take JPG photos, or export them as JPG first." },
+    { "q": "Are my files uploaded?", "a": "No. Conversion runs in your browser on your own device, so it's safe for private pictures. Hidden details such as GPS location aren't copied into the new file." }
+  ]
+}

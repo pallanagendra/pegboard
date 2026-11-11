@@ -1,0 +1,41 @@
+      <form class="calc-grid calc-grid--two" data-form novalidate>
+        <section class="panel" aria-labelledby="db-t1">
+          <h2 class="panel__title" id="db-t1">Count the days between two dates</h2>
+          <div class="inline-fields">
+            <div class="field"><label for="db-start">Start date</label><input class="input" id="db-start" name="start" type="date" max="9999-12-31"></div>
+            <div class="field"><label for="db-end">End date</label><input class="input" id="db-end" name="end" type="date" max="9999-12-31"></div>
+          </div>
+          <label class="check"><input type="checkbox" name="includeEnd"> <span>Include the end date<small>Count both the first and the last day, as for a holiday or leave request.</small></span></label>
+          <div class="answer answer--hero" data-answer="between">
+            <output class="answer__value" id="db-days" for="db-start db-end"></output>
+            <button type="button" class="button button--quiet button--small" data-copy-from="#db-days" data-copy-label="Copied">Copy</button>
+            <p class="answer__formula"></p>
+          </div>
+          <div class="stats stats--wide" data-stats></div>
+        </section>
+
+        <section class="panel" aria-labelledby="db-t2">
+          <h2 class="panel__title" id="db-t2">Add or subtract from a date</h2>
+          <div class="field"><label for="db-from">Start date</label><input class="input" id="db-from" name="from" type="date" max="9999-12-31"></div>
+          <div class="inline-fields">
+            <div class="field"><label for="db-op">Add or subtract</label>
+              <select class="select" id="db-op" name="op"><option value="+">Add</option><option value="-">Subtract</option></select>
+            </div>
+            <div class="field"><label for="db-n">Amount</label><input class="input" id="db-n" name="amount" type="number" min="0" inputmode="numeric" value="30"></div>
+            <div class="field"><label for="db-unit">Unit</label>
+              <select class="select" id="db-unit" name="unit">
+                <option value="days">Days</option>
+                <option value="business">Business days</option>
+                <option value="weeks">Weeks</option>
+                <option value="months">Months</option>
+                <option value="years">Years</option>
+              </select>
+            </div>
+          </div>
+          <div class="answer" data-answer="shift">
+            <output class="answer__value" id="db-date" for="db-from db-n"></output>
+            <button type="button" class="button button--quiet button--small" data-copy-from="#db-date" data-copy-label="Date copied">Copy</button>
+            <p class="answer__formula"></p>
+          </div>
+        </section>
+      </form>

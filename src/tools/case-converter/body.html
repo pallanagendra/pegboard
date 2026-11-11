@@ -1,0 +1,24 @@
+      <form class="stack" data-form novalidate>
+        <section class="panel" aria-labelledby="cc-in-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="cc-in-title"><label for="cc-in">Your text</label></h2>
+            <span class="panel__hint" data-counts></span>
+          </div>
+          <textarea class="textarea" id="cc-in" name="text" rows="6" spellcheck="false" placeholder="Type or paste text here">the quick brown fox jumps over the lazy dog</textarea>
+          <fieldset>
+            <legend>Convert to</legend>
+            <div class="chips chips--radio" data-cases></div>
+          </fieldset>
+        </section>
+
+        <section class="panel" aria-labelledby="cc-out-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="cc-out-title"><label for="cc-out">Result</label></h2>
+            <div class="actions">
+              <button type="button" class="button button--primary button--small" data-copy-from="#cc-out" data-copy-label="Text copied">Copy</button>
+              <button type="button" class="button button--quiet button--small" data-use>Use as input</button>
+            </div>
+          </div>
+          <textarea class="textarea" id="cc-out" rows="6" readonly data-out></textarea>
+        </section>
+      </form>

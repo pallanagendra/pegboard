@@ -1,61 +1,117 @@
 # Tool ideas and growth roadmap
 
-The five starter tools share three building blocks: **generate-and-download** (barcode, QR), **paste-and-transform** (URL, word counter) and **configure-and-copy** (iframe). The ideas below are ordered so each wave reuses what already exists, and so every new tool links naturally to an old one — that internal linking is how a tool site grows in search.
+Every tool here runs entirely in the browser. That keeps hosting free and keeps the promise that nothing is uploaded — a real selling point for files, passwords and private text, where many of the big sites send your data to their servers.
 
-Every idea runs entirely in the browser, which keeps hosting free and lets you keep the "nothing is uploaded" promise. That promise is a real selling point for anything involving passwords, tokens, images or private text.
+Effort: **S** = an evening, **M** = a weekend.
 
-Effort: **S** = an evening, **M** = a weekend, **L** = a few weekends.
+## Build status (November 2026)
 
-## Wave 1 — quick wins (next 4–6 weeks)
+Release 0.2.0 takes the site from 5 to 24 tools on tools.nexwavesolutions.net:
 
-High search demand, small code, and they reuse the existing patterns.
+| Group | Tools |
+|---|---|
+| Images and files | Image resizer, image compressor, image converter |
+| Calculators | Percentage, loan, age, time, days between dates |
+| Everyday | Flip a coin, random number generator, dice roller, stopwatch and timer, spin the wheel, typing speed test |
+| Text and developer | Password generator, case converter, JSON formatter, Base64 encoder and decoder, color picker with contrast checker |
 
-| Tool | Category | Effort | Why it fits |
+Still to build: HEIC to JPG, Merge PDF, margin calculator, salary to hourly, meta description checker.
+
+## Search demand (researched November 2026)
+
+Monthly searches in the **US** from Google Ads data (via seodata.dev, mid-2026), unless marked *Ahrefs*. Worldwide demand is several times higher.
+
+**How to read these numbers.** A big number shows what people want, not the traffic you'll get. The broad terms are held by large, established sites. A new site wins first on specific variations — "compress jpeg to 100kb", "resize image to 1080x1080", "percentage increase calculator", "age in months" — so build the main tool first, then add focused pages for the variations people search. Google Ads "competition" is about advertisers, not ranking difficulty; *KD* (Ahrefs keyword difficulty, 0–100) is shown where known.
+
+### Tools you already have
+
+| Keyword | Searches/month |
+|---|---|
+| word counter | 1,220,000 |
+| qr code generator | 776,000 *(Ahrefs, KD 90)* |
+
+### Files: images and PDF *(new category)*
+
+The strongest fit for Pegboard: high demand, and "your files never leave your device" sets it apart.
+
+| Tool | Searches/month | Effort | Notes |
 |---|---|---|---|
-| **Case converter** (UPPER, lower, Title, Sentence, camelCase, snake_case, kebab-case) | Text | S | Same textarea layout as the word counter; link them to each other. |
-| **JSON formatter and validator** (pretty print, minify, show the error line) | Web & dev | S | One of the most-searched developer tools; same two-pane layout as the URL decoder. |
-| **Base64 encoder/decoder** (text and files → data URI) | Web & dev | S | Natural sibling of the URL decoder. |
-| **Password generator** (length, symbols, passphrase mode, strength meter) | Generators | S | Huge demand; `crypto.getRandomValues` makes it genuinely secure, and "generated on your device" is the trust story. |
-| **UTM link builder** | Web & dev | S | Marketers build a tagged link, then turn it into a QR code — link it straight into the QR generator. The URL decoder already breaks UTM tags apart. |
-| **UUID generator** (v4 and v7, bulk) | Generators | S | Tiny; `crypto.randomUUID()` does the work. |
-| **Lorem ipsum generator** | Text | S | Steady traffic from designers; pairs with the word counter. |
+| HEIC to JPG | 222,000 *(Ahrefs, KD 31)* | M | iPhone photos. Needs a HEIC decoder library (about 1 MB). |
+| Merge PDF | 135,000 | M | `pdf-lib` in the browser. Later: split, reorder, rotate pages. |
+| Image resizer | 110,000 | S | Canvas. Presets for Instagram, passport photos, email. |
+| Image compressor | 60,500 (+ "compress image" 22,200) | S | Canvas `toBlob` quality slider, target size, batch. |
+| PNG to JPG (and JPG/WebP/PNG either way) | 60,500 | S | Same engine as the resizer; one page per conversion pair. |
 
-## Wave 2 — bigger draws (next quarter)
+### Calculators *(new category)*
 
-These take more work but bring repeat visitors.
+Very high demand, simple code, one shared layout. The business calculators suit NexWave's consulting audience.
 
-| Tool | Category | Effort | Why it fits |
+| Tool | Searches/month | Effort |
+|---|---|---|
+| Percentage calculator | 673,000 | S |
+| Loan calculator | 616,000 *(Ahrefs)* | S |
+| Age calculator | 550,000 | S |
+| Time calculator (add hours and minutes) | 335,000 *(Ahrefs)* | S |
+| Days between dates | 110,000 | S |
+| Margin calculator | 55,000 *(Ahrefs)* | S |
+| Salary to hourly | 42,000 *(Ahrefs)* | S |
+
+### Everyday and random *(new category)*
+
+Enormous demand and repeat visitors. For several of these Google shows its own widget at the top of the results, so fewer clicks reach websites — but they still send real traffic (calculator.net gets about 307,000 US visits a month from "dice roller", per Ahrefs).
+
+| Tool | Searches/month | Effort |
+|---|---|---|
+| Flip a coin | 1,830,000 | S |
+| Random number generator | 1,500,000 | S |
+| Stopwatch (and countdown timer) | 1,220,000 | S |
+| Spin the wheel / random name picker | 823,000 | M |
+| Typing test | 550,000 | M |
+| Dice roller | 392,000 *(Ahrefs)* | S |
+
+### Text and developer
+
+| Tool | Searches/month | Effort | Notes |
 |---|---|---|---|
-| **Image compressor and resizer** (JPEG/WebP/PNG, batch) | Images *(new category)* | M | Very high demand. Doing it in-browser — no uploads — is the differentiator. Canvas + `toBlob` handles most of it. |
-| **Color converter and contrast checker** (HEX/RGB/HSL/OKLCH, WCAG AA/AAA) | Web & dev | M | The QR tool already has a contrast check you can reuse. |
-| **Text diff checker** | Text | M | Paste two versions, see what changed. Sticky for writers and developers. |
-| **Unix timestamp and time zone converter** | Web & dev | S | `Intl.DateTimeFormat` does the heavy lifting. |
-| **Hash generator** (SHA-1/256/512 for text and files) | Web & dev | S | `crypto.subtle.digest`, no library needed. |
-| **JWT decoder** | Web & dev | S | Developers don't want to paste tokens into random sites; "decoded locally" is the pitch. |
-| **Favicon generator** (from an image, text or emoji → PNG sizes + manifest) | Generators | M | Reuses the PNG export from the barcode and QR tools. |
-| **Link preview checker** (title, meta description, Open Graph image as it appears on social and search) | Web & dev | M | Builds on the word counter's limit bars. Needs a fetch proxy because of CORS — a good first use of a Cloudflare Pages Function. |
+| Password generator | 300,000 *(Ahrefs, KD 82)* | S | Hard to rank for the broad term; "generated on your device" is the trust story. |
+| Color picker (and HEX/RGB converter) | 246,000 | S | Add the contrast checker (7,000, *Ahrefs*) on the same page. |
+| JSON formatter and validator | 135,000 | S | Advertisers pay about $11 a click for this keyword, a sign of a valuable audience. |
+| Base64 encode/decode | 74,000 | S | Sibling of the URL decoder. |
+| Case converter | 27,100 | S | Pairs with the word counter. |
+| Meta description generator/checker | 1,600 *(Ahrefs, KD 12)* | S | Small but easy; builds on the word counter's limit bars. |
 
-## Wave 3 — upgrades to the tools you have
+## Recommended build order
+
+1. **Files: image resizer, image compressor, image converter.** One shared engine, the biggest demand that matches the privacy promise. Then HEIC to JPG and Merge PDF.
+2. **Calculators: percentage, age, days between dates, time, margin, salary to hourly.** Quick to build, one layout, huge demand.
+3. **Text and developer: password generator, JSON formatter, Base64, case converter, color picker.** Quick wins that reuse existing layouts.
+4. **Everyday: coin flip, random number and dice, stopwatch and timer, spin the wheel, typing test.** Fun and sticky, but Google's own widgets compete for the clicks.
+
+Ship them in small batches and give each a few weeks in Search Console before judging it.
+
+## Upgrades to the tools you have
 
 Often worth more than a new tool, because the page already ranks.
 
-- **QR codes:** logo in the middle (automatically switch to error correction H), batch from a CSV into a ZIP, printable Wi-Fi card for guests, more vCard fields (address, multiple phones).
-- **Barcodes:** batch from a list, printable label sheets (PDF, common label sizes), GS1-128 with application identifiers.
-- **Word counter:** readability score (Flesch reading ease, grade level), the case converter as a toolbar, "find long sentences".
-- **iFrame generator:** presets for Google Maps, Google Forms and Calendly; a "copy as WordPress block" option.
-- **URL decoder:** edit query parameters in the table and rebuild the URL; strip tracking parameters in one click.
+- **QR codes:** logo in the middle (automatically switch to error correction H), batch from a CSV into a ZIP, printable Wi-Fi card for guests, focused pages for Wi-Fi, vCard and menu QR codes.
+- **Barcodes:** batch from a list, printable label sheets, a focused "EAN-13 check digit calculator" page.
+- **Word counter:** readability score, the case converter as a toolbar, "find long sentences".
+- **iFrame generator:** presets for Google Maps, Google Forms and Calendly; focused pages for YouTube and Vimeo embeds.
+- **URL decoder:** edit query parameters and rebuild the URL; strip tracking parameters in one click; a focused "UTM decoder" page.
 
 ## Growth playbook
 
-What makes a tool site grow is mostly search traffic plus people coming back. The site already has the foundations (one fast page per tool, unique titles and descriptions, FAQ sections with structured data, a sitemap, internal "related tools" links). Next steps, in order:
+Google says its AI Overviews and AI Mode use the same ranking systems as normal results, so the same work covers both Google and AI assistants.
 
-1. **Connect Google Search Console and Bing Webmaster Tools** as soon as production has its own domain; submit the sitemap. Check which queries bring people in every few weeks, and write FAQ answers for the questions you see.
-2. **Measure without cookies.** Cloudflare's dashboard already shows requests per page for free. For visits and referrers, turn on Cloudflare Web Analytics (cookie-free). It loads a script from Cloudflare, so add `https://static.cloudflareinsights.com` to `script-src` and `https://cloudflareinsights.com` to `connect-src` in the Content-Security-Policy in `scripts/build.mjs`.
-3. **Give each tool a share image** (`og:image`, 1200×630) so links look good when shared. Can be generated at build time.
-4. **Make it installable** (web app manifest + service worker) so it works offline and can live on a phone's home screen — a big plus for the QR and barcode tools used on shop floors and at events.
-5. **Ship one tool or upgrade every week or two** rather than many at once. Each one is a new page that can rank and a reason for people to come back.
-6. **Ask for ideas** with a small "Suggest a tool" link (a GitHub issue template or a simple form) — the requests tell you what people actually search for.
-7. **Later, if traffic justifies it:** a "Buy me a coffee" link, or one tasteful sponsor slot per page. Avoid heavy ad networks: they'd break the speed and privacy promises that make the site worth using.
+1. **Search Console and Bing Webmaster Tools.** Verify `nexwavesolutions.net` as a Domain property, submit the sitemap, request indexing for each new page. In Bing Webmaster Tools, use *Import from Google Search Console*. Bing's index feeds Microsoft Copilot and other AI search tools.
+2. **Genuine mentions.** Show HN, Product Hunt, AlternativeTo, relevant Reddit communities (follow their rules), a "how I built this" post on dev.to, and a short post per tool on the NexWave WordPress blog. Avoid paid or fake mentions.
+3. **Focused pages for specific searches,** each with real explanation — a few good ones beat many thin ones.
+4. **Share images** (`og:image`, 1200×630) so links look good in chats and social posts, and **IndexNow** pings so Bing and others pick up new pages within minutes.
+5. **Measure without cookies.** Turn on Cloudflare Web Analytics; add `https://static.cloudflareinsights.com` to `script-src` and `https://cloudflareinsights.com` to `connect-src` in the Content-Security-Policy in `scripts/build.mjs`.
+6. **Make it installable** (web app manifest + service worker) so the tools work offline and live on a phone's home screen.
+7. **Ship something every week or two.** Each tool is a new page that can rank and a reason to come back.
+
+Skip: `llms.txt` (Google says Search ignores it, and most such files are never read) and FAQ rich results (Google removed them for all sites in 2026; FAQ sections still help readers).
 
 ## Adding a tool (checklist)
 
@@ -64,3 +120,5 @@ What makes a tool site grow is mostly search traffic plus people coming back. Th
 3. Write `meta.json` like a search result: `title` around 60 characters with the main keyword first, `description` under 155, three or four real FAQ questions.
 4. Add `related` links both ways, to and from existing tools.
 5. Open a PR to `develop`, check it on dev and on a phone, then remove `"status": "draft"` and release.
+
+Sources: [seodata.dev keyword data](https://www.seodata.dev/), [Ahrefs: The free tools SEO strategy](https://ahrefs.com/blog/the-free-tools-seo-strategy/), [Ahrefs Top: calculator.net](https://ahrefstop.com/websites/calculator.net), [Google: Optimizing for generative AI features](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide).

@@ -1,0 +1,22 @@
+{
+  "name": "Spin the wheel",
+  "title": "Spin the Wheel: Random Name Picker and Decision Wheel",
+  "h1": "Spin the wheel",
+  "description": "Type names or options, one per line, and spin the wheel to pick one at random. Remove winners as you go for teams, raffles and classroom picks.",
+  "summary": "A random picker wheel for names, prizes and decisions.",
+  "category": "everyday",
+  "order": 74,
+  "keywords": ["spin the wheel", "wheel spinner", "random name picker", "name wheel", "wheel of names", "decision wheel", "random picker", "prize wheel", "raffle", "giveaway", "classroom", "choose", "picker wheel"],
+  "related": ["random-number-generator", "flip-a-coin", "dice-roller"],
+  "howTo": [
+    "Type your entries in the box, one per line: names, prizes, places to eat, anything. The wheel updates as you type.",
+    "Press <strong>Spin the wheel</strong> or tap the middle of the wheel. The slice that stops under the pointer wins.",
+    "Use <strong>Remove from wheel</strong>, or tick <strong>Remove the winner after each spin</strong>, so the same entry can’t win twice. <strong>Shuffle</strong> and <strong>Sort</strong> rearrange the slices."
+  ],
+  "faq": [
+    { "q": "Is the wheel fair?", "a": "Yes. The winner is drawn first with your browser’s cryptographic random number generator, and every slice has the same chance. The spin then lands on that slice, so how hard or when you press doesn’t matter." },
+    { "q": "Can I give one entry a better chance?", "a": "Yes. Add it more than once: an entry listed twice gets two slices and twice the chance of winning." },
+    { "q": "How many entries can the wheel hold?", "a": "Up to 200. With many entries the labels get small, but every slice still counts and the winner is always shown in full under the wheel." },
+    { "q": "Is my list saved?", "a": "Only in this browser tab, so a refresh keeps it. Nothing is sent anywhere, and it’s gone when you close the tab." }
+  ]
+}

@@ -22,6 +22,7 @@ export default {
   categories: {
     generators: 'Generators',
     files: 'Images and files',
+    calculators: 'Calculators',
     text: 'Text',
     web: 'Web & developer',
   },

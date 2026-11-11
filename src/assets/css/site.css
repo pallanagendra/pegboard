@@ -392,6 +392,11 @@ legend { padding: 0; font-weight: 650; font-size: 0.95rem; margin-bottom: 6px; }
 .stat__label { font-size: var(--step--1); color: var(--ink-2); }
 .stat--key { background: var(--tag); color: var(--tag-ink); }
 .stat--key .stat__label { color: var(--tag-ink); }
+/* two even columns for longer values such as money and dates; an odd last tile spans the row */
+.stats--wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.stats--wide .stat { min-width: 0; }
+.stats--wide .stat__value { font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.45rem); overflow-wrap: anywhere; }
+.stats--wide > .stat:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
 .limits { display: grid; gap: 12px; }
 .limit { display: grid; gap: 4px; }
@@ -433,7 +438,8 @@ legend { padding: 0; font-weight: 650; font-size: 0.95rem; margin-bottom: 6px; }
 
 /* ---------- footer ---------- */
 .site-footer { background: var(--panel); border-top: 1px solid var(--line); padding: 40px 0 28px; font-size: 0.95rem; }
-.site-footer__grid { display: grid; grid-template-columns: minmax(220px, 1.4fr) repeat(auto-fit, minmax(150px, 1fr)); gap: 28px 40px; }
+.site-footer__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 28px 40px; }
+.site-footer__about { grid-column: 1 / -1; }
 .site-footer__brand { font-weight: 800; font-stretch: 118%; font-size: 1.05rem; margin-bottom: 6px; }
 .site-footer__about p:not(.site-footer__brand) { color: var(--ink-2); max-width: 40ch; }
 .site-footer__heading { font-weight: 700; margin-bottom: 8px; }
@@ -527,3 +533,40 @@ legend { padding: 0; font-weight: 650; font-size: 0.95rem; margin-bottom: 6px; }
   .file__thumb { width: 44px; height: 44px; }
   .file__actions { margin-left: auto; }
 }
+
+/* ---------- calculators ---------- */
+.calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 20px; align-items: start; }
+.calc-grid--two { grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); }
+.calc-grid > .panel + .panel { margin-top: 0; }
+.sentence { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; font-size: 1.05rem; line-height: 1.4; }
+.input.input--inline { width: 7.5em; min-height: 42px; }
+.select.select--inline { width: auto; min-height: 42px; }
+
+.answer {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px;
+  padding: 12px 14px; background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--radius-s);
+}
+.answer__value { font-size: 1.75rem; font-weight: 800; font-stretch: 112%; letter-spacing: -0.02em; line-height: 1.15; font-variant-numeric: tabular-nums; min-width: 0; overflow-wrap: anywhere; }
+.answer__formula { flex-basis: 100%; margin: 0; font-family: var(--mono); font-size: var(--step--1); color: var(--ink-3); overflow-wrap: anywhere; }
+.answer--error .answer__value { font-size: 1rem; font-weight: 650; font-stretch: 100%; letter-spacing: 0; color: var(--err); }
+.answer--hero { background: var(--tag); border-color: var(--tag-deep); color: var(--tag-ink); }
+.answer--hero .answer__value { font-size: clamp(1.8rem, 1.3rem + 2vw, 2.6rem); }
+.answer--hero .answer__formula { color: var(--tag-ink); }
+.answer--hero .button--quiet { background: transparent; color: var(--tag-ink); border-color: var(--tag-ink); }
+.answer--hero.answer--error { background: var(--panel-2); border-color: var(--line); }
+
+.table-wrap { overflow: auto; max-height: 460px; border: 1px solid var(--line); border-radius: var(--radius-s); }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.93rem; font-variant-numeric: tabular-nums; }
+.data-table th, .data-table td { padding: 8px 12px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.data-table th:first-child, .data-table td:first-child { text-align: left; }
+.data-table thead th { position: sticky; top: 0; z-index: 1; background: var(--panel-2); color: var(--ink-2); font-weight: 650; }
+.data-table tbody tr:last-child td { border-bottom: 0; }
+
+.duration-rows { display: grid; gap: 8px; }
+.duration-row { display: grid; grid-template-columns: 4.6em repeat(3, minmax(0, 1fr)) 36px; gap: 8px; align-items: center; }
+.duration-row--head { font-size: var(--step--1); font-weight: 650; color: var(--ink-2); }
+.duration-row .input, .duration-row .select { min-height: 42px; }
+@media (max-width: 420px) { .duration-row { grid-template-columns: 4em repeat(3, minmax(0, 1fr)) 32px; gap: 6px; } }
+.inline-fields { display: flex; flex-wrap: wrap; align-items: end; gap: 10px 12px; }
+.inline-fields .field { flex: 1 1 110px; }
+.schedule { margin-top: 20px; }

@@ -1,0 +1,24 @@
+{
+  "name": "Time calculator",
+  "title": "Time Calculator: Add Hours and Minutes, Time Between Times",
+  "h1": "Time calculator",
+  "description": "Add or subtract hours, minutes and seconds, total timesheet hours in decimal, find the time between two clock times and add time to a clock time.",
+  "summary": "Add up hours and minutes, timesheet totals in decimal, and time between two times.",
+  "category": "calculators",
+  "status": "draft",
+  "order": 63,
+  "keywords": ["time", "time calculator", "hours", "minutes", "add time", "hours calculator", "timesheet", "work hours", "decimal hours", "time between", "time duration", "shift", "clock"],
+  "related": ["days-between-dates", "age-calculator", "percentage-calculator"],
+  "howTo": [
+    "<strong>Add or subtract times:</strong> type hours, minutes and seconds on each row, and add as many rows as you need. Switch a row to − to subtract it, for example a break.",
+    "<strong>Time between two times:</strong> enter a start and end time, and any unpaid break. Shifts that run past midnight work too.",
+    "<strong>Add time to a clock time:</strong> find when something ends, such as 3:45 PM plus 2 hours 30 minutes.",
+    "Totals show as hours and minutes and in decimal hours, the format most payroll and invoicing tools want."
+  ],
+  "faq": [
+    { "q": "How do I convert minutes to decimal hours?", "a": "Divide the minutes by 60. 15 minutes is 0.25 hours, 30 minutes is 0.5 and 45 minutes is 0.75, so 7 hours 45 minutes is 7.75 hours." },
+    { "q": "What if a shift goes past midnight?", "a": "If the end time is earlier than the start time, the calculator assumes the shift ended the next day. 10:00 PM to 6:00 AM is 8 hours." },
+    { "q": "How do I add times like 1:45 and 2:30?", "a": "Add the minutes first: 45 + 30 = 75 minutes, which is 1 hour 15 minutes. Then add the hours: 1 + 2 + 1 = 4 hours 15 minutes. The first box does this for any number of rows." },
+    { "q": "Can I type 1.5 hours?", "a": "Yes. Any box accepts decimals, so 1.5 in the hours box means 1 hour 30 minutes." }
+  ]
+}

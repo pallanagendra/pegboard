@@ -11,18 +11,12 @@
             <label for="pp-doc">Photo for</label>
             <select class="select" id="pp-doc" name="doc" data-docs></select>
             <p class="field__help" data-doc-help></p>
+            <p class="pp-note" data-doc-note hidden></p>
           </div>
 
           <div class="pp-rules">
             <h2 class="pp-rules__title">What this tool can’t check for you</h2>
-            <ul>
-              <li><strong>Plain white or off-white background</strong>, with no shadows, patterns or objects.</li>
-              <li><strong>No glasses</strong>, hats or headphones. Head coverings only for religious or medical reasons.</li>
-              <li><strong>Face the camera</strong>, eyes open, neutral expression, mouth closed.</li>
-              <li><strong>Even light</strong> on your face, in color, sharp and in focus.</li>
-              <li><strong>Taken in the last 6 months.</strong></li>
-              <li><strong>Not edited.</strong> No filters, retouching or AI. If the background or lighting is wrong, take the photo again.</li>
-            </ul>
+            <ul data-rules></ul>
           </div>
         </form>
 
@@ -38,10 +32,10 @@
           </div>
 
           <div class="pp-editor" data-editor hidden>
-            <div class="pp-frame">
+            <div class="pp-frame" data-frame>
               <canvas data-canvas tabindex="0" role="img" aria-label="Your photo with guide lines. Drag to move it, or use the arrow keys. Plus and minus zoom."></canvas>
             </div>
-            <p class="field__help mt-0 pp-hint">Drag the photo and zoom until your <strong>chin rests on the lower line</strong> and the <strong>top of your hair is inside the shaded band</strong>.</p>
+            <p class="field__help mt-0 pp-hint" data-hint></p>
             <div class="field">
               <label for="pp-zoom">Zoom</label>
               <div class="range"><input id="pp-zoom" type="range" min="100" max="400" step="1" value="100" data-zoom><output for="pp-zoom" data-suffix="%"></output></div>

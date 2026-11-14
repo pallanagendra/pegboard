@@ -25,6 +25,10 @@
   {{envBanner}}
   <header class="site-header">
     <div class="wrap site-header__inner">
+      <div class="site-header__start">
+        <button class="menu-button" type="button" data-menu-open aria-haspopup="dialog" aria-controls="tool-menu" aria-label="Open the list of all tools" title="All tools">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16M4 12h16M4 17.5h16"/></svg>
+        </button>
       <a class="brand" href="{{home}}" aria-label="{{siteName}} home">
         <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
           <rect x="1" y="1" width="30" height="30" rx="7" class="brand__board"/>
@@ -34,6 +38,7 @@
         </svg>
         <span class="brand__name">{{siteName}}</span>
       </a>
+      </div>
       <nav class="site-nav" aria-label="Main">
         <a href="{{home}}#tools" class="site-nav__link">All tools</a>
         <a href="{{aboutHref}}" class="site-nav__link">About</a>
@@ -44,6 +49,29 @@
       </nav>
     </div>
   </header>
+
+  <dialog class="menu" id="tool-menu" aria-labelledby="tool-menu-title" data-menu>
+    <div class="menu__head">
+      <h2 class="menu__title" id="tool-menu-title">All tools</h2>
+      <button class="menu__close" type="button" data-menu-close aria-label="Close the list of tools">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <form class="menu__search" role="search" data-menu-search>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+      <input type="search" placeholder="Search tools" aria-label="Search tools" autocomplete="off" spellcheck="false" data-menu-input>
+      <kbd class="finder__kbd" aria-hidden="true">/</kbd>
+    </form>
+    <nav class="menu__body" aria-label="All tools" data-menu-body>
+      <section class="menu__group" data-menu-recent hidden>
+        <h3 class="menu__heading">Recently used</h3>
+        <ul class="menu__list"></ul>
+      </section>
+{{toolMenu}}
+      <p class="menu__empty" data-menu-empty hidden>No tool matches that.</p>
+    </nav>
+    <a class="menu__home" href="{{home}}">Home</a>
+  </dialog>
 
   <main id="main">
 {{content}}

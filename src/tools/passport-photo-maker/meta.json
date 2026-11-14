@@ -1,0 +1,75 @@
+{
+  "name": "Passport photo maker",
+  "title": "Passport Photo Maker: US, UK, India and Schengen, No Upload",
+  "h1": "Passport photo maker",
+  "description": "Size your own photo for a US, UK, Indian or Australian passport or a Schengen visa, with a 4x6 print sheet. Done on your device: no upload, no retouching.",
+  "summary": "Crop your own photo to the official size for six passports and visas, with a 4 × 6 print sheet.",
+  "category": "files",
+  "order": 255,
+  "keywords": [
+    "passport",
+    "passport photo",
+    "passport picture",
+    "2x2",
+    "2 x 2",
+    "35x45",
+    "35 x 45",
+    "visa photo",
+    "dv lottery",
+    "green card lottery",
+    "us",
+    "usa",
+    "uk",
+    "british",
+    "india",
+    "indian",
+    "630x810",
+    "australia",
+    "australian",
+    "schengen",
+    "europe",
+    "id photo",
+    "photo size",
+    "print",
+    "4x6",
+    "crop",
+    "renewal"
+  ],
+  "related": [
+    "image-resizer",
+    "heic-to-jpg",
+    "image-compressor"
+  ],
+  "howTo": [
+    "Take a photo against a plain, light wall, in even light. Ask someone else to take it from a few feet away rather than taking a selfie.",
+    "Choose the photo here and pick the document it’s for. The background, glasses and date rules for that document appear below the list.",
+    "Drag and zoom until your <strong>chin rests on the lower line</strong> and the <strong>top of your head is inside the shaded band</strong>. That puts your head at the official size.",
+    "Download the photo for an online form, or the 4 × 6 print sheet to print at any photo counter. Cut out one photo and check its size with a ruler."
+  ],
+  "faq": [
+    {
+      "q": "Is my photo uploaded anywhere?",
+      "a": "No. The photo is opened, cropped and saved in your browser on your own device. Nothing is sent to a server, and the page works offline once it has loaded."
+    },
+    {
+      "q": "Does this tool change the background or retouch my photo?",
+      "a": "No, on purpose. Passport offices reject photos that were edited: the US Department of State refuses photos changed with filters, retouching or AI, and the UK, India and Canada say the same about computer-altered photos. This tool only crops and resizes your original photo. If the background or lighting is wrong, take the photo again."
+    },
+    {
+      "q": "Which passport and visa photo sizes does it make?",
+      "a": "United States passport and visa: 2 × 2 inches, head 1 to 1⅜ inches. India passport: 630 × 810 pixels, face filling 80% to 85%. United Kingdom passport: 35 × 45 mm, head 29 to 34 mm. Australia passport and Schengen visa: 35 × 45 mm, head 32 to 36 mm. The guide lines change to match the document you choose."
+    },
+    {
+      "q": "Why isn’t Canada on the list?",
+      "a": "Canada only accepts passport photos taken in person by a commercial photographer, with the studio’s name and address on the back, so a photo you size yourself would be refused."
+    },
+    {
+      "q": "How do I print the 4 × 6 sheet?",
+      "a": "Order it as a normal 4 × 6 inch print at a pharmacy, store or online photo service, or print it at home on photo paper at full size (turn off “fit to page”). Each photo has a thin line to cut along. Measure one before you send it. For UK and Australian passports use a photo lab rather than a home printer."
+    },
+    {
+      "q": "Will my photo be accepted?",
+      "a": "No tool can promise that. This one gets the size and head position right and warns you about a dark or uneven background, but the passport office makes the final decision. Read the short list on this page of what it can’t check, such as glasses, expression and how recent the photo is."
+    }
+  ]
+}

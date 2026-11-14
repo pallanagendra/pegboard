@@ -35,6 +35,14 @@ chips.forEach((chip) =>
   }),
 );
 
+// tool pages link back here with a category chosen: /?category=files#tools
+const wanted = new URLSearchParams(location.search).get('category');
+const wantedChip = chips.find((c) => c.dataset.filter === wanted);
+if (wantedChip) {
+  category = wanted;
+  chips.forEach((c) => c.setAttribute('aria-pressed', String(c === wantedChip)));
+}
+
 document.querySelector('[data-clear-search]').addEventListener('click', () => {
   input.value = '';
   category = 'all';

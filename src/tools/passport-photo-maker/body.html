@@ -1,0 +1,53 @@
+      <div class="workspace workspace--even">
+        <form class="panel panel--inputs" data-form novalidate>
+          <label class="dropzone" data-dropzone>
+            <input type="file" class="visually-hidden" accept="image/*,.heic,.heif" data-file-input>
+            <svg class="dropzone__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+            <span class="dropzone__title">Choose your photo or drop it here</span>
+            <span class="dropzone__hint">JPG, PNG or HEIC, straight from your phone or camera. On a phone you can take a new one.</span>
+          </label>
+
+          <div class="field">
+            <label for="pp-doc">Photo for</label>
+            <select class="select" id="pp-doc" name="doc" data-docs></select>
+            <p class="field__help" data-doc-help></p>
+            <p class="pp-note" data-doc-note hidden></p>
+          </div>
+
+          <div class="pp-rules">
+            <h2 class="pp-rules__title">What this tool can’t check for you</h2>
+            <ul data-rules></ul>
+          </div>
+        </form>
+
+        <section class="panel workspace__sticky" aria-labelledby="pp-out-title">
+          <div class="panel__head">
+            <h2 class="panel__title" id="pp-out-title">Your photo</h2>
+            <span class="panel__hint" data-source-info></span>
+          </div>
+
+          <div class="files-empty" data-empty>
+            <p>Your photo appears here with guide lines for the head size. It’s cropped and resized on this device: never uploaded, and never retouched.</p>
+            <button type="button" class="button button--small" data-sample>Try a sample drawing</button>
+          </div>
+
+          <div class="pp-editor" data-editor hidden>
+            <div class="pp-frame" data-frame>
+              <canvas data-canvas tabindex="0" role="img" aria-label="Your photo with guide lines. Drag to move it, or use the arrow keys. Plus and minus zoom."></canvas>
+            </div>
+            <p class="field__help mt-0 pp-hint" data-hint></p>
+            <div class="field">
+              <label for="pp-zoom">Zoom</label>
+              <div class="range"><input id="pp-zoom" type="range" min="100" max="400" step="1" value="100" data-zoom><output for="pp-zoom" data-suffix="%"></output></div>
+            </div>
+
+            <ul class="checks-list pp-checks" data-checks aria-live="polite"></ul>
+
+            <div class="actions">
+              <button type="button" class="button button--primary" data-download="photo" disabled>Download photo</button>
+              <button type="button" class="button" data-download="sheet" disabled>Download 4 × 6 print sheet</button>
+            </div>
+            <p class="field__help mt-0" data-output-note></p>
+          </div>
+        </section>
+      </div>

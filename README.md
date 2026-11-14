@@ -1,6 +1,6 @@
 # Pegboard
 
-Small web tools that do one job well: 26 of them, live at https://tools.nexwavesolutions.net. Every tool runs in the browser — nothing typed or opened on the site is uploaded.
+Small web tools that do one job well: 27 of them, live at https://tools.nexwavesolutions.net. Every tool runs in the browser — nothing typed or opened on the site is uploaded.
 
 | Tool (most searched first) | Category | Path |
 |---|---|---|
@@ -29,6 +29,7 @@ Small web tools that do one job well: 26 of them, live at https://tools.nexwaves
 | Image converter | Images and PDF | `/tools/image-converter/` |
 | Case converter | Text | `/tools/case-converter/` |
 | URL encoder and decoder | Web & developer | `/tools/url-encoder-decoder/` |
+| Passport photo maker | Images and PDF | `/tools/passport-photo-maker/` |
 | iFrame embed code generator | Web & developer | `/tools/iframe-generator/` |
 
 **New here?** Follow [docs/SETUP-GUIDE.md](docs/SETUP-GUIDE.md) to put this on GitHub, connect the pipeline and go live. Ideas for what to build next are in [docs/TOOL-IDEAS.md](docs/TOOL-IDEAS.md).

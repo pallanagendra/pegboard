@@ -171,6 +171,23 @@ function footerToolLists(tools, root) {
     .join('\n');
 }
 
+/** The slide-out menu on every page: all tools, grouped by category. site.js adds search and "Recently used". */
+function toolMenu(tools, root) {
+  return Object.entries(config.categories)
+    .map(([key, label]) => {
+      const inCat = tools.filter((t) => t.category === key);
+      if (!inCat.length) return '';
+      const items = inCat
+        .map((t) => {
+          const search = [t.name, ...(t.keywords || [])].join(' ').toLowerCase();
+          return `<li data-search="${esc(search)}"><a class="menu__link" href="${link(root, `tools/${t.slug}/`)}" data-slug="${esc(t.slug)}"><span class="menu__icon" aria-hidden="true">${t.icon}</span><span>${esc(t.name)}${t.draft ? ' <span class="badge">Draft</span>' : ''}</span></a></li>`;
+        })
+        .join('');
+      return `      <section class="menu__group" data-menu-group><h3 class="menu__heading">${esc(label)}</h3><ul class="menu__list">${items}</ul></section>`;
+    })
+    .join('\n');
+}
+
 function baseVars(outFile, tools) {
   const root = rootFor(outFile);
   return {
@@ -188,6 +205,7 @@ function baseVars(outFile, tools) {
     envBanner: envBanner(),
     robotsMeta: isProd ? '' : '<meta name="robots" content="noindex, nofollow">',
     footerToolLists: footerToolLists(tools, root),
+    toolMenu: toolMenu(tools, root),
     scripts: '',
     jsonLd: '',
     bodyClass: '',
@@ -237,7 +255,7 @@ async function build() {
     const content = `
     <div class="page-head">
       <div class="wrap">
-        <nav class="crumbs" aria-label="Breadcrumb"><a href="${link(root, '')}#tools">All tools</a><span aria-hidden="true">/</span><span>${esc(config.categories[tool.category])}</span></nav>
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="${link(root, '')}#tools">All tools</a><span aria-hidden="true">/</span><a href="${link(root, '')}?category=${esc(tool.category)}#tools">${esc(config.categories[tool.category])}</a></nav>
         <div class="page-head__row">
           <span class="page-head__icon" aria-hidden="true">${tool.icon}</span>
           <div>

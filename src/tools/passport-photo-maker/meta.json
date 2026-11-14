@@ -1,0 +1,24 @@
+{
+  "name": "Passport photo maker",
+  "title": "Passport Photo Maker: Free 2x2 US Passport Photo, No Upload",
+  "h1": "Passport photo maker",
+  "description": "Size your own photo to the official 2x2 inch US passport or visa spec and get a 4x6 print sheet. Cropped on your device: never uploaded, never retouched.",
+  "summary": "Crop your own photo to the official 2 × 2 inch size, with a 4 × 6 print sheet.",
+  "category": "files",
+  "order": 255,
+  "keywords": ["passport", "passport photo", "passport picture", "2x2", "2 x 2", "visa photo", "dv lottery", "green card lottery", "id photo", "photo size", "print", "4x6", "crop", "renewal"],
+  "related": ["image-resizer", "heic-to-jpg", "image-compressor"],
+  "howTo": [
+    "Take a photo against a plain white or off-white wall, in even light, without glasses. Ask someone else to take it from a few feet away rather than taking a selfie.",
+    "Choose the photo here and pick what it’s for: a US passport, or a US visa or DV lottery entry.",
+    "Drag and zoom until your <strong>chin rests on the lower line</strong> and the <strong>top of your hair is inside the shaded band</strong>. That puts your head at the official size.",
+    "Download the photo for an online form, or the 4 × 6 print sheet to print at any photo counter. Cut out one photo and check that it measures 2 × 2 inches."
+  ],
+  "faq": [
+    { "q": "Is my photo uploaded anywhere?", "a": "No. The photo is opened, cropped and saved in your browser on your own device. Nothing is sent to a server, and the page works offline once it has loaded." },
+    { "q": "Does this tool change the background or retouch my photo?", "a": "No, on purpose. The US Department of State rejects passport photos that were edited with filters, retouching or AI, including photos with a replaced background. This tool only crops and resizes your original photo. If the background or lighting is wrong, take the photo again against a plain white wall." },
+    { "q": "What size is a US passport photo?", "a": "2 × 2 inches (51 × 51 mm), with your head between 1 and 1⅜ inches from the bottom of your chin to the top of your hair. For a digital photo that means the head fills 50% to 69% of the height. The guide lines on this page are set to those numbers." },
+    { "q": "How do I print the 4 × 6 sheet?", "a": "Order it as a normal 4 × 6 inch print at a pharmacy, store or online photo service, or print it at home on photo paper at full size (turn off “fit to page”). The sheet holds two photos with a thin line to cut along. Measure one before you send it: it should be exactly 2 × 2 inches." },
+    { "q": "Will my photo be accepted?", "a": "No tool can promise that. This one gets the size and head position right and warns you about a dark or uneven background, but the passport agency makes the final decision. Read the short list on this page of what it can’t check, such as glasses, expression and how recent the photo is." }
+  ]
+}

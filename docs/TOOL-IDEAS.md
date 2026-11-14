@@ -6,13 +6,14 @@ Effort: **S** = an evening, **M** = a weekend.
 
 ## Build status (November 2026)
 
-26 tools on tools.nexwavesolutions.net. Since release 0.3.0 the home page lists them by US monthly searches (most searched first), and the categories are ordered by their combined demand: Everyday, Calculators, Generators, Text, Images and PDF, Web & developer. To place a new tool, set `order` in its `meta.json` between its neighbours by demand (the numbers go up in tens).
+27 tools on tools.nexwavesolutions.net. Since release 0.3.0 the home page lists them by US monthly searches (most searched first), and the categories are ordered by their combined demand: Everyday, Calculators, Generators, Text, Images and PDF, Web & developer. To place a new tool, set `order` in its `meta.json` between its neighbours by demand (the numbers go up in tens).
 
 | Release | Tools |
 |---|---|
 | 0.1.0 | Word counter, QR code generator, barcode generator, iFrame embed code generator, URL encoder and decoder |
 | 0.2.0 | Image resizer, compressor and converter; percentage, loan, age and time calculators, days between dates; flip a coin, random numbers, dice, stopwatch and timer, spin the wheel, typing test; password generator, case converter, JSON formatter, Base64, color picker |
 | 0.3.0 | HEIC to JPG (and HEIC support in every image tool), Merge PDF (photos become pages too) |
+| 0.4.0 | Passport photo maker (US passport, US visa and DV lottery); an all-tools menu on every page with search and recently used tools |
 
 Still to build: margin calculator, salary to hourly, meta description checker. Natural next steps from 0.3.0: JPG to PDF and split PDF as their own pages, reusing the Merge PDF code.
 
@@ -43,6 +44,7 @@ The strongest fit for Pegboard: high demand, and "your files never leave your de
 | Image resizer | 110,000 | S | Canvas. Presets for Instagram, passport photos, email. |
 | Image compressor | 60,500 (+ "compress image" 22,200) | S | Canvas `toBlob` quality slider, target size, batch. |
 | PNG to JPG (and JPG/WebP/PNG either way) | 60,500 | S | Same engine as the resizer; one page per conversion pair. |
+| Passport photo maker | about 5,400 each for "passport photo maker", "tool", "generator" and "creator" *(third-party estimate, unverified)* | M | Crop and resize only: the State Department rejects edited or AI-altered photos, so no background removal. US passport and US visa/DV lottery first; one focused page per country later, after checking each country's rules. |
 
 ### Calculators *(new category)*
 

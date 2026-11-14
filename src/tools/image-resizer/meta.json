@@ -7,7 +7,7 @@
   "category": "files",
   "order": 190,
   "keywords": ["resize", "resizer", "resize image", "image size", "photo", "picture", "pixels", "scale", "crop", "dimensions", "instagram", "batch", "jpg", "png", "webp"],
-  "related": ["image-compressor", "heic-to-jpg", "image-converter"],
+  "related": ["image-compressor", "heic-to-jpg", "image-converter", "passport-photo-maker"],
   "howTo": [
     "Choose your images, drop them on the page, or paste one with Ctrl+V. You can add up to 50 at once.",
     "Pick a common size such as an Instagram post or a YouTube thumbnail, or type the width and height you need. Leave one empty to keep the proportions.",

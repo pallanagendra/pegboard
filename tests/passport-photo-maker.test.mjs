@@ -10,7 +10,8 @@ test('passport: guides keep the head and eyes inside the official ranges', () =>
   for (const doc of Object.values(pp.DOCS)) {
     const g = pp.guides(doc);
     // eye line, measured from the bottom
-    assert.ok(1 - g.eyes >= doc.eyes.min && 1 - g.eyes <= doc.eyes.max, `${doc.label}: eye line`);
+    if (doc.eyes) assert.ok(1 - g.eyes >= doc.eyes.min && 1 - g.eyes <= doc.eyes.max, `${doc.label}: eye line`);
+    else near(g.crown, doc.crownGap, 1e-12);
     // chin on the line and hair anywhere in the band → head size within spec
     for (const hair of [g.hairTop, g.crown, g.hairBottom]) {
       const head = g.chin - hair;
@@ -21,77 +22,145 @@ test('passport: guides keep the head and eyes inside the official ranges', () =>
   assert.equal(pp.docFor('nope'), pp.DOCS['us-passport']);
 });
 
-test('passport: the crop is a square that always stays inside the photo', () => {
+test('passport: every document has a complete, sensible spec', () => {
+  assert.deepEqual(Object.keys(pp.DOCS), ['us-passport', 'us-visa', 'in-passport', 'uk-passport', 'au-passport', 'schengen-visa']);
+  for (const [id, doc] of Object.entries(pp.DOCS)) {
+    for (const field of ['label', 'help', 'background', 'glasses', 'recent']) assert.ok(doc[field], `${id}: ${field}`);
+    assert.ok(doc.head.min > 0.4 && doc.head.min < doc.head.max && doc.head.max < 0.9, `${id}: head range`);
+    assert.ok(doc.eyes || doc.crownGap > 0, `${id}: needs an eye line or a gap above the head`);
+    assert.ok(['hair', 'head'].includes(doc.topOf), `${id}: topOf`);
+    assert.ok(doc.file.minWidth >= 600 && doc.file.minWidth <= doc.file.maxWidth, `${id}: file widths`);
+    // the printed shape matches the photo's shape
+    if (doc.print) near(doc.print.inches[0] / doc.print.inches[1], pp.aspect(doc), 1e-9);
+    // a document for upload says how big the file may be
+    if (doc.file.upload) assert.ok(doc.file.maxBytes > 0, `${id}: upload limit`);
+  }
+  // 35 × 45 mm is 7:9, and so is India's 630 × 810 pixels
+  near(pp.aspect(pp.DOCS['uk-passport']), 35 / 45, 1e-12);
+  near(pp.aspect(pp.DOCS['in-passport']), 630 / 810, 1e-12);
+  // UK head: 29 to 34 mm of 45
+  near(pp.DOCS['uk-passport'].head.min * 45, 29, 1e-9);
+  near(pp.DOCS['au-passport'].head.max * 45, 36, 1e-9);
+});
+
+test('passport: the crop always stays inside the photo', () => {
   const photo = { width: 3000, height: 4000 };
-  assert.deepEqual(pp.cropSquare(photo, {}), { sx: 0, sy: 500, size: 3000, zoom: 1, cx: 1500, cy: 2000 });
+  assert.deepEqual(pp.cropRect(photo, {}), { sx: 0, sy: 500, sw: 3000, sh: 3000, zoom: 1, cx: 1500, cy: 2000 });
   // pushed far out of bounds → clamped to the edges
-  const corner = pp.cropSquare(photo, { zoom: 2, cx: -500, cy: 99999 });
-  assert.deepEqual([corner.sx, corner.sy, corner.size], [0, 2500, 1500]);
+  const corner = pp.cropRect(photo, { zoom: 2, cx: -500, cy: 99999 });
+  assert.deepEqual([corner.sx, corner.sy, corner.sw, corner.sh], [0, 2500, 1500, 1500]);
   // zoom is limited to 1…max
-  assert.equal(pp.cropSquare(photo, { zoom: 0.2 }).zoom, 1);
+  assert.equal(pp.cropRect(photo, { zoom: 0.2 }).zoom, 1);
   assert.equal(pp.maxZoom(photo), 8);
   assert.equal(pp.maxZoom({ width: 900, height: 1200 }), 3);
   assert.equal(pp.maxZoom({ width: 200, height: 200 }), 1);
-  assert.equal(pp.cropSquare({ width: 900, height: 1200 }, { zoom: 50 }).size, 300);
+  assert.equal(pp.cropRect({ width: 900, height: 1200 }, { zoom: 50 }).sw, 300);
   // landscape photos work the same way
-  assert.deepEqual(pp.cropSquare({ width: 4000, height: 3000 }, {}), { sx: 500, sy: 0, size: 3000, zoom: 1, cx: 2000, cy: 1500 });
+  assert.deepEqual(pp.cropRect({ width: 4000, height: 3000 }, {}), { sx: 500, sy: 0, sw: 3000, sh: 3000, zoom: 1, cx: 2000, cy: 1500 });
+
+  // portrait formats (35 × 45 mm): limited by the width of a tall photo, by the height of a wide one
+  const r = 7 / 9;
+  const tall = pp.cropRect(photo, {}, r);
+  near(tall.sw, 3000, 1e-9);
+  near(tall.sh, 3000 / r, 1e-9);
+  near(tall.sw / tall.sh, r, 1e-12);
+  const wide = pp.cropRect({ width: 4000, height: 1800 }, {}, r);
+  near(wide.sh, 1800, 1e-9);
+  near(wide.sw, 1400, 1e-9);
+  near(wide.sx, 1300, 1e-9);
+  assert.equal(pp.maxZoom({ width: 4000, height: 1800 }, r), 1400 / 300);
+  const pushed = pp.cropRect(photo, { zoom: 2, cx: 99999, cy: -5 }, r);
+  near(pushed.sx + pushed.sw, 3000, 1e-9);
+  assert.equal(pushed.sy, 0);
 });
 
 test('passport: first view, dragging and zooming', () => {
   const photo = { width: 3000, height: 4000 };
   const first = pp.initialView(photo);
-  assert.equal(first.size, 3000);
+  assert.equal(first.sw, 3000);
   assert.equal(first.sy, 150); // nearer the top, where the head is
   assert.equal(pp.initialView({ width: 4000, height: 3000 }).sx, 500);
+  near(pp.initialView(photo, 7 / 9).sy, (4000 - 3000 * 9 / 7) * 0.15, 1e-9);
 
   // dragging the photo right by a quarter of the frame shows more of its left side
-  const zoomed = pp.cropSquare(photo, { zoom: 2, cx: 1500, cy: 2000 });
+  const zoomed = pp.cropRect(photo, { zoom: 2, cx: 1500, cy: 2000 });
   const dragged = pp.panBy(photo, zoomed, 0.25, 0);
   assert.equal(dragged.cx, 1500 - 0.25 * 1500);
   assert.equal(pp.panBy(photo, zoomed, 99, 0).sx, 0);
+  // in a portrait frame, a vertical drag moves by a share of the frame's height
+  const z2 = pp.cropRect(photo, { zoom: 2, cx: 1500, cy: 2000 }, 7 / 9);
+  near(pp.panBy(photo, z2, 0, 0.1, 7 / 9).cy, 2000 - 0.1 * z2.sh, 1e-9);
 
   // zooming keeps the chosen point of the frame over the same spot of the photo
-  const start = pp.cropSquare(photo, { zoom: 1.5, cx: 1400, cy: 1800 });
-  const fx = 0.3;
-  const fy = 0.7;
-  const spot = [start.sx + fx * start.size, start.sy + fy * start.size];
-  const after = pp.zoomAt(photo, start, 3, fx, fy);
-  assert.equal(after.zoom, 3);
-  near(after.sx + fx * after.size, spot[0], 1e-6);
-  near(after.sy + fy * after.size, spot[1], 1e-6);
+  for (const r of [1, 7 / 9]) {
+    const start = pp.cropRect(photo, { zoom: 1.5, cx: 1400, cy: 1800 }, r);
+    const fx = 0.3;
+    const fy = 0.7;
+    const spot = [start.sx + fx * start.sw, start.sy + fy * start.sh];
+    const after = pp.zoomAt(photo, start, 3, fx, fy, r);
+    assert.equal(after.zoom, 3);
+    near(after.sx + fx * after.sw, spot[0], 1e-6);
+    near(after.sy + fy * after.sh, spot[1], 1e-6);
+  }
   // default is the center
-  const centered = pp.zoomAt(photo, start, 2);
-  near(centered.cx, start.cx, 1e-6);
+  const start = pp.cropRect(photo, { zoom: 1.5, cx: 1400, cy: 1800 });
+  near(pp.zoomAt(photo, start, 2).cx, start.cx, 1e-6);
 });
 
 test('passport: output size follows each document', () => {
-  const passport = pp.DOCS['us-passport'].digital;
-  const visa = pp.DOCS['us-visa'].digital;
-  assert.deepEqual(pp.outputSide(3000, passport), { side: 1200, enlarged: false });
-  assert.deepEqual(pp.outputSide(873.6, passport), { side: 873, enlarged: false });
-  assert.deepEqual(pp.outputSide(420, passport), { side: 600, enlarged: true });
-  assert.deepEqual(pp.outputSide(3000, visa), { side: 600, enlarged: false });
-  assert.deepEqual(pp.outputSide(599.8, visa), { side: 600, enlarged: false });
+  const passport = pp.DOCS['us-passport'];
+  const visa = pp.DOCS['us-visa'];
+  assert.deepEqual(pp.outputSize(3000, passport), { width: 1200, height: 1200, enlarged: false });
+  assert.deepEqual(pp.outputSize(873.6, passport), { width: 873, height: 873, enlarged: false });
+  assert.deepEqual(pp.outputSize(420, passport), { width: 600, height: 600, enlarged: true });
+  assert.deepEqual(pp.outputSize(3000, visa), { width: 600, height: 600, enlarged: false });
+  assert.deepEqual(pp.outputSize(599.8, visa), { width: 600, height: 600, enlarged: false });
+  // India wants exactly 630 × 810; the 35 × 45 mm prints are saved at 600 dpi
+  assert.deepEqual(pp.outputSize(3000, pp.DOCS['in-passport']), { width: 630, height: 810, enlarged: false });
+  assert.deepEqual(pp.outputSize(500, pp.DOCS['in-passport']), { width: 630, height: 810, enlarged: true });
+  assert.deepEqual(pp.outputSize(3000, pp.DOCS['uk-passport']), { width: 827, height: 1063, enlarged: false });
 
-  assert.deepEqual(pp.sizeCheck(40 * 1024, passport), { ok: false, problem: 'small' });
-  assert.deepEqual(pp.sizeCheck(300 * 1024, passport), { ok: true, problem: '' });
-  assert.deepEqual(pp.sizeCheck(11 * 1024 * 1024, passport), { ok: false, problem: 'large' });
-  assert.deepEqual(pp.sizeCheck(40 * 1024, visa), { ok: true, problem: '' });
-  assert.deepEqual(pp.sizeCheck(241 * 1024, visa), { ok: false, problem: 'large' });
+  assert.equal(pp.printDpi(1200, passport), 600);
+  assert.equal(pp.printDpi(600, visa), 300);
+  assert.equal(pp.printDpi(827, pp.DOCS['schengen-visa']), 600);
+  assert.equal(pp.printDpi(630, pp.DOCS['in-passport']), 0);
 
-  assert.equal(pp.fileName('us-passport', 'photo', 'jpg', 1200), 'us-passport-photo-1200x1200.jpg');
+  assert.deepEqual(pp.sizeCheck(40 * 1024, passport.file), { ok: false, problem: 'small' });
+  assert.deepEqual(pp.sizeCheck(300 * 1024, passport.file), { ok: true, problem: '' });
+  assert.deepEqual(pp.sizeCheck(11 * 1024 * 1024, passport.file), { ok: false, problem: 'large' });
+  assert.deepEqual(pp.sizeCheck(40 * 1024, visa.file), { ok: true, problem: '' });
+  assert.deepEqual(pp.sizeCheck(241 * 1024, visa.file), { ok: false, problem: 'large' });
+  assert.deepEqual(pp.sizeCheck(251 * 1024, pp.DOCS['in-passport'].file), { ok: false, problem: 'large' });
+  assert.deepEqual(pp.sizeCheck(5 * 1024 * 1024, pp.DOCS['uk-passport'].file), { ok: true, problem: '' });
+
+  assert.equal(pp.fileName('us-passport', 'photo', 'jpg', 1200, 1200), 'us-passport-photo-1200x1200.jpg');
+  assert.equal(pp.fileName('uk-passport', 'photo', 'jpg', 827, 1063), 'uk-passport-photo-827x1063.jpg');
   assert.equal(pp.fileName('us-visa', 'sheet', 'jpg'), 'us-visa-photos-4x6-print.jpg');
-  assert.equal(pp.fileName('../x', 'photo', 'png', 600), 'us-passport-photo-600x600.png');
+  assert.equal(pp.fileName('../x', 'photo', 'png', 600, 600), 'us-passport-photo-600x600.png');
 });
 
-test('passport: print sheet puts 2 × 2 inch photos on a 4 × 6 inch print', () => {
+test('passport: print sheets fit a 4 × 6 inch print with room to trim', () => {
   const sheet = pp.sheetLayout();
-  assert.deepEqual([sheet.width, sheet.height, sheet.side], [1800, 1200, 600]);
+  assert.deepEqual([sheet.width, sheet.height, sheet.w, sheet.h], [1800, 1200, 600, 600]);
   assert.deepEqual(sheet.photos, [{ x: 225, y: 300 }, { x: 975, y: 300 }]);
-  // photos never touch each other or the edges
-  for (const p of sheet.photos) assert.ok(p.x >= 150 && p.y >= 150 && p.x + 600 <= 1650 && p.y + 600 <= 1050);
   assert.equal(pp.sheetLayout({ count: 1 }).photos[0].x, 600);
-  assert.throws(() => pp.sheetLayout({ count: 6 }), /don’t fit/);
+  assert.throws(() => pp.sheetLayout({ count: 3 }), /don’t fit/);
+
+  // every printed document: right size, inside the margins, not touching
+  for (const [id, doc] of Object.entries(pp.DOCS)) {
+    if (!doc.print) continue;
+    const s = pp.sheetLayout({ photo: doc.print.inches, count: doc.print.count });
+    assert.equal(s.photos.length, doc.print.count, id);
+    near(s.w / 300, doc.print.inches[0], 0.002);
+    near(s.h / 300, doc.print.inches[1], 0.002);
+    s.photos.forEach((p, i) => {
+      assert.ok(p.x >= 75 && p.y >= 75 && p.x + s.w <= 1725 && p.y + s.h <= 1125, `${id}: photo ${i} inside the margins`);
+      if (i) assert.ok(p.x - (s.photos[i - 1].x + s.w) >= 100, `${id}: gap between photos`);
+    });
+  }
+  // 35 × 45 mm at 300 dpi
+  const uk = pp.sheetLayout({ photo: pp.DOCS['uk-passport'].print.inches, count: 3 });
+  assert.deepEqual([uk.w, uk.h], [413, 531]);
 });
 
 test('passport: print resolution is written into the JPG header', () => {

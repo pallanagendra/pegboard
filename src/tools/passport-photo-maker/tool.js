@@ -1,13 +1,17 @@
 import { decode, render, encode } from '../../assets/js/image-engine.js';
 import { isImage, formatBytes, fitToSize } from '../../assets/js/image-core.js';
 import { readForm, persistForm, downloadBlob, toast, debounce } from '../../assets/js/ui.js';
-import { DOCS, docFor, guides, cropSquare, initialView, panBy, zoomAt, maxZoom, outputSide, sheetLayout, setJpegDpi, sizeCheck, backgroundCheck, fileName } from './logic.js';
+import { DOCS, docFor, aspect, guides, cropRect, initialView, panBy, zoomAt, maxZoom, outputSize, printDpi, sheetLayout, setJpegDpi, sizeCheck, backgroundCheck, fileName } from './logic.js';
 
 const root = document.querySelector('[data-tool]');
 const $ = (sel) => root.querySelector(sel);
 const form = $('[data-form]');
 const docSelect = $('[data-docs]');
 const docHelp = $('[data-doc-help]');
+const docNote = $('[data-doc-note]');
+const rules = $('[data-rules]');
+const hint = $('[data-hint]');
+const frame = $('[data-frame]');
 const dropzone = $('[data-dropzone]');
 const input = $('[data-file-input]');
 const empty = $('[data-empty]');
@@ -27,11 +31,12 @@ persistForm(form, 'passport-photo-maker');
 let decoded = null; // the full-size photo
 let preview = null; // a smaller copy for smooth dragging
 let view = null; // { zoom, cx, cy } in full-size pixels
-let output = null; // { blob, side, ext } ready to download
+let output = null; // { blob, width, height, ext } ready to download
 let opening = 0; // newest photo being opened
 let preparing = 0; // newest set of files being made
 
 const doc = () => docFor(readForm(form).doc);
+const ratio = () => aspect(doc());
 
 // ------------------------------------------------------------ opening a photo
 async function open(file) {
@@ -45,8 +50,9 @@ async function open(file) {
     decoded?.close();
     decoded = next;
     preview = makePreview(decoded);
-    view = initialView(decoded);
-    zoomInput.max = String(Math.round(maxZoom(decoded) * 100));
+    view = initialView(decoded, ratio());
+    shape = doc().ratio.join(':');
+    zoomInput.max = String(Math.round(maxZoom(decoded, ratio()) * 100));
     sourceInfo.textContent = `${decoded.width} × ${decoded.height} px`;
     empty.hidden = true;
     editor.hidden = false;
@@ -114,43 +120,49 @@ root.querySelector('[data-sample]').addEventListener('click', async () => open(a
 
 // ------------------------------------------------------------ drawing the editor
 function fitCanvas() {
-  const side = Math.round(canvas.clientWidth * Math.min(window.devicePixelRatio || 1, 2));
-  if (side && canvas.width !== side) {
-    canvas.width = side;
-    canvas.height = side;
+  const r = ratio();
+  frame.style.aspectRatio = `${doc().ratio[0]} / ${doc().ratio[1]}`;
+  frame.style.maxWidth = r < 1 ? '330px' : '420px';
+  const width = Math.round(canvas.clientWidth * Math.min(window.devicePixelRatio || 1, 2));
+  const height = Math.round(width / r);
+  if (width && (canvas.width !== width || canvas.height !== height)) {
+    canvas.width = width;
+    canvas.height = height;
   }
 }
 
 function draw() {
   if (!decoded) return;
   const ctx = canvas.getContext('2d');
-  const S = canvas.width;
-  const crop = cropSquare(decoded, view);
+  const W = canvas.width;
+  const H = canvas.height;
+  const crop = cropRect(decoded, view, ratio());
   const k = preview.scale;
   ctx.fillStyle = '#fff';
-  ctx.fillRect(0, 0, S, S);
+  ctx.fillRect(0, 0, W, H);
   ctx.imageSmoothingQuality = 'high';
-  ctx.drawImage(preview.source, crop.sx * k, crop.sy * k, crop.size * k, crop.size * k, 0, 0, S, S);
+  ctx.drawImage(preview.source, crop.sx * k, crop.sy * k, crop.sw * k, crop.sh * k, 0, 0, W, H);
 
-  const g = guides(doc());
-  const u = S / 400; // sizes below are for a 400 px frame
+  const d = doc();
+  const g = guides(d);
+  const u = W / 400; // sizes below are for a 400 px wide frame
   const line = (y, dash = []) => {
     for (const [color, width] of [['rgba(23,33,43,0.85)', 3.5 * u], ['#ffc83d', 1.75 * u]]) {
       ctx.beginPath();
-      ctx.setLineDash(dash.map((d) => d * u));
+      ctx.setLineDash(dash.map((v) => v * u));
       ctx.strokeStyle = color;
       ctx.lineWidth = width;
-      ctx.moveTo(0, y * S);
-      ctx.lineTo(S, y * S);
+      ctx.moveTo(0, y * H);
+      ctx.lineTo(W, y * H);
       ctx.stroke();
     }
     ctx.setLineDash([]);
   };
-  const label = (text, y, above) => {
-    ctx.font = `600 ${11 * u}px system-ui, sans-serif`;
+  const label = (text, y) => {
+    ctx.font = `600 ${12 * u}px system-ui, sans-serif`;
     const w = ctx.measureText(text).width + 12 * u;
-    const h = 18 * u;
-    const top = above ? y * S - h - 3 * u : y * S + 3 * u;
+    const h = 19 * u;
+    const top = y * H + 3 * u;
     ctx.fillStyle = 'rgba(23,33,43,0.85)';
     ctx.fillRect(6 * u, top, w, h);
     ctx.fillStyle = '#fff';
@@ -158,9 +170,9 @@ function draw() {
     ctx.fillText(text, 12 * u, top + h / 2 + 0.5 * u);
   };
 
-  // band for the top of the hair
+  // band for the top of the head
   ctx.fillStyle = 'rgba(255,200,61,0.28)';
-  ctx.fillRect(0, g.hairTop * S, S, (g.hairBottom - g.hairTop) * S);
+  ctx.fillRect(0, g.hairTop * H, W, (g.hairBottom - g.hairTop) * H);
   line(g.hairTop, [6, 5]);
   line(g.hairBottom, [6, 5]);
   line(g.chin);
@@ -169,16 +181,17 @@ function draw() {
   ctx.lineWidth = 1 * u;
   ctx.setLineDash([4 * u, 6 * u]);
   ctx.beginPath();
-  ctx.moveTo(S / 2, 0);
-  ctx.lineTo(S / 2, S);
+  ctx.moveTo(W / 2, 0);
+  ctx.lineTo(W / 2, H);
   ctx.stroke();
   ctx.beginPath();
-  const headH = g.chin - g.crown;
-  ctx.ellipse(S / 2, ((g.crown + g.chin) / 2) * S, headH * 0.36 * S, (headH / 2) * S, 0, 0, Math.PI * 2);
+  const headH = (g.chin - g.crown) * H;
+  ctx.ellipse(W / 2, ((g.crown + g.chin) / 2) * H, headH * 0.36, headH / 2, 0, 0, Math.PI * 2);
   ctx.stroke();
   ctx.setLineDash([]);
-  label('Top of hair in this band', g.hairTop, false);
-  label('Chin on this line', g.chin, false);
+  // only label the band when it's tall enough to hold the text
+  if ((g.hairBottom - g.hairTop) * H > 24 * u) label(d.topOf === 'hair' ? 'Top of hair in this band' : 'Top of head in this band', g.hairTop);
+  label('Chin on this line', g.chin);
 }
 
 // ------------------------------------------------------------ moving and zooming
@@ -188,7 +201,7 @@ function setView(next) {
 }
 
 function changed() {
-  const crop = cropSquare(decoded, view);
+  const crop = cropRect(decoded, view, ratio());
   view = crop;
   zoomInput.value = String(Math.round(crop.zoom * 100));
   zoomOutput.textContent = `${zoomInput.value}%`;
@@ -199,7 +212,7 @@ function changed() {
 }
 
 zoomInput.addEventListener('input', () => {
-  if (decoded) setView(zoomAt(decoded, view, Number(zoomInput.value) / 100));
+  if (decoded) setView(zoomAt(decoded, view, Number(zoomInput.value) / 100, 0.5, 0.5, ratio()));
 });
 
 const pointers = new Map();
@@ -219,11 +232,11 @@ canvas.addEventListener('pointermove', (e) => {
   const rect = canvas.getBoundingClientRect();
   pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
   if (pointers.size === 1) {
-    setView(panBy(decoded, view, (e.clientX - prev.x) / rect.width, (e.clientY - prev.y) / rect.height));
+    setView(panBy(decoded, view, (e.clientX - prev.x) / rect.width, (e.clientY - prev.y) / rect.height, ratio()));
   } else if (pinch && pointers.size === 2) {
     const [a, b] = [...pointers.values()];
     const zoom = pinch.zoom * (Math.hypot(a.x - b.x, a.y - b.y) / pinch.distance);
-    setView(zoomAt(decoded, view, zoom, ((a.x + b.x) / 2 - rect.left) / rect.width, ((a.y + b.y) / 2 - rect.top) / rect.height));
+    setView(zoomAt(decoded, view, zoom, ((a.x + b.x) / 2 - rect.left) / rect.width, ((a.y + b.y) / 2 - rect.top) / rect.height, ratio()));
   }
 });
 for (const type of ['pointerup', 'pointercancel']) {
@@ -236,9 +249,9 @@ canvas.addEventListener('keydown', (e) => {
   if (!decoded) return;
   const step = e.shiftKey ? 0.05 : 0.01;
   const moves = { ArrowLeft: [step, 0], ArrowRight: [-step, 0], ArrowUp: [0, step], ArrowDown: [0, -step] };
-  if (moves[e.key]) setView(panBy(decoded, view, ...moves[e.key]));
-  else if (e.key === '+' || e.key === '=') setView(zoomAt(decoded, view, view.zoom * 1.03));
-  else if (e.key === '-' || e.key === '_') setView(zoomAt(decoded, view, view.zoom / 1.03));
+  if (moves[e.key]) setView(panBy(decoded, view, ...moves[e.key], ratio()));
+  else if (e.key === '+' || e.key === '=') setView(zoomAt(decoded, view, view.zoom * 1.03, 0.5, 0.5, ratio()));
+  else if (e.key === '-' || e.key === '_') setView(zoomAt(decoded, view, view.zoom / 1.03, 0.5, 0.5, ratio()));
   else return;
   e.preventDefault();
 });
@@ -249,19 +262,42 @@ window.addEventListener('resize', debounce(() => {
   draw();
 }, 100));
 
+let shape = '';
 function syncDoc() {
-  docHelp.textContent = doc().help;
-  if (decoded) changed();
+  const d = doc();
+  docHelp.textContent = d.help;
+  docNote.textContent = d.note || '';
+  docNote.hidden = !d.note;
+  const top = d.topOf === 'hair' ? 'top of your hair' : 'top of your head (not your hair)';
+  hint.innerHTML = `Drag the photo and zoom until your <strong>chin rests on the lower line</strong> and the <strong>${top} is inside the shaded band</strong>.`;
+  rules.innerHTML = [
+    `<strong>${d.background}</strong>, with no shadows, patterns or objects.`,
+    `<strong>${d.glasses}</strong>, and no hats or headphones. Head coverings only for religious or medical reasons.`,
+    '<strong>Face the camera</strong>, eyes open, neutral expression, mouth closed.',
+    '<strong>Even light</strong> on your face, in color, sharp and in focus.',
+    `<strong>${d.recent}.</strong>`,
+    '<strong>Not edited.</strong> No filters, retouching or AI. If the background or lighting is wrong, take the photo again.',
+  ].map((r) => `<li>${r}</li>`).join('');
+  sheetBtn.hidden = !d.print;
+  photoBtn.textContent = d.file.upload ? 'Download photo' : 'Download single photo';
+  if (!decoded) return;
+  // a different shape of photo (square or portrait) starts from a fresh view
+  const next = d.ratio.join(':');
+  if (next !== shape) view = initialView(decoded, ratio());
+  shape = next;
+  zoomInput.max = String(Math.round(maxZoom(decoded, ratio()) * 100));
+  fitCanvas();
+  changed();
 }
 form.addEventListener('change', syncDoc);
 form.addEventListener('submit', (e) => e.preventDefault());
 syncDoc();
 
 // ------------------------------------------------------------ making the files
-/** The cropped photo at `side` pixels. Only cropped and resized: no pixels are retouched. */
-function renderPhoto(side) {
-  const crop = cropSquare(decoded, view);
-  const plan = { width: side, height: side, sx: crop.sx, sy: crop.sy, sw: crop.size, sh: crop.size, dx: 0, dy: 0, dw: side, dh: side };
+/** The cropped photo at this pixel size. Only cropped and resized: no pixels are retouched. */
+function renderPhoto(width, height) {
+  const crop = cropRect(decoded, view, ratio());
+  const plan = { width, height, sx: crop.sx, sy: crop.sy, sw: crop.sw, sh: crop.sh, dx: 0, dy: 0, dw: width, dh: height };
   return render(decoded, plan, { background: '#ffffff' });
 }
 
@@ -272,7 +308,7 @@ async function withDpi(blob, dpi) {
 
 /** The top corners of the photo, where only the wall should show. Read from a small copy; the photo isn't touched. */
 function cornerPixels(c) {
-  const w = Math.round(c.width * 0.1);
+  const w = Math.round(c.width * 0.08);
   const h = Math.round(c.height * 0.2);
   const inset = Math.round(c.width * 0.02);
   const y = Math.round(c.height * 0.03);
@@ -289,27 +325,31 @@ const prepare = debounce(async () => {
   if (!decoded) return;
   const gen = ++preparing;
   const d = doc();
-  const digital = d.digital;
-  const crop = cropSquare(decoded, view);
-  const { side, enlarged } = outputSide(crop.size, digital);
+  const file = d.file;
+  const crop = cropRect(decoded, view, ratio());
+  const { width, height, enlarged } = outputSize(crop.sw, d);
   try {
-    const c = renderPhoto(side);
+    const c = renderPhoto(width, height);
     const background = backgroundCheck(...cornerPixels(c));
     let blob;
-    if (digital.minBytes) {
-      // passport upload: best quality; step up if the file would be under the form's minimum size
+    if (file.minBytes) {
+      // best quality; step up if the file would be under the form's minimum size
       blob = await encode(c, 'image/jpeg', 0.95);
-      if (blob.size < digital.minBytes) blob = await encode(c, 'image/jpeg', 1);
-      if (blob.size < digital.minBytes) blob = await encode(c, 'image/png');
+      if (blob.size < file.minBytes) blob = await encode(c, 'image/jpeg', 1);
+      if (blob.size < file.minBytes) blob = await encode(c, 'image/png');
+    } else if (file.maxBytes) {
+      blob = (await fitToSize((q) => encode(c, 'image/jpeg', q), file.maxBytes, { max: 0.95 })).blob;
     } else {
-      blob = (await fitToSize((q) => encode(c, 'image/jpeg', q), digital.maxBytes, { max: 0.95 })).blob;
+      blob = await encode(c, 'image/jpeg', 0.95);
     }
     c.width = c.height = 0;
-    blob = await withDpi(blob, side / d.inches);
+    blob = await withDpi(blob, printDpi(width, d));
     if (gen !== preparing) return;
-    output = { blob, side, ext: blob.type === 'image/png' ? 'png' : 'jpg' };
-    showChecks({ side, enlarged, cropSize: Math.round(crop.size), background, size: sizeCheck(blob.size, digital), bytes: blob.size, digital });
-    note.textContent = `Photo: ${side} × ${side} px ${output.ext.toUpperCase()}, ${formatBytes(blob.size)}. Print sheet: two ${d.inches} × ${d.inches} inch photos on a 4 × 6 inch print.`;
+    output = { blob, width, height, ext: blob.type === 'image/png' ? 'png' : 'jpg' };
+    showChecks({ width, height, enlarged, cropWidth: Math.round(crop.sw), background, size: sizeCheck(blob.size, file), bytes: blob.size, file });
+    const parts = [`Photo: ${width} × ${height} px ${output.ext.toUpperCase()}, ${formatBytes(blob.size)}${file.upload ? '' : ', for a photo shop rather than an online form'}.`];
+    if (d.print) parts.push(`Print sheet: ${d.print.count} photos of ${d.print.label} on a 4 × 6 inch print.`);
+    note.textContent = parts.join(' ');
     photoBtn.disabled = false;
     sheetBtn.disabled = false;
   } catch (err) {
@@ -319,18 +359,24 @@ const prepare = debounce(async () => {
   }
 }, 200);
 
-function showChecks({ side, enlarged, cropSize, background, size, bytes, digital }) {
+function showChecks({ width, height, enlarged, cropWidth, background, size, bytes, file }) {
   const rows = [
     enlarged
-      ? [false, `The area you chose is only ${cropSize} px across. Zoom out or use a larger photo, or it will look soft.`]
-      : [true, `Sharp enough: ${side} × ${side} px.`],
-    size.ok
-      ? [true, `File size fits the form: ${formatBytes(bytes)}.`]
-      : [false, size.problem === 'small' ? `File is ${formatBytes(bytes)}, under the ${formatBytes(digital.minBytes)} minimum. Use a larger, sharper photo.` : `File is ${formatBytes(bytes)}, over the ${formatBytes(digital.maxBytes)} limit.`],
+      ? [false, `The area you chose is only ${cropWidth} px wide. Zoom out or use a larger photo, or it will look soft.`]
+      : [true, `Sharp enough: ${width} × ${height} px.`],
+  ];
+  if (file.upload) {
+    rows.push(
+      size.ok
+        ? [true, `File size fits the form: ${formatBytes(bytes)}.`]
+        : [false, size.problem === 'small' ? `File is ${formatBytes(bytes)}, under the ${formatBytes(file.minBytes)} minimum. Use a larger, sharper photo.` : `File is ${formatBytes(bytes)}, over the ${formatBytes(file.maxBytes)} limit.`],
+    );
+  }
+  rows.push(
     background.ok
       ? [true, 'Background behind your head looks light and even.']
-      : [false, `Background looks ${background.light ? 'uneven: a shadow, pattern or object' : 'dark'}. This tool won’t change it, because edited photos are rejected. Retake the photo against a plain white wall.`],
-  ];
+      : [false, `Background looks ${background.light ? 'uneven: a shadow, pattern or object' : 'dark'}. This tool won’t change it, because edited photos are rejected. Retake the photo against a plain, light wall.`],
+  );
   checks.innerHTML = rows
     .map(([ok, text]) => `<li class="${ok ? 'is-pass' : 'is-fail'}"><span class="checks-list__mark">${ok ? 'OK' : 'Check'}</span><span>${text}</span></li>`)
     .join('');
@@ -338,17 +384,17 @@ function showChecks({ side, enlarged, cropSize, background, size, bytes, digital
 
 photoBtn.addEventListener('click', () => {
   if (!output) return;
-  downloadBlob(output.blob, fileName(readForm(form).doc, 'photo', output.ext, output.side));
+  downloadBlob(output.blob, fileName(readForm(form).doc, 'photo', output.ext, output.width, output.height));
 });
 
 sheetBtn.addEventListener('click', async () => {
-  if (!decoded) return;
+  const d = doc();
+  if (!decoded || !d.print) return;
   sheetBtn.disabled = true;
   try {
-    const d = doc();
     const dpi = 300;
-    const layout = sheetLayout({ dpi, inches: d.inches, count: 2 });
-    const photo = renderPhoto(layout.side);
+    const layout = sheetLayout({ dpi, photo: d.print.inches, count: d.print.count });
+    const photo = renderPhoto(layout.w, layout.h);
     const c = document.createElement('canvas');
     c.width = layout.width;
     c.height = layout.height;
@@ -359,12 +405,12 @@ sheetBtn.addEventListener('click', async () => {
     ctx.lineWidth = 2;
     for (const p of layout.photos) {
       ctx.drawImage(photo, p.x, p.y);
-      ctx.strokeRect(p.x - 1, p.y - 1, layout.side + 2, layout.side + 2); // cut along the outside of this line
+      ctx.strokeRect(p.x - 1, p.y - 1, layout.w + 2, layout.h + 2); // cut along the outside of this line
     }
     ctx.fillStyle = '#5d6a77';
     ctx.font = '30px system-ui, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(`Print on 4 × 6 in photo paper at full size. Each photo should measure ${d.inches} × ${d.inches} in.`, c.width / 2, layout.photos[0].y + layout.side + 110);
+    ctx.fillText(`Print on 4 × 6 in photo paper at full size. Each photo should measure ${d.print.label}.`, c.width / 2, layout.photos[0].y + layout.h + 110);
     const blob = await withDpi(await encode(c, 'image/jpeg', 0.95), dpi);
     photo.width = photo.height = 0;
     c.width = c.height = 0;

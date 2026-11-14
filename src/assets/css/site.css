@@ -910,6 +910,7 @@ legend { padding: 0; font-weight: 650; font-size: 0.95rem; margin-bottom: 6px; }
 .pp-frame canvas:active { cursor: grabbing; }
 .pp-frame canvas:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
 .pp-hint { text-align: center; }
+.pp-note { margin: 0; padding: 10px 12px; font-size: var(--step--1); color: var(--ink); background: var(--panel-2); border: 1px solid var(--line); border-left: 4px solid var(--tag-deep); border-radius: var(--radius-s); }
 .pp-checks { margin: 0; }
 .pp-checks li { grid-template-columns: 4.2em minmax(0, 1fr); align-items: start; }
 .pp-rules { padding: 14px 16px; background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--radius-s); }
